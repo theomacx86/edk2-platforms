@@ -1,0 +1,32 @@
+[FD.QemuOpenBoardPkg]
+
+BaseAddress   = 0xFFF00000
+Size          = 0x102000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 16
+BlockSize     = 0x1000
+NumBlocks     = 2
+
+0 | 0x20000
+FV = FvPreMemory
+
+[FV.FvPreMemory]
+
+!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+
+
+INF  OvmfPkg/Sec/SecMain.inf
+INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
+
+[Rule.Common.SEC]
+  FILE SEC = $(NAMED_GUID) {
+    PE32     PE32           $(INF_OUTPUT)/$(MODULE_NAME).efi
+    UI       STRING ="$(MODULE_NAME)" Optional
+    VERSION  STRING ="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+  }
+
+[Rule.Common.SEC.RESET_VECTOR]
+  FILE RAW = $(NAMED_GUID) {
+    RAW BIN   Align = 16   |.bin
+  }
