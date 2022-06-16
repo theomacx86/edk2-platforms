@@ -16,21 +16,29 @@
 [PcdsFixedAtBuild.PcdsPatchableInModule]
 gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|FALSE
 gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
+
+
 !include MinPlatformPkg/Include/Dsc/CoreCommonLib.dsc
 
 [LibraryClasses.IA32]
+DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
 
 [LibraryClasses.X64]
 
 [LibraryClasses.common.SEC]
+
 PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
-CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/SecPeiCpuExceptionHandlerLib.inf
+CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/Xcode5SecPeiCpuExceptionHandlerLib.inf
 ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf
 HobLib|MdeModulePkg/Library/BaseHobLibNull/BaseHobLibNull.inf
 MemoryAllocationLib|MdeModulePkg/Library/BaseMemoryAllocationLibNull/BaseMemoryAllocationLibNull.inf
 VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
-[Components]
-UefiCpuPkg/SecCore/SecCore.inf
-
+ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
+MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
+CcProbeLib|MdePkg/Library/CcProbeLibNull/CcProbeLibNull.inf
+[Components.X64]
+#UefiCpuPkg/SecCore/SecCore.inf
+OvmfPkg/Sec/SecMain.inf
+OvmfPkg/ResetVector/ResetVector.inf
 

@@ -1,23 +1,66 @@
-[FD.QemuOpenBoardPkg]
-
-BaseAddress   = 0xFFF00000
-Size          = 0x102000
+[FD.MEMFD]
+BaseAddress   = 0x800000
+Size          = 0xD00000
 ErasePolarity = 1
 BlockSize     = 0x10000
-NumBlocks     = 16
-BlockSize     = 0x1000
-NumBlocks     = 2
+NumBlocks     = 0xD0
 
-0 | 0x20000
+0x000000|0x006000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPageTablesBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPageTablesSize
+
+0x006000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfLockBoxStorageBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfLockBoxStorageSize
+
+0x007000|0x001000
+gEfiMdePkgTokenSpaceGuid.PcdGuidedExtractHandlerTableAddress|gUefiOvmfPkgTokenSpaceGuid.PcdGuidedExtractHandlerTableSize
+
+0x008000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbPageTableBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbPageTableSize
+
+0x009000|0x002000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbSize
+
+0x00B000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfWorkAreaBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfWorkAreaSize
+
+0x00C000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbBackupBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbBackupSize
+
+0x00D000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSnpSecretsBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSnpSecretsSize
+
+0x00E000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfCpuidBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfCpuidSize
+
+0x010000|0x010000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamSize
+
+0x020000|0x0E0000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfPeiMemFvBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfPeiMemFvSize
+
+
+0x100000|0xC00000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfDxeMemFvBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfDxeMemFvSize
+
+
+[FD.QemuOpenBoardPkg]
+BaseAddress   = 0xFFF00000
+Size          = 0x00100000
+ErasePolarity = 1
+BlockSize     = 0x1000
+NumBlocks     = 0x100
+
+0xE0000 | 0x20000
 FV = FvPreMemory
 
 [FV.FvPreMemory]
-
+FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
 
+#INF  UefiCpuPkg/SecCore/SecCore.inf
+INF OvmfPkg/Sec/SecMain.inf
+INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
 
-INF  UefiCpuPkg/SecCore/SecCore.inf
-INF  UefiCpuPkg/ResetVector/Vtf0/Bin/ResetVector.inf
 
 [Rule.Common.SEC]
   FILE SEC = $(NAMED_GUID) {
@@ -26,7 +69,7 @@ INF  UefiCpuPkg/ResetVector/Vtf0/Bin/ResetVector.inf
     VERSION  STRING ="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
   }
 
-[Rule.Common.SEC.BINARY]
+[Rule.Common.SEC.RESET_VECTOR]
   FILE RAW = $(NAMED_GUID) {
-    RAW BIN   $(WORKSPACE)/edk2/UefiCpuPkg/ResetVector/Vtf0/Bin/IA32/ResetVector.ia32.raw
+    RAW BIN   Align = 16   |.bin
   }
