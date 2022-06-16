@@ -23,18 +23,14 @@ gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
 [LibraryClasses.X64]
 
 [LibraryClasses.common.SEC]
-DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
-ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
-MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
-CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/Xcode5SecPeiCpuExceptionHandlerLib.inf
-CcProbeLib|OvmfPkg/Library/CcProbeLib/CcProbeLib.inf
-VmgExitLib|OvmfPkg/Library/VmgExitLib/SecVmgExitLib.inf
+PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
+CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/SecPeiCpuExceptionHandlerLib.inf
+ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf
+HobLib|MdeModulePkg/Library/BaseHobLibNull/BaseHobLibNull.inf
+MemoryAllocationLib|MdeModulePkg/Library/BaseMemoryAllocationLibNull/BaseMemoryAllocationLibNull.inf
+VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
-MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
-HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
-
 [Components]
-OvmfPkg/Sec/SecMain.inf
-OvmfPkg/ResetVector/ResetVector.inf
+UefiCpuPkg/SecCore/SecCore.inf
 
 
