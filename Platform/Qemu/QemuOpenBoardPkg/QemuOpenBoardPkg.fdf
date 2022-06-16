@@ -16,8 +16,8 @@ FV = FvPreMemory
 !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
 
 
-INF  OvmfPkg/Sec/SecMain.inf
-INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
+INF  UefiCpuPkg/SecCore/SecCore.inf
+INF  UefiCpuPkg/ResetVector/Vtf0/Bin/ResetVector.inf
 
 [Rule.Common.SEC]
   FILE SEC = $(NAMED_GUID) {
@@ -26,7 +26,7 @@ INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
     VERSION  STRING ="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
   }
 
-[Rule.Common.SEC.RESET_VECTOR]
+[Rule.Common.SEC.BINARY]
   FILE RAW = $(NAMED_GUID) {
-    RAW BIN   Align = 16   |.bin
+    RAW BIN   $(WORKSPACE)/edk2/UefiCpuPkg/ResetVector/Vtf0/Bin/IA32/ResetVector.ia32.raw
   }
