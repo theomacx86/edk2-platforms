@@ -13,7 +13,12 @@
 [SkuIds]
   0|DEFAULT  
 
+[PcdsFixedAtBuild]
+gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000004F
+gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x17
+
 [PcdsFixedAtBuild.PcdsPatchableInModule]
+
 gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|FALSE
 gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
 
@@ -21,22 +26,25 @@ gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
 !include MinPlatformPkg/Include/Dsc/CoreCommonLib.dsc
 
 [LibraryClasses.IA32]
-DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 
 [LibraryClasses.X64]
+DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
+DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
 
 [LibraryClasses.common.SEC]
 
 PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
 CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/Xcode5SecPeiCpuExceptionHandlerLib.inf
-ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf
-HobLib|MdeModulePkg/Library/BaseHobLibNull/BaseHobLibNull.inf
-MemoryAllocationLib|MdeModulePkg/Library/BaseMemoryAllocationLibNull/BaseMemoryAllocationLibNull.inf
-VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
+ReportStatusCodeLib|MdeModulePkg/Library/PeiReportStatusCodeLib/PeiReportStatusCodeLib.inf
+HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
+MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
+VmgExitLib|OvmfPkg/Library/VmgExitLib/SecVmgExitLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
 MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
-CcProbeLib|MdePkg/Library/CcProbeLibNull/CcProbeLibNull.inf
+CcProbeLib|OvmfPkg/Library/CcProbeLib/CcProbeLib.inf
+
 [Components.X64]
 #UefiCpuPkg/SecCore/SecCore.inf
 OvmfPkg/Sec/SecMain.inf
