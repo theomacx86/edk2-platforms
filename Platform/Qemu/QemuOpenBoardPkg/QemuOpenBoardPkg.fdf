@@ -57,7 +57,10 @@ FV = FvPreMemory
 FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
 
-#INF  UefiCpuPkg/SecCore/SecCore.inf
+
+INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
+INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 INF OvmfPkg/Sec/SecMain.inf
 INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
 
@@ -73,3 +76,4 @@ INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
   FILE RAW = $(NAMED_GUID) {
     RAW BIN   Align = 16   |.bin
   }
+
