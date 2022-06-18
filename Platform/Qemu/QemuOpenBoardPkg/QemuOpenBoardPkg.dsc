@@ -33,7 +33,7 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
 
 [LibraryClasses.common.SEC]
-
+TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLibBhyve.inf
 PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
 CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/Xcode5SecPeiCpuExceptionHandlerLib.inf
 ReportStatusCodeLib|MdeModulePkg/Library/PeiReportStatusCodeLib/PeiReportStatusCodeLib.inf
@@ -49,4 +49,7 @@ CcProbeLib|OvmfPkg/Library/CcProbeLib/CcProbeLib.inf
 #UefiCpuPkg/SecCore/SecCore.inf
 OvmfPkg/Sec/SecMain.inf
 OvmfPkg/ResetVector/ResetVector.inf
+MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
+MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 
