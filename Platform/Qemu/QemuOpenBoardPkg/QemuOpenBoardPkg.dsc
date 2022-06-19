@@ -25,17 +25,13 @@ gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
 
 !include MinPlatformPkg/Include/Dsc/CoreCommonLib.dsc
 
-[LibraryClasses.IA32]
-DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
+
 
 [LibraryClasses.X64]
-DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
-
-[LibraryClasses.common.SEC]
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLibBhyve.inf
 PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
-CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/Xcode5SecPeiCpuExceptionHandlerLib.inf
+CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/SecPeiCpuExceptionHandlerLib.inf
 ReportStatusCodeLib|MdeModulePkg/Library/PeiReportStatusCodeLib/PeiReportStatusCodeLib.inf
 HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
 MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
@@ -45,11 +41,19 @@ ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGu
 MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
 CcProbeLib|OvmfPkg/Library/CcProbeLib/CcProbeLib.inf
 
+[LibraryClasses.common.SEC]
+DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
+
+[LibraryClasses.common.PEI_CORE]
+DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
+
 [Components.X64]
 #UefiCpuPkg/SecCore/SecCore.inf
 OvmfPkg/Sec/SecMain.inf
 OvmfPkg/ResetVector/ResetVector.inf
-MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
+QemuOpenBoardPkg/Library/BoardInitLib/PlatformInitPreMemory.inf
+MdeModulePkg/Core/Pei/PeiMain.inf
+#MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
+#MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+#MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 

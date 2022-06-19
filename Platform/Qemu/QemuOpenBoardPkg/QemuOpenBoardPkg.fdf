@@ -50,17 +50,27 @@ ErasePolarity = 1
 BlockSize     = 0x1000
 NumBlocks     = 0x100
 
-0xE0000 | 0x20000
+0 | 0x11000
+FV = FvFspM
+
+0x11000 | 0xd000
 FV = FvPreMemory
+
+
+[FV.FvFspM]
+FvNameGuid      = 78d38fc0-9f43-49cc-a916-3c752d1257a6
+
+!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+
+INF MdeModulePkg/Core/Pei/PeiMain.inf
 
 [FV.FvPreMemory]
 FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
 
-
-INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
+#INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
+#INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+#INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 INF OvmfPkg/Sec/SecMain.inf
 INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
 
@@ -77,3 +87,9 @@ INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
     RAW BIN   Align = 16   |.bin
   }
 
+[Rule.Common.PEI_CORE]
+  FILE PEI_CORE = $(NAMED_GUID)            {
+    PE32       PE32     Align = 64       $(INF_OUTPUT)/$(MODULE_NAME).efi
+    UI       STRING="$(MODULE_NAME)" Optional
+    VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+  }
