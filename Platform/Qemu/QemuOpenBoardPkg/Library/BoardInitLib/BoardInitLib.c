@@ -18,7 +18,7 @@ BoardDetect (
   )
 {   
     //Placeholder, must check for PIIX4 / ICH9
-    DEBUG ((DEBUG_ERROR, "BoardDetect()\n"));
+    DEBUG ((DEBUG_INFO, "BoardDetect()\n"));
     return EFI_SUCCESS;
 }
 
@@ -36,11 +36,11 @@ BoardDebugInit (
 {
     //Return EFI_SUCCESS if QEMU Debug IO ports return magic
     if(IoRead8( PcdGet16(PcdDebugIoPort) ) == QEMU_IO_DEBUG_MAGIC ){
-        DEBUG ((DEBUG_ERROR, "QEMU IO Port ready.\n"));
+        DEBUG ((DEBUG_INFO, "QEMU IO Port ready.\n"));
         return EFI_SUCCESS;
     }
     else{
-        DEBUG ((DEBUG_ERROR, "QEMU IO Port not ready / misconfigured.\n"));
+        DEBUG ((DEBUG_INFO, "QEMU IO Port not ready / misconfigured.\n"));
         return EFI_NOT_READY;
     }
 }
@@ -52,7 +52,7 @@ BoardBootModeDetect (
   )
 {
     //Placeholder
-    DEBUG ((DEBUG_ERROR, "BoardBootModeDetect()\n"));
+    DEBUG ((DEBUG_INFO, "BoardBootModeDetect()\n"));
     return BOOT_WITH_FULL_CONFIGURATION;
 }
 
@@ -68,7 +68,7 @@ BoardInitBeforeMemoryInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitBeforeMemoryInit()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitBeforeMemoryInit()\n"));
     return EFI_SUCCESS;
 }
 
@@ -84,7 +84,7 @@ BoardInitAfterMemoryInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitAfterMemoryInit()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitAfterMemoryInit()\n"));
     return EFI_SUCCESS;
 }
 
@@ -100,7 +100,7 @@ BoardInitBeforeTempRamExit (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitBeforeTempRamExit()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitBeforeTempRamExit()\n"));
     return EFI_SUCCESS;
 }
 
@@ -116,7 +116,7 @@ BoardInitAfterTempRamExit (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitAfterTempRamExit()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitAfterTempRamExit()\n"));
     return EFI_SUCCESS;
 }
 
@@ -132,7 +132,7 @@ BoardInitBeforeSiliconInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitBeforeSiliconInit()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitBeforeSiliconInit()\n"));
     return EFI_SUCCESS;
 }
 
@@ -148,7 +148,7 @@ BoardInitAfterSiliconInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitAfterSiliconInit()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitAfterSiliconInit()\n"));
     return EFI_SUCCESS;
 }
 
@@ -164,7 +164,7 @@ BoardInitAfterPciEnumeration (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitAfterPciEnumeration()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitAfterPciEnumeration()\n"));
     return EFI_SUCCESS;
 }
 
@@ -180,7 +180,7 @@ BoardInitReadyToBoot (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitReadyToBoot()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitReadyToBoot()\n"));
     return EFI_SUCCESS;
 }
 
@@ -196,6 +196,6 @@ BoardInitEndOfFirmware (
   VOID
   )
 {
-    DEBUG ((DEBUG_ERROR, "BoardInitEndOfFirmware()\n"));
+    DEBUG ((DEBUG_INFO, "BoardInitEndOfFirmware()\n"));
     return EFI_SUCCESS;
 }
