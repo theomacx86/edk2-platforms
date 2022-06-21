@@ -14,8 +14,11 @@
   0|DEFAULT  
 
 [PcdsFixedAtBuild]
-gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000004F
+gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8040004F
 gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x17
+gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
+gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
+gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPoolType|0x0000000000000002
 
 [PcdsFixedAtBuild.PcdsPatchableInModule]
 
@@ -62,8 +65,10 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 
 
 #FvPreMemory
-OvmfPkg/Sec/SecMain.inf
-OvmfPkg/ResetVector/ResetVector.inf
+#OvmfPkg/Sec/SecMain.inf
+UefiCpuPkg/SecCore/SecCore.inf
+
+#OvmfPkg/ResetVector/ResetVector.inf
 
 MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
 MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
@@ -77,4 +82,4 @@ MdeModulePkg/Universal/PCD/Pei/Pcd.inf
 MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
 MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
-
+SourceLevelDebugPkg/DebugAgentPei/DebugAgentPei.inf
