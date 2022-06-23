@@ -1,3 +1,54 @@
+[FD.MEMFD]
+BaseAddress   = 0x800000
+Size          = 0xD00000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 0xD0
+
+0x000000|0x006000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPageTablesBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPageTablesSize
+
+0x006000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfLockBoxStorageBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfLockBoxStorageSize
+
+0x007000|0x001000
+gEfiMdePkgTokenSpaceGuid.PcdGuidedExtractHandlerTableAddress|gUefiOvmfPkgTokenSpaceGuid.PcdGuidedExtractHandlerTableSize
+
+0x008000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbPageTableBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbPageTableSize
+
+0x009000|0x002000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbSize
+
+0x00B000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfWorkAreaBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfWorkAreaSize
+
+0x00C000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbBackupBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecGhcbBackupSize
+
+0x00D000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSnpSecretsBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSnpSecretsSize
+
+0x00E000|0x001000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfCpuidBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfCpuidSize
+
+0x010000|0x010000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamSize
+
+0x020000|0x0E0000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfPeiMemFvBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfPeiMemFvSize
+
+0x100000|0xC00000
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfDxeMemFvBase|gUefiOvmfPkgTokenSpaceGuid.PcdOvmfDxeMemFvSize
+
+
+##########################################################################################
+# Set the SEV-ES specific work area PCDs (used for all forms of SEV since the
+# the SEV STATUS MSR is now saved in the work area)
+#
+SET gUefiCpuPkgTokenSpaceGuid.PcdSevEsWorkAreaBase = 0x800000 +  gUefiOvmfPkgTokenSpaceGuid.PcdOvmfWorkAreaBase + gUefiOvmfPkgTokenSpaceGuid.PcdOvmfConfidentialComputingWorkAreaHeader
+SET gUefiCpuPkgTokenSpaceGuid.PcdSevEsWorkAreaSize = gUefiOvmfPkgTokenSpaceGuid.PcdOvmfWorkAreaSize - gUefiOvmfPkgTokenSpaceGuid.PcdOvmfConfidentialComputingWorkAreaHeader
+
 [FD.QemuOpenBoardPkg]
 BaseAddress   = 0xFFF00000
 Size          = 0x00100000
@@ -5,7 +56,7 @@ ErasePolarity = 1
 BlockSize     = 0x1000
 NumBlocks     = 0x100
 
-0 | 0x1f000
+0 | 0x22000
 FV = FvFspM
 
 0xDF000 | 0x21000
@@ -36,15 +87,15 @@ FILE FV_IMAGE = f936ad31-ba74-48d4-87c1-1057d548bb4a {
 FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
 
-INF SourceLevelDebugPkg/DebugAgentPei/DebugAgentPei.inf
+
+
 INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
 INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
 INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 
-INF UefiCpuPkg/SecCore/SecCore.inf
 
-#INF OvmfPkg/Sec/SecMain.inf
-#INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
+INF OvmfPkg/Sec/SecMain.inf
+INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
 
 
 [Rule.Common.SEC]
@@ -53,7 +104,6 @@ INF UefiCpuPkg/SecCore/SecCore.inf
     UI       STRING ="$(MODULE_NAME)" Optional
     VERSION  STRING ="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
   }
-
 
 [Rule.Common.SEC.RESET_VECTOR]
   FILE RAW = $(NAMED_GUID) {

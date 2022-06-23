@@ -14,11 +14,12 @@
   0|DEFAULT  
 
 [PcdsFixedAtBuild]
-gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8040004F
-gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x17
+gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000004F
+gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
 gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
 gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
 gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPoolType|0x0000000000000002
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfConfidentialComputingWorkAreaHeader|4
 
 [PcdsFixedAtBuild.PcdsPatchableInModule]
 
@@ -29,15 +30,14 @@ gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
 !include MinPlatformPkg/Include/Dsc/CoreCommonLib.dsc
 
 
-[LibraryClasses.X64]
+[LibraryClasses.common]
+VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
 DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLibBhyve.inf
-PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
 CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/SecPeiCpuExceptionHandlerLib.inf
 ReportStatusCodeLib|MdeModulePkg/Library/PeiReportStatusCodeLib/PeiReportStatusCodeLib.inf
 HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
 MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
-VmgExitLib|OvmfPkg/Library/VmgExitLib/SecVmgExitLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
 MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
@@ -61,14 +61,11 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 [LibraryClasses.common.PEI_CORE]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 
-[Components.X64]
-
+[Components]
 
 #FvPreMemory
-#OvmfPkg/Sec/SecMain.inf
-UefiCpuPkg/SecCore/SecCore.inf
-
-#OvmfPkg/ResetVector/ResetVector.inf
+OvmfPkg/Sec/SecMain.inf
+OvmfPkg/ResetVector/ResetVector.inf
 
 MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
 MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
@@ -82,4 +79,3 @@ MdeModulePkg/Universal/PCD/Pei/Pcd.inf
 MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
 MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
-SourceLevelDebugPkg/DebugAgentPei/DebugAgentPei.inf
