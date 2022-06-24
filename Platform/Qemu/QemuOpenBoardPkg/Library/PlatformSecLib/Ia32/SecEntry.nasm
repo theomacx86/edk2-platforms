@@ -24,7 +24,7 @@ ASM_PFX(_ModuleEntryPoint):
     mov gs, ax
     mov ss, ax
     
-    mov esi, cooltest
+    mov esi, protected_mode
     ; jmp dword far esi
     jmp dword far [cs:si]
 
@@ -42,11 +42,6 @@ protected_mode:
     ; boot firmware volume?
     call ASM_PFX(SecStartup)
 
-
-BITS 16
-align 4
-cooltest:
-    jmp $
 
 
 align 8
