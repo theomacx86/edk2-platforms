@@ -31,6 +31,7 @@ gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
 
 
 [LibraryClasses.common]
+PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
 VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
 DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLibBhyve.inf
@@ -64,8 +65,10 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 [Components]
 
 #FvPreMemory
-OvmfPkg/Sec/SecMain.inf
-OvmfPkg/ResetVector/ResetVector.inf
+#OvmfPkg/Sec/SecMain.inf
+#OvmfPkg/ResetVector/ResetVector.inf
+
+UefiCpuPkg/SecCore/SecCore.inf
 
 MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
 MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
@@ -79,3 +82,4 @@ MdeModulePkg/Universal/PCD/Pei/Pcd.inf
 MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
 MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
+QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
