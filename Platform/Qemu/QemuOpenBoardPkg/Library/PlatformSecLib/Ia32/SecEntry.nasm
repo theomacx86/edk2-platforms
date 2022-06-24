@@ -24,8 +24,8 @@ ASM_PFX(_ModuleEntryPoint):
     mov gs, ax
     mov ss, ax
     
-    mov esi, protected_mode
-    ; jmp dword far esi
+    mov esi, ProtectedModeEntryLinearAddress
+    
     jmp dword far [cs:si]
 
 
@@ -93,5 +93,5 @@ GDT_Descriptor:
 ProtectedModeEntryLinearAddress:
 ProtectedModeEntryLinear:
   DD      protected_mode  ; Offset of our 32 bit code
-  DW      code_segment_descriptor
+  DW      CODE_SEL
 
