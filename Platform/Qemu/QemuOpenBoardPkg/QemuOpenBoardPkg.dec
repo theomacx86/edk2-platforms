@@ -8,9 +8,12 @@
 [Guids]
 gUefiQemuOpenBoardPkgTokenSpaceGuid = {0x221b20c4, 0xa3dc, 0x4b8f, {0xb6, 0x94, 0x03, 0xc7, 0xf4, 0x76, 0x51, 0x2b}}
 
-[PcdsFixedAtBuild]  #
-  # These need to move to MinPlatformPkg.dec
-  #
+[PcdsFixedAtBuild]  
+gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0|UINT32|0x00000001
+gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0|UINT32|0x00000002
+#
+# These need to move to MinPlatformPkg.dec
+#
 gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize|0|UINT32|0xF00000A9
 gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryBase|0|UINT32|0xF00000AA
 gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryOffset|0|UINT32|0xF00000AB

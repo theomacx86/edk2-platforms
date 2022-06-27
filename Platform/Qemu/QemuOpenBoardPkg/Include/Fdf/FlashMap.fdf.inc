@@ -1,16 +1,16 @@
 #
-# 4MiB for SEC and PEI
+# 0x270000
 #
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize     = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize  = 0x00080000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize          = 0x00079000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize          = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize          = 0x00060000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize          = 0x00010000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize    = 0x00040000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize           = 0x00040000
 
 #
-# 12MiB
+# 12MiB 0x200000
 #
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00080000

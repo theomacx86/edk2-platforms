@@ -40,3 +40,8 @@
 [Packages]
   MdePkg/MdePkg.dec
   UefiCpuPkg/UefiCpuPkg.dec
+  QemuOpenBoardPkg/QemuOpenBoardPkg.dec
+
+[Pcd]
+gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase
+gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize
