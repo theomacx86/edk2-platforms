@@ -44,10 +44,10 @@ protected_mode:
 
     push edi            ;Passes BFV
 
-    push edx            ;Passes RAM base
-
     push ecx            ;Passes RAM size
 
+    push edx            ;Passes RAM base
+    
     call ASM_PFX(SecStartup)
 
 
