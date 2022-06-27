@@ -1,5 +1,5 @@
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFF000000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  BaseAddress   = 0xFFB90000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
   Size          = 0x08000000
   ErasePolarity = 1
   BlockSize     = 0x1000

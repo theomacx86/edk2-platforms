@@ -3,6 +3,9 @@ DATA_SEG equ data_segment_descriptor - GDT_START
 
 extern ASM_PFX(SecStartup)
 
+extern ASM_PFX(PcdGet32(PcdTemporaryRamBase))
+extern ASM_PFX(PcdGet32(PcdTemporaryRamSize))
+
 BITS 16
 align 4
 global ASM_PFX(_ModuleEntryPoint)
@@ -31,12 +34,20 @@ BITS 32
 align 4
 protected_mode:
     PROTECTED_MODE equ $
-    mov esp, 0x1000 ; Placeholder, allocate 4Kb of RAM
-    mov eax, esp
-    push eax
-    add eax, -4
-    push eax
-    ; boot firmware volume?
+
+    mov ecx, dword [ASM_PFX(PcdGet32 (PcdTemporaryRamBase))]
+    mov edx, dword [ASM_PFX(PcdGet32 (PcdTemporaryRamSize))]      
+
+    mov esp, edx        ;Initialize stack
+
+    mov edi, 0xFFFFFFFC ;BFV
+
+    push edi            ;Passes BFV
+
+    push edx            ;Passes RAM base
+
+    push ecx            ;Passes RAM size
+
     call ASM_PFX(SecStartup)
 
 
