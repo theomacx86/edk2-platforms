@@ -2,19 +2,35 @@
 #include <Ppi/SecPlatformInformation.h>
 #include <Ppi/TemporaryRamSupport.h>
 #include <Library/PcdLib.h>
+#include <Ppi/PeiCoreFvLocation.h>
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/HobLib.h>
 #include <Library/MtrrLib.h>
 #include <Library/PlatformSecLib.h>
+#include <Library/PeiServicesLib.h>
+
+EFI_PEI_CORE_FV_LOCATION_PPI gEfiPeiCoreFvLocationPpi = {
+  (VOID*) 0xFFE20000 //Could be done automatically at build
+};
+
+EFI_PEI_PPI_DESCRIPTOR gEfiPeiCoreFvLocationDescriptor = {
+  (EFI_PEI_PPI_DESCRIPTOR_PPI | EFI_PEI_PPI_DESCRIPTOR_TERMINATE_LIST),
+  &gEfiPeiCoreFvLocationPpiGuid,
+  &gEfiPeiCoreFvLocationPpi
+};
+
 EFI_PEI_PPI_DESCRIPTOR *
 EFIAPI
 SecPlatformMain (
   IN OUT   EFI_SEC_PEI_HAND_OFF  *SecCoreData
   )
 {
-    return NULL;
+    //Use half of available heap size for PpiList
+    EFI_PEI_PPI_DESCRIPTOR * PpiList = (VOID*) (SecCoreData->PeiTemporaryRamBase + (SecCoreData->PeiTemporaryRamSize/2));
+    CopyMem(PpiList, &gEfiPeiCoreFvLocationDescriptor, sizeof(EFI_PEI_PPI_DESCRIPTOR));
+    return PpiList;
 }
 
 /**
