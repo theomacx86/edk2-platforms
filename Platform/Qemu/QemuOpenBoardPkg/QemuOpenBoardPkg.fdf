@@ -1,81 +1,164 @@
 [FD.QemuOpenBoardPkg]
-BaseAddress   = 0xFFF00000
-Size          = 0x00100000
-ErasePolarity = 1
-BlockSize     = 0x1000
-NumBlocks     = 0x100
+  BaseAddress   = 0xFF000000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  Size          = 0x08000000
+  ErasePolarity = 1
+  BlockSize     = 0x1000
+  NumBlocks     = 0x8000
 
-0 | 0x22000
-FV = FvFspM
+  !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
-0xDF000 | 0x21000
-FV = FvPreMemory
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
+  FV = FvAdvanced
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
+  FV = FvSecurity
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize
+  FV = FvOsBoot
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize
+  FV = FvUefiBoot
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize
+  FV = FvBsp
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemoryOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize
+  FV = FvPostMemory
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize
+  FV = FvFspS
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize
+  FV = FvFspM
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize
+  FV = FvFspT
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize
+  FV = FvBspPreMemory
+
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemoryOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize
+  FV = FvPreMemory
+
+###########################
+#
+# Stage 6 Firmware volumes
+#
+###########################
+[FV.FvAdvanced]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = 936D6D65-CB6C-4B87-A51C-70D56511CB55
+
+###########################
+#
+# Stage 5 Firmware volumes
+#
+###########################
+[FV.FvSecurity]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = 1AE6AB90-9431-425B-9A92-ED2708A4E982
+
+###########################
+#
+# Stage 4 Firmware volumes
+#
+###########################
+[FV.FvOsBoot]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = AE8F0EA0-1614-422D-ABC1-C518596F1678
+
+###########################
+#
+# Stage 3 Firmware volumes
+#
+###########################
+[FV.FvUefiBoot]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = D2F110DB-2388-4963-BEFD-5889EEE01569
+
+###########################
+#
+# Stage 2 Firmware volumes
+#
+###########################
+
+[FV.FvBsp]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = FCA0BC4A-994D-4EF9-BD56-A8C45872C2A8
+
+
+[FV.FvPostMemory]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = 5A1D6978-BABE-42F9-A629-F7B3B6A1E1BD
+
+
+###########################
+#
+# Stage 1 Firmware volumes
+#
+###########################
+
+[FV.FvPostMemorySilicon]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = EF76DFDC-2B7D-423D-BFE4-8FD4BB22E770
+
+[FV.FvFspS]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = C6786443-AFCA-471B-A8FC-E8C330708F99
 
 [FV.FvPreMemorySilicon]
-FvNameGuid      = be98c0c4-680b-489d-b29e-859f7f3188e4
-
-!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-
-INF MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
-INF MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = F0205C0E-0AD1-499C-A5F9-96BAF98248A0
 
 [FV.FvFspM]
-FvNameGuid      = 78d38fc0-9f43-49cc-a916-3c752d1257a6
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
 
-!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
+  INF  MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
-INF MdeModulePkg/Core/Pei/PeiMain.inf
-INF MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+[FV.FvFspT]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
 
-FILE FV_IMAGE = f936ad31-ba74-48d4-87c1-1057d548bb4a {
-     SECTION FV_IMAGE = FvPreMemorySilicon
-}
+  INF  MdeModulePkg/Core/Pei/PeiMain.inf  
+  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
 
-
-[FV.FvPreMemory] #Complete
-FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
-!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-
-
-
-INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
-
-
-#INF OvmfPkg/Sec/SecMain.inf
-#INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
-
-INF UefiCpuPkg/SecCore/SecCore.inf
-
-
-[Rule.Common.SEC]
-  FILE SEC = $(NAMED_GUID) RELOCS_STRIPPED {
-    UI       STRING="$(MODULE_NAME)" Optional
-    VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
-    PE32  PE32    Align = 16      $(INF_OUTPUT)/$(MODULE_NAME).efi
-    RAW BIN       Align = 16      |.bin
+  FILE FV_IMAGE = 83B39C64-BFB9-42EC-A7A3-527854A5C4C3 {
+      SECTION FV_IMAGE = FvFspM
   }
+  
+[FV.FvAdvancedPreMemory]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 43528CE0-812B-4074-B77E-C49E7A2F4FE1
 
-[Rule.Common.SEC.BINARY]
-  FILE SEC = $(NAMED_GUID) RELOCS_STRIPPED {
-    UI       STRING="$(MODULE_NAME)" Optional
-    VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
-    PE32  PE32    Align = 16      |.efi
-    RAW BIN       Align = 16      |.bin
-  }
+[FV.FvBspPreMemory] 
 
-[Rule.Common.PEI_CORE]
-  FILE PEI_CORE = $(NAMED_GUID)            {
-    PE32       PE32     Align = 64       $(INF_OUTPUT)/$(MODULE_NAME).efi
-    UI       STRING="$(MODULE_NAME)" Optional
-    VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
-  }
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 5CF9C072-385F-44FC-B21B-002074251C08
 
-[Rule.Common.PEIM]
-  FILE PEIM = $(NAMED_GUID) {
-     PEI_DEPEX PEI_DEPEX Optional        $(INF_OUTPUT)/$(MODULE_NAME).depex
-     PE32        PE32    Align = 64      $(INF_OUTPUT)/$(MODULE_NAME).efi
-     UI        STRING="$(MODULE_NAME)" Optional
-     VERSION   STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+  FILE FV_IMAGE = 90B948EA-FF73-4689-B90A-A54F86C1FC01 {
+      SECTION FV_IMAGE = FvAdvancedPreMemory
+  } 
+
+[FV.FvSecurityPreMemory]
+  
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = F626B0FB-D759-44A8-B131-42408BB3533D
+
+
+[FV.FvPreMemory] 
+
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
+
+  FILE FV_IMAGE = 618FBA00-2231-41F6-9931-25A89DF501D3 {
+      SECTION FV_IMAGE = FvSecurityPreMemory
   }
+  INF UefiCpuPkg/SecCore/SecCore.inf
+  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
+  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
+  
+
+  !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf
