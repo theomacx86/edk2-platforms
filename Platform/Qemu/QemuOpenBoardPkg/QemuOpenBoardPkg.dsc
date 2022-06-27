@@ -22,7 +22,7 @@
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000004F
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
 
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x2000
+  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0xFEF00000
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x2000
 
 [PcdsFeatureFlag]
