@@ -5,6 +5,12 @@
   PACKAGE_VERSION                = 0.1
 
 
+[LibraryClasses]
+  QemuFwCfgLib|Include/Library/OQemuFwCfgLib.h
+
+[Includes]
+  Include
+
 [Guids]
 gUefiQemuOpenBoardPkgTokenSpaceGuid = {0x221b20c4, 0xa3dc, 0x4b8f, {0xb6, 0x94, 0x03, 0xc7, 0xf4, 0x76, 0x51, 0x2b}}
 

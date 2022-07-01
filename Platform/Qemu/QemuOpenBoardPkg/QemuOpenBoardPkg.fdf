@@ -109,7 +109,7 @@
 [FV.FvPreMemorySilicon]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = F0205C0E-0AD1-499C-A5F9-96BAF98248A0
-
+  INF  QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
   INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
   INF  MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
@@ -121,15 +121,15 @@
   INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
   INF  MdeModulePkg/Core/Pei/PeiMain.inf  
 
+  FILE FV_IMAGE = 83B39C64-BFB9-42EC-A7A3-527854A5C4C3 {
+      SECTION FV_IMAGE = FvPreMemorySilicon
+  }
+
+
 [FV.FvFspT]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
 
-  
-
-  FILE FV_IMAGE = 83B39C64-BFB9-42EC-A7A3-527854A5C4C3 {
-      SECTION FV_IMAGE = FvFspM
-  }
   
 [FV.FvAdvancedPreMemory]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
@@ -155,13 +155,9 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 
-  FILE FV_IMAGE = 618FBA00-2231-41F6-9931-25A89DF501D3 {
-      SECTION FV_IMAGE = FvSecurityPreMemory
-  }
-  INF UefiCpuPkg/SecCore/SecCore.inf
-  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
   
+  INF UefiCpuPkg/SecCore/SecCore.inf
+  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
+
 
   !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf
