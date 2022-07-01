@@ -45,6 +45,7 @@
 
 
 [LibraryClasses.common]
+QemuFwCfgLib|QemuOpenBoardPkg/Library/QemuFwCfgLib/QemuFwCfgLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
 
@@ -54,3 +55,5 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 [LibraryClasses.common.PEI_CORE]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 
+[Components]
+QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
