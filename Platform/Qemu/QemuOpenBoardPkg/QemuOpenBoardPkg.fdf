@@ -155,8 +155,12 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 
-  
+  FILE FV_IMAGE = 618FBA00-2231-41F6-9931-25A89DF501D3 {
+      SECTION FV_IMAGE = FvSecurityPreMemory
+  }
   INF UefiCpuPkg/SecCore/SecCore.inf
+  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
   INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 
 
