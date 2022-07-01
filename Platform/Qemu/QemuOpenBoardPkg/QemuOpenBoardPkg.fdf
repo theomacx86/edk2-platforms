@@ -162,6 +162,7 @@
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
   INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
-
+  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+  INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
 
   !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf

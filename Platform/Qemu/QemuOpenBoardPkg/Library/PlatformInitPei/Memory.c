@@ -49,6 +49,7 @@ InstallMemory(
     
     //32 Bits mode
     PeiServicesTable = GetPeiServicesTablePointer();
+    DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize (32 bits): %x\nSize (64 bits):%Lx\n",BaseAddress, (UINT32) Size, (UINT64) Size));
     Status = (*PeiServices)->InstallPeiMemory( PeiServicesTable, (EFI_PHYSICAL_ADDRESS) BaseAddress, (UINT32) Size);
     return Status;
 }
