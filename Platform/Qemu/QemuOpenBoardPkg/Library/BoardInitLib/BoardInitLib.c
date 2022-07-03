@@ -25,7 +25,6 @@ BoardDetect (
   )
 {   
     UINT16 DeviceID, VendorID;
-    CONST EFI_PEI_SERVICES **PeiServices;
     DEBUG ((DEBUG_INFO, "BoardDetect()\n"));
     
     DeviceID = PciCf8Read16(PCI_CF8_LIB_ADDRESS(0,0,0, PCI_DEVICE_ID_OFFSET)) ;
