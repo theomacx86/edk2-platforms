@@ -1,9 +1,16 @@
 #include "Library/BoardInitLib.h"
+#include "Uefi.h"
 #include "Library/IoLib.h"
 #include "Library/PcdLib.h"
 #include "Library/DebugLib.h"
 
+#include "Library/PciCf8Lib.h"
+#include "IndustryStandard/Pci.h"
+
+#include "Library/QemuHardware.h"
+
 #define QEMU_IO_DEBUG_MAGIC  0xE9
+
 
 /**
   This board service detects the board type.
@@ -17,9 +24,29 @@ BoardDetect (
   VOID
   )
 {   
-    //Placeholder, must check for PIIX4 / ICH9
+    UINT16 DeviceID, VendorID;
+    CONST EFI_PEI_SERVICES **PeiServices;
     DEBUG ((DEBUG_INFO, "BoardDetect()\n"));
-    return EFI_SUCCESS;
+    
+    DeviceID = PciCf8Read16(PCI_CF8_LIB_ADDRESS(0,0,0, PCI_DEVICE_ID_OFFSET)) ;
+    VendorID = PciCf8Read16(PCI_CF8_LIB_ADDRESS(0,0,0, PCI_VENDOR_ID_OFFSET)) ;
+  
+    switch (DeviceID)
+    {
+    case PIIX4_DEVICE_ID:
+      DEBUG ((DEBUG_INFO, "PIIX4\n"));
+      return EFI_SUCCESS;
+    
+    case ICH9_DEVICE_ID:
+      DEBUG ((DEBUG_INFO, "ICH9\n"));
+      return EFI_SUCCESS;
+    
+    default:
+      DEBUG ((DEBUG_ERROR, "Unable to detect board (Device id %u Vendor ID %u)\n", DeviceID, VendorID));
+      return EFI_NOT_FOUND;
+    }
+    //Should not be reached
+    return EFI_NOT_FOUND;
 }
 
 /**
@@ -34,15 +61,7 @@ BoardDebugInit (
   VOID
   )
 {
-    //Return EFI_SUCCESS if QEMU Debug IO ports return magic
-    if(IoRead8( PcdGet16(PcdDebugIoPort) ) == QEMU_IO_DEBUG_MAGIC ){
-        DEBUG ((DEBUG_INFO, "QEMU IO Port ready.\n"));
-        return EFI_SUCCESS;
-    }
-    else{
-        DEBUG ((DEBUG_INFO, "QEMU IO Port not ready / misconfigured.\n"));
-        return EFI_NOT_READY;
-    }
+  return EFI_SUCCESS;
 }
 
 EFI_BOOT_MODE

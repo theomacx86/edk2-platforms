@@ -29,7 +29,6 @@ ReportPreMemFv (
 
   Status = PeiServicesGetBootMode (&BootMode);
   ASSERT_EFI_ERROR (Status);
-  DEBUG ((DEBUG_ERROR, "Entry \n"));
   DEBUG_CODE (
     for (Index = 0; Status == EFI_SUCCESS; Index++) {
       Status = PeiServicesLocatePpi (&gEfiPeiFirmwareVolumeInfo2PpiGuid, Index, &Descriptor, (VOID**) &Ppi);

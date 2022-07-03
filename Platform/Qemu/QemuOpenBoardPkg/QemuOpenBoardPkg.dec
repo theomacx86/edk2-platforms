@@ -13,10 +13,12 @@
 
 [Guids]
 gUefiQemuOpenBoardPkgTokenSpaceGuid = {0x221b20c4, 0xa3dc, 0x4b8f, {0xb6, 0x94, 0x03, 0xc7, 0xf4, 0x76, 0x51, 0x2b}}
+gCpPlatFlashTokenSpaceGuid                          = { 0xc9c39664, 0x96dd, 0x4c5c, { 0xaf, 0xd7, 0xcd, 0x65, 0x76, 0x29, 0xcf, 0xb0 } }
 
 [PcdsFixedAtBuild]  
 gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0|UINT32|0x00000001
 gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0|UINT32|0x00000002
+gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0|UINT16|0x00000003
 #
 # These need to move to MinPlatformPkg.dec
 #
@@ -27,3 +29,4 @@ gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize|0|UINT32|0xF00000AC
 gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspBase|0|UINT32|0xF00000AD
 gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspOffset|0|UINT32|0xF00000AE
 
+gCpPlatFlashTokenSpaceGuid.PcdFlashFvNvStorageEventLogSize         |0x00200000 |UINT32|0x50000351

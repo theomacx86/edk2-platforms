@@ -16,7 +16,7 @@
   # Stage 5 - boot to OS with security boot enabled
   # Stage 6 - boot with advanced features enabled
   #
-  gMinPlatformPkgTokenSpaceGuid.PcdBootStage|1
+  gMinPlatformPkgTokenSpaceGuid.PcdBootStage|2
 
   #
   # Enable stack and heap protections
@@ -32,7 +32,8 @@
 
 [LibraryClasses]
   PciSegmentInfoLib|MinPlatformPkg/Pci/Library/PciSegmentInfoLibSimple/PciSegmentInfoLibSimple.inf
-  BoardInitLib|MinPlatformPkg/PlatformInit/Library/BoardInitLibNull/BoardInitLibNull.inf
+  #BoardInitLib|MinPlatformPkg/PlatformInit/Library/BoardInitLibNull/BoardInitLibNull.inf
+  BoardInitLib|QemuOpenBoardPkg/Library/BoardInitLib/BoardInitLib.inf
   SetCacheMtrrLib|MinPlatformPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
   ReportCpuHobLib|MinPlatformPkg/PlatformInit/Library/ReportCpuHobLib/ReportCpuHobLib.inf
   SiliconPolicyInitLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyInitLibNull/SiliconPolicyInitLibNull.inf
@@ -61,6 +62,12 @@
   UefiCpuPkg/SecCore/SecCore.inf
 
   MdeModulePkg/Core/Pei/PeiMain.inf
+
+  MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
+  UefiCpuPkg/CpuIoPei/CpuIoPei.inf
+  MdeModulePkg/Universal/PcatSingleSegmentPciCfg2Pei/PcatSingleSegmentPciCfg2Pei.inf
+  MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
+
   MdeModulePkg/Universal/PCD/Pei/Pcd.inf  {
     <LibraryClasses>
       PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
