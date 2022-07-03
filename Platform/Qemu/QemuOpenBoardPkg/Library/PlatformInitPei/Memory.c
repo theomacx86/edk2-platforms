@@ -47,9 +47,19 @@ InstallMemory(
         Size += E820Entry.Length;
     }
     
-    //32 Bits mode
     PeiServicesTable = GetPeiServicesTablePointer();
-    DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize (32 bits): %x\nSize (64 bits):%Lx\n",BaseAddress, (UINT32) Size, (UINT64) Size));
-    Status = (*PeiServices)->InstallPeiMemory( PeiServicesTable, (EFI_PHYSICAL_ADDRESS) BaseAddress, (UINT32) Size);
+
+    if(Size >= SIZE_4GB){
+        DEBUG ((DEBUG_ERROR, "Memory exceeding 4Gb (0x%Lx), installing only 4GB\n", Size));
+        DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize (installed): %Lx\nSize (total size): %Lx\n",BaseAddress, SIZE_4GB, Size));
+        Status = (*PeiServices)->InstallPeiMemory( PeiServicesTable, (EFI_PHYSICAL_ADDRESS) BaseAddress, SIZE_4GB);
+    }
+    else{
+        DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize: %x\n",BaseAddress, Size));
+        Status = (*PeiServices)->InstallPeiMemory( PeiServicesTable, (EFI_PHYSICAL_ADDRESS) BaseAddress, Size);
+    }
+    
+    
+    
     return Status;
 }

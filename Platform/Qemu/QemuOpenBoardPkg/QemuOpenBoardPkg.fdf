@@ -91,6 +91,11 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = 5A1D6978-BABE-42F9-A629-F7B3B6A1E1BD
 
+  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
+  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
+  INF MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+  #INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+  #INF MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
 
 ###########################
 #
@@ -109,7 +114,6 @@
 [FV.FvPreMemorySilicon]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = F0205C0E-0AD1-499C-A5F9-96BAF98248A0
-  INF  QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
   INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
   INF  MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
@@ -159,10 +163,16 @@
       SECTION FV_IMAGE = FvSecurityPreMemory
   }
   INF UefiCpuPkg/SecCore/SecCore.inf
+  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+  INF MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
+  INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
+  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
-  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
   INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
+
+
+  
+
 
   !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf

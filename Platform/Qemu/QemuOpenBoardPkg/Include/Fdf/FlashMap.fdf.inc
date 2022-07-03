@@ -52,3 +52,10 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTBase            = gMinPlatformPk
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryBase    = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTBase          + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemoryBase       = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryBase  + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize
 
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase    = 0x0003C000
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase  = 0x0003C000
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize    = 0x0003C000
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase    = 0x0003C000
+SET gCpPlatFlashTokenSpaceGuid.PcdFlashFvNvStorageEventLogSize      = 0x00002000
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize  = 0x00002000
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize    = gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize + gCpPlatFlashTokenSpaceGuid.PcdFlashFvNvStorageEventLogSize +gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize

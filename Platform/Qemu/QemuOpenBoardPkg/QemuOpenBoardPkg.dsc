@@ -21,8 +21,10 @@
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800000C0
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
 
+  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x010000
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
+
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
@@ -68,6 +70,7 @@ QemuFwCfgLib|QemuOpenBoardPkg/Library/QemuFwCfgLib/QemuFwCfgLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
+PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
 
 [LibraryClasses.common.SEC]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
@@ -77,3 +80,10 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 
 [Components]
 QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
+
+#stage 2
+MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
+MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
+MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+#MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+#MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf

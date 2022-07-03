@@ -1,6 +1,6 @@
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = PlatfornInitPreMemory
+  BASE_NAME                      = BoardInitLib
   FILE_GUID                      = 70EE7BD9-08FF-4D0E-AA7B-4320844F939A
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
@@ -8,7 +8,6 @@
 
 [Sources]
   BoardInitLib.c
-  TestPointCheckLib.c
 
 [Packages]
 QemuOpenBoardPkg/QemuOpenBoardPkg.dec
@@ -19,6 +18,7 @@ MinPlatformPkg/MinPlatformPkg.dec
 DebugLib
 PcdLib
 IoLib
+PciCf8Lib
     
 [Ppis]
 
@@ -27,4 +27,3 @@ IoLib
 [FeaturePcd]
 
 [Pcd]
-gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort
