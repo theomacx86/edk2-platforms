@@ -41,6 +41,10 @@
   MdePkg/MdePkg.dec
   UefiCpuPkg/UefiCpuPkg.dec
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
+  IntelFsp2WrapperPkg/IntelFsp2WrapperPkg.dec
+
+[Ppis]
+  gTopOfTemporaryRamPpiGuid            ## PRODUCES
 
 [Pcd]
 gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase

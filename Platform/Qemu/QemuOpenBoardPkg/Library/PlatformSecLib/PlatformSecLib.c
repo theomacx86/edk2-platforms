@@ -11,12 +11,23 @@
 #include <Library/PlatformSecLib.h>
 #include <Library/PeiServicesLib.h>
 
-EFI_PEI_CORE_FV_LOCATION_PPI gEfiPeiCoreFvLocationPpi = {
-  (VOID*) 0xFFE20000 //Could be done automatically at build
+EFI_PEI_CORE_FV_LOCATION_PPI  gEfiPeiCoreFvLocationPpi = {
+  (VOID *)0xFFE20000 // Could be done automatically at build
 };
 
-EFI_PEI_PPI_DESCRIPTOR gEfiPeiCoreFvLocationDescriptor = {
-  (EFI_PEI_PPI_DESCRIPTOR_PPI | EFI_PEI_PPI_DESCRIPTOR_TERMINATE_LIST),
+STATIC EFI_PEI_PPI_DESCRIPTOR  mPeiSecPlatformPpi[] = {
+  //
+  // This must be the second PPI in the list because it will be patched in SecPlatformMain ();
+  //
+  {
+    EFI_PEI_PPI_DESCRIPTOR_PPI | EFI_PEI_PPI_DESCRIPTOR_TERMINATE_LIST,
+    &gTopOfTemporaryRamPpiGuid,
+    NULL
+  }
+};
+
+EFI_PEI_PPI_DESCRIPTOR  gEfiPeiCoreFvLocationDescriptor = {
+  EFI_PEI_PPI_DESCRIPTOR_PPI,
   &gEfiPeiCoreFvLocationPpiGuid,
   &gEfiPeiCoreFvLocationPpi
 };
@@ -27,10 +38,20 @@ SecPlatformMain (
   IN OUT   EFI_SEC_PEI_HAND_OFF  *SecCoreData
   )
 {
-    //Use half of available heap size for PpiList
-    EFI_PEI_PPI_DESCRIPTOR * PpiList = (VOID*) (SecCoreData->PeiTemporaryRamBase + (SecCoreData->PeiTemporaryRamSize/2));
-    CopyMem(PpiList, &gEfiPeiCoreFvLocationDescriptor, sizeof(EFI_PEI_PPI_DESCRIPTOR));
-    return PpiList;
+  // Use half of available heap size for PpiList
+  EFI_PEI_PPI_DESCRIPTOR  *PpiList;
+
+  PpiList = (VOID *)(SecCoreData->PeiTemporaryRamBase + (SecCoreData->PeiTemporaryRamSize/2));
+
+  CopyMem (PpiList, &gEfiPeiCoreFvLocationDescriptor, sizeof (EFI_PEI_PPI_DESCRIPTOR));
+
+  CopyMem (&PpiList[1], &mPeiSecPlatformPpi, sizeof (EFI_PEI_PPI_DESCRIPTOR));
+  // Patch the top of RAM PPI
+
+  PpiList[1].Ppi = SecCoreData->TemporaryRamBase + SecCoreData->TemporaryRamSize;
+  DEBUG ((DEBUG_INFO, "SecPlatformMain(): Top of memory %p\n", PpiList[1].Ppi));
+
+  return PpiList;
 }
 
 /**
@@ -52,7 +73,38 @@ SecPlatformInformation (
   OUT   EFI_SEC_PLATFORM_INFORMATION_RECORD  *PlatformInformationRecord
   )
 {
-    return EFI_SUCCESS;
+  UINT32      TopOfTemporaryRam;
+  VOID        *TopOfRamPpi;
+  EFI_STATUS  Status;
+  UINT32      Count;
+  UINT32      *BistStart;
+  UINT32      Length;
+
+  Status = (*PeiServices)->LocatePpi (PeiServices, &gTopOfTemporaryRamPpiGuid, 0, NULL, &TopOfRamPpi);
+
+  if (EFI_ERROR (Status)) {
+    return Status;
+  }
+
+  TopOfTemporaryRam = (UINT32)TopOfRamPpi;
+
+  DEBUG ((DEBUG_INFO, "SecPlatformInformation: Top of memory is %p\n", TopOfRamPpi));
+
+  Count  = *(UINT32 *)(TopOfTemporaryRam - sizeof (UINT32));
+  Length = Count * sizeof (UINT32);
+
+  BistStart = (UINT32 *)(TopOfTemporaryRam - sizeof (UINT32) - Length);
+
+  DEBUG ((DEBUG_INFO, "SecPlatformInformation: Found %u processors with BISTs starting at %p\n", Count, BistStart));
+
+  if (*StructureSize < Length) {
+    *StructureSize = Length;
+    return EFI_BUFFER_TOO_SMALL;
+  }
+
+  CopyMem (PlatformInformationRecord, BistStart, Length);
+  *StructureSize = Length;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -64,5 +116,4 @@ SecPlatformDisableTemporaryMemory (
   VOID
   )
 {
-
 }
