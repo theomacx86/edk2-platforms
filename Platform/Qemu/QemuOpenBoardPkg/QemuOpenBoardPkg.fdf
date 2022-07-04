@@ -5,6 +5,9 @@
   BlockSize     = 0x1000
   NumBlocks     = 0x8000
 
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress  = 0xFFB90000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x08000000
+
   !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
   gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize

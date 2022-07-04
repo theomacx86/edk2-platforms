@@ -18,8 +18,9 @@
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
 
 [PcdsFixedAtBuild]
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xffffffff
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel   | 0x802A00C7
+  gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel   | 0x802A00C7
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask           | 0x27
 
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
   # Worth investigating: 0x010000 doesn't work as a temporary ram base once
@@ -71,14 +72,12 @@
 QemuFwCfgLib|QemuOpenBoardPkg/Library/QemuFwCfgLib/QemuFwCfgLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
-DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
+DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
 PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
 
-[LibraryClasses.common.SEC]
-DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
-
-[LibraryClasses.common.PEI_CORE]
-DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
+# Investigate: PlatformDebugLibIoPort doesn't work for non-SEC/PEI_CORE
+# [LibraryClasses.common.SEC]
+# DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 
 [Components]
 QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf

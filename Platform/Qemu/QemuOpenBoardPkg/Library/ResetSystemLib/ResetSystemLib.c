@@ -1,4 +1,4 @@
-#include "Library/ResetSystemLib.h"
+#include <Library/ResetSystemLib.h>
 
 /**
   This function causes a system-wide reset (cold reset), in which
@@ -14,7 +14,6 @@ ResetCold (
   VOID
   )
 {
-
 }
 
 /**
@@ -29,7 +28,6 @@ ResetWarm (
   VOID
   )
 {
-
 }
 
 /**
@@ -44,7 +42,6 @@ ResetShutdown (
   VOID
   )
 {
-
 }
 
 /**
@@ -65,7 +62,6 @@ ResetPlatformSpecific (
   IN VOID   *ResetData
   )
 {
-
 }
 
 /**
@@ -89,5 +85,4 @@ ResetSystem (
   IN VOID            *ResetData OPTIONAL
   )
 {
-
 }

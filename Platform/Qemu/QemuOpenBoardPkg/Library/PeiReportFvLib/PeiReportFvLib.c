@@ -20,24 +20,25 @@ ReportPreMemFv (
   VOID
   )
 {
-  UINTN                                 Index = 0;
-  EFI_PEI_PPI_DESCRIPTOR                *Descriptor = NULL;
-  EFI_PEI_FIRMWARE_VOLUME_INFO2_PPI     *Ppi = NULL;
-  EFI_STATUS                            Status = EFI_SUCCESS;
-  EFI_FIRMWARE_VOLUME_HEADER            *FvHeader = NULL;
-  EFI_BOOT_MODE                         BootMode = BOOT_WITH_FULL_CONFIGURATION;
+  UINTN                              Index       = 0;
+  EFI_PEI_PPI_DESCRIPTOR             *Descriptor = NULL;
+  EFI_PEI_FIRMWARE_VOLUME_INFO2_PPI  *Ppi        = NULL;
+  EFI_STATUS                         Status      = EFI_SUCCESS;
+  EFI_FIRMWARE_VOLUME_HEADER         *FvHeader   = NULL;
+  EFI_BOOT_MODE                      BootMode    = BOOT_WITH_FULL_CONFIGURATION;
 
   Status = PeiServicesGetBootMode (&BootMode);
   ASSERT_EFI_ERROR (Status);
   DEBUG_CODE (
     for (Index = 0; Status == EFI_SUCCESS; Index++) {
-      Status = PeiServicesLocatePpi (&gEfiPeiFirmwareVolumeInfo2PpiGuid, Index, &Descriptor, (VOID**) &Ppi);
-      if (!EFI_ERROR (Status)) {
-        FvHeader = (EFI_FIRMWARE_VOLUME_HEADER*) Ppi->FvInfo;
-        DEBUG ((DEBUG_INFO, "Found FV at 0x%x, size 0x%x\n", FvHeader, FvHeader->FvLength));
-      }
+    Status = PeiServicesLocatePpi (&gEfiPeiFirmwareVolumeInfo2PpiGuid, Index, &Descriptor, (VOID **)&Ppi);
+    if (!EFI_ERROR (Status)) {
+      FvHeader = (EFI_FIRMWARE_VOLUME_HEADER *)Ppi->FvInfo;
+      DEBUG ((DEBUG_INFO, "Found FV at 0x%x, size 0x%x\n", FvHeader, FvHeader->FvLength));
     }
-  );
+  }
+
+    );
 
   //
   // FvBspPreMemory and FvPreMemory are required for all stages.
@@ -45,8 +46,8 @@ ReportPreMemFv (
 
   DEBUG ((DEBUG_INFO, "Install FlashFvBspPreMemory - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvBspPreMemoryBase), PcdGet32 (PcdFlashFvBspPreMemorySize)));
   PeiServicesInstallFvInfo2Ppi (
-    &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvBspPreMemoryBase))->FileSystemGuid),
-    (VOID *) (UINTN) PcdGet32 (PcdFlashFvBspPreMemoryBase),
+    &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvBspPreMemoryBase))->FileSystemGuid),
+    (VOID *)(UINTN)PcdGet32 (PcdFlashFvBspPreMemoryBase),
     PcdGet32 (PcdFlashFvBspPreMemorySize),
     NULL,
     NULL,
@@ -55,8 +56,8 @@ ReportPreMemFv (
 
   DEBUG ((DEBUG_INFO, "Install FlashFvPreMemory - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvPreMemoryBase), PcdGet32 (PcdFlashFvPreMemorySize)));
   PeiServicesInstallFvInfo2Ppi (
-    &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvPreMemoryBase))->FileSystemGuid),
-    (VOID *) (UINTN) PcdGet32 (PcdFlashFvPreMemoryBase),
+    &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvPreMemoryBase))->FileSystemGuid),
+    (VOID *)(UINTN)PcdGet32 (PcdFlashFvPreMemoryBase),
     PcdGet32 (PcdFlashFvPreMemorySize),
     NULL,
     NULL,
@@ -72,8 +73,8 @@ ReportPreMemFv (
     //
     DEBUG ((DEBUG_INFO, "Install FlashFvFspT - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvFspTBase), PcdGet32 (PcdFlashFvFspTSize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvFspTBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvFspTBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvFspTBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvFspTBase),
       PcdGet32 (PcdFlashFvFspTSize),
       NULL,
       NULL,
@@ -86,8 +87,8 @@ ReportPreMemFv (
     if (PcdGet8 (PcdBootStage) >= 2) {
       DEBUG ((DEBUG_INFO, "Install FlashFvFspM - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvFspMBase), PcdGet32 (PcdFlashFvFspMSize)));
       PeiServicesInstallFvInfo2Ppi (
-        &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvFspMBase))->FileSystemGuid),
-        (VOID *) (UINTN) PcdGet32 (PcdFlashFvFspMBase),
+        &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvFspMBase))->FileSystemGuid),
+        (VOID *)(UINTN)PcdGet32 (PcdFlashFvFspMBase),
         PcdGet32 (PcdFlashFvFspMSize),
         NULL,
         NULL,
@@ -102,8 +103,8 @@ ReportPreMemFv (
   if (PcdGet8 (PcdBootStage) >= 6) {
     DEBUG ((DEBUG_INFO, "Install FlashFvAdvancedPreMemory - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvAdvancedPreMemoryBase), PcdGet32 (PcdFlashFvAdvancedPreMemorySize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvAdvancedPreMemoryBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvAdvancedPreMemoryBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvAdvancedPreMemoryBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvAdvancedPreMemoryBase),
       PcdGet32 (PcdFlashFvAdvancedPreMemorySize),
       NULL,
       NULL,
@@ -117,21 +118,22 @@ ReportPostMemFv (
   VOID
   )
 {
-  UINTN                                 Index = 0;
-  EFI_PEI_PPI_DESCRIPTOR                *Descriptor = NULL;
-  EFI_PEI_FIRMWARE_VOLUME_INFO2_PPI     *Ppi = NULL;
-  EFI_STATUS                            Status = EFI_SUCCESS;
-  EFI_FIRMWARE_VOLUME_HEADER            *FvHeader = NULL;
+  UINTN                              Index       = 0;
+  EFI_PEI_PPI_DESCRIPTOR             *Descriptor = NULL;
+  EFI_PEI_FIRMWARE_VOLUME_INFO2_PPI  *Ppi        = NULL;
+  EFI_STATUS                         Status      = EFI_SUCCESS;
+  EFI_FIRMWARE_VOLUME_HEADER         *FvHeader   = NULL;
 
   DEBUG_CODE (
     for (Index = 0; Status == EFI_SUCCESS; Index++) {
-      Status = PeiServicesLocatePpi (&gEfiPeiFirmwareVolumeInfo2PpiGuid, Index, &Descriptor, (VOID**) &Ppi);
-      if (!EFI_ERROR (Status)) {
-        FvHeader = (EFI_FIRMWARE_VOLUME_HEADER*) Ppi->FvInfo;
-        DEBUG ((DEBUG_INFO, "Found FV at 0x%x, size 0x%x\n", FvHeader, FvHeader->FvLength));
-      }
+    Status = PeiServicesLocatePpi (&gEfiPeiFirmwareVolumeInfo2PpiGuid, Index, &Descriptor, (VOID **)&Ppi);
+    if (!EFI_ERROR (Status)) {
+      FvHeader = (EFI_FIRMWARE_VOLUME_HEADER *)Ppi->FvInfo;
+      DEBUG ((DEBUG_INFO, "Found FV at 0x%x, size 0x%x\n", FvHeader, FvHeader->FvLength));
     }
-  );
+  }
+
+    );
 
   //
   // FvFspS, FvPostMemory, and FvBsp may be required for completing stage 2
@@ -143,8 +145,8 @@ ReportPostMemFv (
     if (!PcdGetBool (PcdFspWrapperBootMode)) {
       DEBUG ((DEBUG_INFO, "Install FlashFvFspS - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvFspSBase), PcdGet32 (PcdFlashFvFspSSize)));
       PeiServicesInstallFvInfo2Ppi (
-        &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvFspSBase))->FileSystemGuid),
-        (VOID *) (UINTN) PcdGet32 (PcdFlashFvFspSBase),
+        &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvFspSBase))->FileSystemGuid),
+        (VOID *)(UINTN)PcdGet32 (PcdFlashFvFspSBase),
         PcdGet32 (PcdFlashFvFspSSize),
         NULL,
         NULL,
@@ -154,8 +156,8 @@ ReportPostMemFv (
 
     DEBUG ((DEBUG_INFO, "Install FlashFvPostMemory - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvPostMemoryBase), PcdGet32 (PcdFlashFvPostMemorySize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvPostMemoryBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvPostMemoryBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvPostMemoryBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvPostMemoryBase),
       PcdGet32 (PcdFlashFvPostMemorySize),
       NULL,
       NULL,
@@ -164,8 +166,8 @@ ReportPostMemFv (
 
     DEBUG ((DEBUG_INFO, "Install FlashFvBsp - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvBspBase), PcdGet32 (PcdFlashFvBspSize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvBspBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvBspBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvBspBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvBspBase),
       PcdGet32 (PcdFlashFvBspSize),
       NULL,
       NULL,
@@ -179,8 +181,8 @@ ReportPostMemFv (
   if (PcdGet8 (PcdBootStage) >= 3) {
     DEBUG ((DEBUG_INFO, "Install FlashFvUefiBoot - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvUefiBootBase), PcdGet32 (PcdFlashFvUefiBootSize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvUefiBootBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvUefiBootBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvUefiBootBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvUefiBootBase),
       PcdGet32 (PcdFlashFvUefiBootSize),
       NULL,
       NULL,
@@ -194,8 +196,8 @@ ReportPostMemFv (
   if (PcdGet8 (PcdBootStage) >= 4) {
     DEBUG ((DEBUG_INFO, "Install FlashFvOsBoot - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvOsBootBase), PcdGet32 (PcdFlashFvOsBootSize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvOsBootBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvOsBootBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvOsBootBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvOsBootBase),
       PcdGet32 (PcdFlashFvOsBootSize),
       NULL,
       NULL,
@@ -208,14 +210,14 @@ ReportPostMemFv (
   //
   if (PcdGet8 (PcdBootStage) >= 5) {
     DEBUG ((DEBUG_INFO, "Install FlashFvSecurity - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvSecurityBase), PcdGet32 (PcdFlashFvSecuritySize)));
-      PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvSecurityBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvSecurityBase),
+    PeiServicesInstallFvInfo2Ppi (
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvSecurityBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvSecurityBase),
       PcdGet32 (PcdFlashFvSecuritySize),
-        NULL,
-        NULL,
-        0
-        );
+      NULL,
+      NULL,
+      0
+      );
   }
 
   //
@@ -224,8 +226,8 @@ ReportPostMemFv (
   if (PcdGet8 (PcdBootStage) >= 6) {
     DEBUG ((DEBUG_INFO, "Install FlashFvAdvanced - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvAdvancedBase), PcdGet32 (PcdFlashFvAdvancedSize)));
     PeiServicesInstallFvInfo2Ppi (
-      &(((EFI_FIRMWARE_VOLUME_HEADER*) (UINTN) PcdGet32 (PcdFlashFvAdvancedBase))->FileSystemGuid),
-      (VOID *) (UINTN) PcdGet32 (PcdFlashFvAdvancedBase),
+      &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvAdvancedBase))->FileSystemGuid),
+      (VOID *)(UINTN)PcdGet32 (PcdFlashFvAdvancedBase),
       PcdGet32 (PcdFlashFvAdvancedSize),
       NULL,
       NULL,
@@ -240,15 +242,15 @@ ReportPostMemFv (
   BuildResourceDescriptorHob (
     EFI_RESOURCE_MEMORY_MAPPED_IO,
     (EFI_RESOURCE_ATTRIBUTE_PRESENT    |
-    EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
-    EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE),
-    (UINTN) PcdGet32 (PcdFlashAreaBaseAddress),
-    (UINTN) PcdGet32 (PcdFlashAreaSize)
+     EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
+     EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE),
+    (UINTN)PcdGet32 (PcdFlashAreaBaseAddress),
+    (UINTN)PcdGet32 (PcdFlashAreaSize)
     );
 
   BuildMemoryAllocationHob (
-    (UINTN) PcdGet32 (PcdFlashAreaBaseAddress),
-    (UINTN) PcdGet32 (PcdFlashAreaSize),
+    (UINTN)PcdGet32 (PcdFlashAreaBaseAddress),
+    (UINTN)PcdGet32 (PcdFlashAreaSize),
     EfiMemoryMappedIO
     );
 }
