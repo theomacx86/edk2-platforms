@@ -34,6 +34,7 @@
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable | FALSE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable | FALSE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode | FALSE
 
 
 ################################################################################
