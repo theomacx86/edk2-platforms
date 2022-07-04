@@ -1,0 +1,6 @@
+[Components]
+MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
+MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
+MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+#MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+#MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf

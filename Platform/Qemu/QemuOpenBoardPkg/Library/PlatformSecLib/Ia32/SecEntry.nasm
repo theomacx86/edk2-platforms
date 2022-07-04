@@ -34,7 +34,7 @@ ASM_PFX(_ModuleEntryPoint):
 
 BITS 32
 align 4
-ProtectedModeEmtry:
+ProtectedModeEntry:
     PROTECTED_MODE equ $
 
     mov ecx, DWORD [ASM_PFX(PcdGet32 (PcdTemporaryRamBase))]
@@ -99,6 +99,6 @@ GDT_Descriptor:
 
 ProtectedModeEntryLinearAddress:
 ProtectedModeEntryLinear:
-    DD      ProtectedModeEmtry  ; Offset of our 32 bit code
+    DD      ProtectedModeEntry  ; Offset of our 32 bit code
     DW      CODE_SEL
 

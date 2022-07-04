@@ -18,6 +18,7 @@
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
 
 [PcdsFixedAtBuild]
+  gMinPlatformPkgTokenSpaceGuid.PcdBootStage|3
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel   | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel   | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask           | 0x27
@@ -46,45 +47,19 @@
 !include MinPlatformPkg/Include/Dsc/CoreDxeLib.dsc
 
 !include QemuOpenBoardPkg/Include/Dsc/Stage1.dsc.inc
-
-[LibraryClasses]
-  DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
-  TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLibBhyve.inf
-  PlatformSecLib|UefiCpuPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf
-  CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/SecPeiCpuExceptionHandlerLib.inf
-  ReportStatusCodeLib|MdeModulePkg/Library/PeiReportStatusCodeLib/PeiReportStatusCodeLib.inf
-  HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
-  MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
-  VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
-  PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
-  ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
-  MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
-  CcProbeLib|OvmfPkg/Library/CcProbeLib/CcProbeLib.inf
-  ReportFvLib|MinPlatformPkg/PlatformInit/Library/PeiReportFvLib/PeiReportFvLib.inf
-  TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/PeiTestPointLib.inf
-  TestPointCheckLib|MinPlatformPkg/Test/Library/TestPointCheckLib/PeiTestPointCheckLib.inf
-  PciSegmentInfoLib|MinPlatformPkg/Pci/Library/PciSegmentInfoLibSimple/PciSegmentInfoLibSimple.inf
-  BoardInitLib|MinPlatformPkg/PlatformInit/Library/BoardInitLibNull/BoardInitLibNull.inf
-  SetCacheMtrrLib|MinPlatformPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
-  ReportCpuHobLib|MinPlatformPkg/PlatformInit/Library/ReportCpuHobLib/ReportCpuHobLib.inf
+!include QemuOpenBoardPkg/Include/Dsc/Stage2.dsc.inc
+!include QemuOpenBoardPkg/Include/Dsc/Stage3.dsc.inc
 
 [LibraryClasses.common]
 QemuFwCfgLib|QemuOpenBoardPkg/Library/QemuFwCfgLib/QemuFwCfgLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
-DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
 
-# Investigate: PlatformDebugLibIoPort doesn't work for non-SEC/PEI_CORE
-# [LibraryClasses.common.SEC]
-# DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
+#Investigate: PlatformDebugLibIoPort doesn't work for non-SEC/PEI_CORE
+[LibraryClasses.common.SEC]
+DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 
 [Components]
-QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
 
-#stage 2
-MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
-MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
-MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
-#MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-#MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf

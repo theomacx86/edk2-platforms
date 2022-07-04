@@ -16,7 +16,7 @@
   # Stage 5 - boot to OS with security boot enabled
   # Stage 6 - boot with advanced features enabled
   #
-  gMinPlatformPkgTokenSpaceGuid.PcdBootStage|2
+  
 
   #
   # Enable stack and heap protections
@@ -34,7 +34,8 @@
   PciSegmentInfoLib|MinPlatformPkg/Pci/Library/PciSegmentInfoLibSimple/PciSegmentInfoLibSimple.inf
   #BoardInitLib|MinPlatformPkg/PlatformInit/Library/BoardInitLibNull/BoardInitLibNull.inf
   BoardInitLib|QemuOpenBoardPkg/Library/BoardInitLib/BoardInitLib.inf
-  SetCacheMtrrLib|MinPlatformPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
+  #SetCacheMtrrLib|MinPlatformPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
+  SetCacheMtrrLib|QemuOpenBoardPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
   ReportCpuHobLib|MinPlatformPkg/PlatformInit/Library/ReportCpuHobLib/ReportCpuHobLib.inf
   SiliconPolicyInitLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyInitLibNull/SiliconPolicyInitLibNull.inf
   SiliconPolicyUpdateLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyUpdateLibNull/SiliconPolicyUpdateLibNull.inf
@@ -80,5 +81,7 @@
   MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
 
   MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+
+  QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
 
   

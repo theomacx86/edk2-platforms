@@ -79,6 +79,9 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x08000000
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = D2F110DB-2388-4963-BEFD-5889EEE01569
 
+  INF MdeModulePkg/Core/Dxe/DxeMain.inf
+
+
 ###########################
 #
 # Stage 2 Firmware volumes
@@ -170,12 +173,9 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x08000000
   INF MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
   INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
   INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
+  INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-  INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
-
-
   
-
 
   !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf
