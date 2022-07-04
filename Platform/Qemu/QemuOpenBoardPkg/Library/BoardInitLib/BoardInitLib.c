@@ -1,16 +1,15 @@
-#include "Library/BoardInitLib.h"
-#include "Uefi.h"
-#include "Library/IoLib.h"
-#include "Library/PcdLib.h"
-#include "Library/DebugLib.h"
+#include <Library/BoardInitLib.h>
+#include <Uefi.h>
+#include <Library/IoLib.h>
+#include <Library/PcdLib.h>
+#include <Library/DebugLib.h>
 
-#include "Library/PciCf8Lib.h"
-#include "IndustryStandard/Pci.h"
+#include <Library/PciCf8Lib.h>
+#include <IndustryStandard/Pci.h>
 
-#include "Library/QemuHardware.h"
+#include <Library/QemuHardware.h>
 
 #define QEMU_IO_DEBUG_MAGIC  0xE9
-
 
 /**
   This board service detects the board type.
@@ -23,29 +22,30 @@ EFIAPI
 BoardDetect (
   VOID
   )
-{   
-    UINT16 DeviceID, VendorID;
-    DEBUG ((DEBUG_INFO, "BoardDetect()\n"));
-    
-    DeviceID = PciCf8Read16(PCI_CF8_LIB_ADDRESS(0,0,0, PCI_DEVICE_ID_OFFSET)) ;
-    VendorID = PciCf8Read16(PCI_CF8_LIB_ADDRESS(0,0,0, PCI_VENDOR_ID_OFFSET)) ;
-  
-    switch (DeviceID)
-    {
+{
+  UINT16  DeviceID, VendorID;
+
+  DEBUG ((DEBUG_INFO, "BoardDetect()\n"));
+
+  DeviceID = PciCf8Read16 (PCI_CF8_LIB_ADDRESS (0, 0, 0, PCI_DEVICE_ID_OFFSET));
+  VendorID = PciCf8Read16 (PCI_CF8_LIB_ADDRESS (0, 0, 0, PCI_VENDOR_ID_OFFSET));
+
+  switch (DeviceID) {
     case PIIX4_DEVICE_ID:
       DEBUG ((DEBUG_INFO, "PIIX4\n"));
       return EFI_SUCCESS;
-    
+
     case ICH9_DEVICE_ID:
       DEBUG ((DEBUG_INFO, "ICH9\n"));
       return EFI_SUCCESS;
-    
+
     default:
       DEBUG ((DEBUG_ERROR, "Unable to detect board (Device id %u Vendor ID %u)\n", DeviceID, VendorID));
       return EFI_NOT_FOUND;
-    }
-    //Should not be reached
-    return EFI_NOT_FOUND;
+  }
+
+  // Should not be reached
+  return EFI_NOT_FOUND;
 }
 
 /**
@@ -69,9 +69,9 @@ BoardBootModeDetect (
   VOID
   )
 {
-    //Placeholder
-    DEBUG ((DEBUG_INFO, "BoardBootModeDetect()\n"));
-    return BOOT_WITH_FULL_CONFIGURATION;
+  // Placeholder
+  DEBUG ((DEBUG_INFO, "BoardBootModeDetect()\n"));
+  return BOOT_WITH_FULL_CONFIGURATION;
 }
 
 /**
@@ -86,8 +86,8 @@ BoardInitBeforeMemoryInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitBeforeMemoryInit()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitBeforeMemoryInit()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -102,8 +102,8 @@ BoardInitAfterMemoryInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitAfterMemoryInit()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitAfterMemoryInit()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -118,8 +118,8 @@ BoardInitBeforeTempRamExit (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitBeforeTempRamExit()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitBeforeTempRamExit()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -134,8 +134,8 @@ BoardInitAfterTempRamExit (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitAfterTempRamExit()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitAfterTempRamExit()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -150,8 +150,8 @@ BoardInitBeforeSiliconInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitBeforeSiliconInit()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitBeforeSiliconInit()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -166,8 +166,8 @@ BoardInitAfterSiliconInit (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitAfterSiliconInit()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitAfterSiliconInit()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -182,8 +182,8 @@ BoardInitAfterPciEnumeration (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitAfterPciEnumeration()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitAfterPciEnumeration()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -198,8 +198,8 @@ BoardInitReadyToBoot (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitReadyToBoot()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitReadyToBoot()\n"));
+  return EFI_SUCCESS;
 }
 
 /**
@@ -214,6 +214,6 @@ BoardInitEndOfFirmware (
   VOID
   )
 {
-    DEBUG ((DEBUG_INFO, "BoardInitEndOfFirmware()\n"));
-    return EFI_SUCCESS;
+  DEBUG ((DEBUG_INFO, "BoardInitEndOfFirmware()\n"));
+  return EFI_SUCCESS;
 }

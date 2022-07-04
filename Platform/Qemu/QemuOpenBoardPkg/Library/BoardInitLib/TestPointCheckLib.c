@@ -1,4 +1,4 @@
-#include "Library/TestPointCheckLib.h"
+#include <Library/TestPointCheckLib.h>
 
 //
 // Below is Test Point Hook Point.
@@ -26,11 +26,11 @@
 EFI_STATUS
 EFIAPI
 TestPointTempMemoryFunction (
-  IN VOID   *TempRamStart,
-  IN VOID   *TempRamEnd
+  IN VOID  *TempRamStart,
+  IN VOID  *TempRamEnd
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -49,7 +49,7 @@ TestPointDebugInitDone (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -71,7 +71,7 @@ TestPointMemoryDiscoveredMtrrFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -91,7 +91,7 @@ TestPointMemoryDiscoveredMemoryResourceFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -111,7 +111,7 @@ TestPointMemoryDiscoveredFvInfoFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -130,7 +130,7 @@ TestPointMemoryDiscoveredDmaProtectionEnabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -150,7 +150,7 @@ TestPointEndOfPeiSystemResourceFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -172,7 +172,7 @@ TestPointEndOfPeiMtrrFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -192,7 +192,7 @@ TestPointEndOfPeiPciBusMasterDisabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -212,7 +212,7 @@ TestPointPciEnumerationDonePciBusMasterDisabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -232,7 +232,7 @@ TestPointPciEnumerationDonePciResourceAllocated (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -252,7 +252,7 @@ TestPointEndOfDxeNoThirdPartyPciOptionRom (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -272,7 +272,7 @@ TestPointEndOfDxeDmaAcpiTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -292,7 +292,7 @@ TestPointEndOfDxeDmaProtectionEnabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -312,7 +312,7 @@ TestPointDxeSmmReadyToLockSmramAligned (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -333,7 +333,7 @@ TestPointDxeSmmReadyToLockWsmtTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -353,7 +353,7 @@ TestPointDxeSmmReadyToBootSmmPageProtection (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -373,7 +373,7 @@ TestPointReadyToBootAcpiTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -393,7 +393,7 @@ TestPointReadyToBootGcdResourceFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -414,7 +414,7 @@ TestPointReadyToBootMemoryTypeInformationFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -435,7 +435,7 @@ TestPointReadyToBootUefiMemoryAttributeTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -455,7 +455,7 @@ TestPointReadyToBootUefiBootVariableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -475,7 +475,7 @@ TestPointReadyToBootUefiConsoleVariableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -495,7 +495,7 @@ TestPointReadyToBootHstiTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -515,7 +515,7 @@ TestPointReadyToBootEsrtTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -535,7 +535,7 @@ TestPointReadyToBootUefiSecureBootEnabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -554,7 +554,7 @@ TestPointReadyToBootPiSignedFvBootEnabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -574,7 +574,7 @@ TestPointReadyToBootTcgTrustedBootEnabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -594,7 +594,7 @@ TestPointReadyToBootTcgMorEnabled (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -614,7 +614,7 @@ TestPointDxeSmmReadyToBootSmiHandlerInstrument (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -634,7 +634,7 @@ TestPointSmmEndOfDxeSmrrFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -656,7 +656,7 @@ TestPointSmmReadyToLockSmmMemoryAttributeTableFunctional (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -675,7 +675,7 @@ TestPointSmmReadyToLockSecureSmmCommunicationBuffer (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -695,7 +695,7 @@ TestPointSmmReadyToBootSmmPageProtection (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -709,7 +709,7 @@ TestPointExitBootServices (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }
 
 /**
@@ -723,5 +723,5 @@ TestPointSmmExitBootServices (
   VOID
   )
 {
-    return EFI_SUCCESS;
+  return EFI_SUCCESS;
 }

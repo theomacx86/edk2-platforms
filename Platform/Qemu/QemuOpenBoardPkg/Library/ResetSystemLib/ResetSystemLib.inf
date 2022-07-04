@@ -11,3 +11,4 @@
   ResetSystemLib.c
 
 [LibraryClasses]
+  MdeModulePkg/MdeModulePkg.dsc

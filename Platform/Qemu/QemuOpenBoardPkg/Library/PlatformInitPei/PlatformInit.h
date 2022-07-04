@@ -1,6 +1,5 @@
-#include "PiPei.h"
-#include "Uefi.h"
-
+#include <PiPei.h>
+#include <Uefi.h>
 
 EFI_STATUS
 EFIAPI
@@ -11,9 +10,6 @@ PlatformInit (
 
 EFI_STATUS
 EFIAPI
-InstallMemory(
-    IN CONST EFI_PEI_SERVICES **PeiServices
-);
-
-
-
+InstallMemory (
+  IN CONST EFI_PEI_SERVICES  **PeiServices
+  );

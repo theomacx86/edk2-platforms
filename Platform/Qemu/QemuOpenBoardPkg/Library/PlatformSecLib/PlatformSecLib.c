@@ -10,6 +10,7 @@
 #include <Library/MtrrLib.h>
 #include <Library/PlatformSecLib.h>
 #include <Library/PeiServicesLib.h>
+#include <Library/IoLib.h>
 
 EFI_PEI_CORE_FV_LOCATION_PPI  gEfiPeiCoreFvLocationPpi = {
   (VOID *)0xFFE20000 // Could be done automatically at build

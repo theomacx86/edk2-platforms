@@ -1,65 +1,63 @@
-#include "PlatformInit.h"
-#include "Library/DebugLib.h"
-#include "Library/QemuFwCfgLib.h"
+#include <PlatformInit.h>
+#include <Library/DebugLib.h>
+#include <Library/QemuFwCfgLib.h>
 #include <Library/PeiServicesTablePointerLib.h>
 
 EFI_STATUS
 EFIAPI
-InstallMemory(
-    IN CONST EFI_PEI_SERVICES **PeiServices
-)
-{   
-    EFI_STATUS Status;
-    CONST EFI_PEI_SERVICES **PeiServicesTable;
-    EFI_E820_ENTRY E820Entry;
-    QEMU_FW_CFG_FILE FwCfgFile;
-    UINT64 BaseAddress = 0;
-    UINT64 Size = 0;
-    UINT32 Processed;
+InstallMemory (
+  IN CONST EFI_PEI_SERVICES  **PeiServices
+  )
+{
+  EFI_STATUS              Status;
+  CONST EFI_PEI_SERVICES  **PeiServicesTable;
+  EFI_E820_ENTRY          E820Entry;
+  QEMU_FW_CFG_FILE        FwCfgFile;
+  UINT64                  BaseAddress = 0;
+  UINT64                  Size        = 0;
+  UINT32                  Processed;
 
-    //TODO
-    /*
-        Handle memory installation without Qemu fw_cfg device
-    */
-    Status = QemuFwCfg_IsPresent();
-    if(EFI_ERROR(Status)){
-        DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is not present\n", __FUNCTION__, __LINE__));
-    }
-    else{
-        DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is present\n", __FUNCTION__, __LINE__));
+  // TODO
+
+  /*
+      Handle memory installation without Qemu fw_cfg device
+  */
+  Status = QemuFwCfgIsPresent ();
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is not present\n", __FUNCTION__, __LINE__));
+  } else {
+    DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is present\n", __FUNCTION__, __LINE__));
+  }
+
+  Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "etc/e820 was not found \n", __FUNCTION__, __LINE__));
+  }
+
+  /* TODO
+   Verify memory type
+   Memory might not be contiguous (really tho?)
+  */
+  QemuFwCfgSelectItem (FwCfgFile.select);
+  for (Processed = 0; Processed < FwCfgFile.size / sizeof (EFI_E820_ENTRY); Processed++) {
+    QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
+    if (E820Entry.BaseAddr < BaseAddress) {
+      BaseAddress = E820Entry.BaseAddr;
     }
 
-    Status = QemuFwCfg_FindFile("etc/e820", &FwCfgFile);
-    if(EFI_ERROR(Status)){
-        DEBUG ((DEBUG_ERROR, "etc/e820 was not found \n", __FUNCTION__, __LINE__));
-    }
+    Size += E820Entry.Length;
+  }
 
-    /* TODO
-     Verify memory type
-     Memory might not be contiguous (really tho?)
-    */
-    QemuFwCfg_SelectItem(FwCfgFile.select);
-    for(Processed = 0; Processed < FwCfgFile.size / sizeof(EFI_E820_ENTRY); Processed++){
-        QemuFwCfg_ReadBytes(sizeof(EFI_E820_ENTRY), &E820Entry);
-        if(E820Entry.BaseAddr < BaseAddress){
-            BaseAddress = E820Entry.BaseAddr;
-        }
-        Size += E820Entry.Length;
-    }
-    
-    PeiServicesTable = GetPeiServicesTablePointer();
+  PeiServicesTable = GetPeiServicesTablePointer ();
 
-    if(Size >= SIZE_4GB){
-        DEBUG ((DEBUG_ERROR, "Memory exceeding 4Gb (0x%Lx), installing only 4GB\n", Size));
-        DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize (installed): %Lx\nSize (total size): %Lx\n",BaseAddress, SIZE_4GB, Size));
-        Status = (*PeiServices)->InstallPeiMemory( PeiServicesTable, (EFI_PHYSICAL_ADDRESS) BaseAddress, SIZE_4GB);
-    }
-    else{
-        DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize: %x\n",BaseAddress, Size));
-        Status = (*PeiServices)->InstallPeiMemory( PeiServicesTable, (EFI_PHYSICAL_ADDRESS) BaseAddress, Size);
-    }
-    
-    
-    
-    return Status;
+  if (Size >= SIZE_4GB) {
+    DEBUG ((DEBUG_ERROR, "Memory exceeding 4Gb (0x%Lx), installing only 4GB\n", Size));
+    DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize (installed): %Lx\nSize (total size): %Lx\n", BaseAddress, SIZE_4GB, Size));
+    Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, (EFI_PHYSICAL_ADDRESS)BaseAddress, SIZE_4GB);
+  } else {
+    DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize: %x\n", BaseAddress, Size));
+    Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, (EFI_PHYSICAL_ADDRESS)BaseAddress, Size);
+  }
+
+  return Status;
 }
