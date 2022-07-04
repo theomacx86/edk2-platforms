@@ -19,11 +19,13 @@
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
 
 [PcdsFixedAtBuild]
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800000C0
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xffffffff
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
 
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x010000
+  # Worth investigating: 0x010000 doesn't work as a temporary ram base once
+  # I fixed the stack. It should be firmly within lower memory (640KiB). 
+  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x100000
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
 
 

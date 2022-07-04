@@ -1,5 +1,5 @@
-CODE_SEG equ code_segment_descriptor - GDT_START
-DATA_SEG equ data_segment_descriptor - GDT_START
+CODE_SEG equ CodeSegDescriptor - GDT_START
+DATA_SEG equ DataSegDescriptor - GDT_START
 
 extern ASM_PFX(SecStartup)
 
@@ -10,10 +10,12 @@ BITS 16
 align 4
 global ASM_PFX(_ModuleEntryPoint)
 ASM_PFX(_ModuleEntryPoint):
-    cli 
+    cli
+    ; Save the BIST in mm0
+    movd mm0, eax
     mov esi, GDT_Descriptor
     db 66h
-    lgdt[cs:si]
+    lgdt [cs:si]
 
     mov     eax, cr0                 
     or      eax, 1            
@@ -32,13 +34,27 @@ ASM_PFX(_ModuleEntryPoint):
 
 BITS 32
 align 4
-protected_mode:
+ProtectedModeEmtry:
     PROTECTED_MODE equ $
 
     mov ecx, DWORD [ASM_PFX(PcdGet32 (PcdTemporaryRamBase))]
     mov edx, DWORD [ASM_PFX(PcdGet32 (PcdTemporaryRamSize))]
 
-    mov esp, edx                ;Initialize stack
+    ;Initialize the stack at the end of base + size
+    mov esp, ecx
+    add esp, edx
+
+    ; TODO: Multiprocessor support
+    push 1
+    ; For now, we push the BIST once
+    movd eax, mm0
+    push eax
+    ; Code in PlatformSecLib will look up this information we've just pushed
+    ;  ================= TOP OF MEMORY ======================
+    ;                    Count of BISTs
+    ;                    BISTs[1..n]
+    ;  ================= REST OF MEMORY =====================
+    ; Each BIST is always a DWORD in size
     
     mov edi, 0xFFFFFFFC         ;BFV
 
@@ -53,12 +69,12 @@ protected_mode:
 align 8
 NULL_SEGMENT    equ $ - GDT_START
 GDT_START:
-    
+NullSegDescriptor:
     dd 0x0
     dd 0x0
 
     CODE_SEL        equ $ - GDT_START
-    code_segment_descriptor:
+CodeSegDescriptor:
     dw 0xFFFF 
     dw 0x0      
     db 0x0      
@@ -67,7 +83,7 @@ GDT_START:
     db 0x0
     
     DATA_SEL        equ $ - GDT_START
-    data_segment_descriptor:
+DataSegDescriptor:
     dw 0xFFFF 
     dw 0x0     
     db 0x0     
@@ -83,6 +99,6 @@ GDT_Descriptor:
 
 ProtectedModeEntryLinearAddress:
 ProtectedModeEntryLinear:
-    DD      protected_mode  ; Offset of our 32 bit code
+    DD      ProtectedModeEmtry  ; Offset of our 32 bit code
     DW      CODE_SEL
 
