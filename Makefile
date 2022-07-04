@@ -1,3 +1,10 @@
+ARCH?=IA32
+ifeq ($(WORKSPACE),)
+	$(error "WORKSPACE is not defined, run edksetup.sh")
+endif
+TARGET?=DEBUG
+TOOLCHAIN?=GCC5
+
 Qemu:
 	build -a $(ARCH) -p Platform/Qemu/QemuOpenBoardPkg/QemuOpenBoardPkg.dsc
 
