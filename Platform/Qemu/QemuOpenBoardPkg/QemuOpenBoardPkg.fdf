@@ -1,12 +1,12 @@
 [FD.QemuOpenBoardPkg]
   BaseAddress   = 0xFFB90000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
-  Size          = 0x08000000
+  Size          = 0x470000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0x8000
+  NumBlocks     = 0x470
 
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress  = 0xFFB90000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x08000000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
 
   !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
@@ -168,7 +168,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x08000000
   FILE FV_IMAGE = 618FBA00-2231-41F6-9931-25A89DF501D3 {
       SECTION FV_IMAGE = FvSecurityPreMemory
   }
-  INF UefiCpuPkg/SecCore/SecCore.inf
+  
   INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
   INF MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
   INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
@@ -176,6 +176,6 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x08000000
   INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-  
+  INF UefiCpuPkg/SecCore/SecCore.inf
 
-  !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf
+!include MinPlatformPkg/Include/Fdf/RuleInclude.fdf

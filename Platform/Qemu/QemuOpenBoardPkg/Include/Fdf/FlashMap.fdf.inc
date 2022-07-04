@@ -1,3 +1,5 @@
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x470000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFFB90000
 #
 # 0x270000
 #
