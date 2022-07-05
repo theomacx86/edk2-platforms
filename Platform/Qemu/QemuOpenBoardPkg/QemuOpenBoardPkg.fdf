@@ -1,9 +1,9 @@
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFFB90000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
-  Size          = 0x470000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
+  BaseAddress   = 0xFFAD0000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  Size          = 0x530000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0x470
+  NumBlocks     = 0x530
 
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress  = 0xFFB90000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
@@ -81,6 +81,28 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
 
   INF MdeModulePkg/Core/Dxe/DxeMain.inf
 
+  INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
+  INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
+  INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+  INF MdeModulePkg/Universal/Metronome/Metronome.inf
+  INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
+  INF PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcatRealTimeClockRuntimeDxe.inf
+  INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
+  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+  INF MdeModulePkg/Universal/MonotonicCounterRuntimeDxe/MonotonicCounterRuntimeDxe.inf
+  INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+  INF MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
+  INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
+  INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+  INF UefiCpuPkg/CpuDxe/CpuDxe.inf
+  INF PcAtChipsetPkg/HpetTimerDxe/HpetTimerDxe.inf
+  INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+  INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+  INF MdeModulePkg/Universal/Console/GraphicsOutputDxe/GraphicsOutputDxe.inf
+  INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+  INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+
 
 ###########################
 #
@@ -125,7 +147,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
 
 [FV.FvFspM]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
+  FvNameGuid      = 03982cf7-246a-4356-b6ba-436a2251595c
 
   
   INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
