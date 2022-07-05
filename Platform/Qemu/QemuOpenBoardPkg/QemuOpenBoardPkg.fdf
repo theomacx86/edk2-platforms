@@ -100,8 +100,8 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
   INF MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
-  #INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-  #INF MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+  INF MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
 
 ###########################
 #

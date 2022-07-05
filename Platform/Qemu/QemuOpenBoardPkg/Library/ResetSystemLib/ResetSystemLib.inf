@@ -1,4 +1,4 @@
-[Defines][Defines]
+[Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = ResetSystemLib
   FILE_GUID                      = 70EE7BD9-08FF-4D0E-AA7B-4320844F939A
@@ -10,5 +10,5 @@
 [Sources]
   ResetSystemLib.c
 
-[LibraryClasses]
-  MdeModulePkg/MdeModulePkg.dsc
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec

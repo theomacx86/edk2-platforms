@@ -12,6 +12,11 @@ PlatformInit (
 {
   EFI_STATUS  Status;
 
+  UINT64 TestValue;
+  TestValue = 0x8000000000000; // 2 251 799 813 685 248
+  DEBUG ((DEBUG_INFO, "UINT64 z test %zu, %zx  \n", TestValue, TestValue));
+
+
   Status = InstallMemory (PeiServices);
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "Memory installation failed\n", __FUNCTION__, __LINE__));

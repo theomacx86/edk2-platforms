@@ -1,6 +1,10 @@
+[LibraryClasses.common]
+ResetSystemLib|QemuOpenBoardPkg/Library/ResetSystemLib/ResetSystemLib.inf
+PciHostBridgeLib|MinPlatformPkg/Pci/Library/PciHostBridgeLibSimple/PciHostBridgeLibSimple.inf
+
 [Components]
 MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
 MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
 MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
-#MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-#MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
