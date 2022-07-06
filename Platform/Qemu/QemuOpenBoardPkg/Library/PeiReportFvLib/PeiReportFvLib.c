@@ -188,6 +188,13 @@ ReportPostMemFv (
       NULL,
       0
       );
+      
+      DEBUG ((DEBUG_INFO, "%Build FlashFvUefiBoot FV Hob at %Lx \n",(EFI_PHYSICAL_ADDRESS) PcdGet32 (PcdFlashFvUefiBootBase)));
+
+      BuildFvHob(
+        (EFI_PHYSICAL_ADDRESS) PcdGet32 (PcdFlashFvUefiBootBase),
+        PcdGet32 (PcdFlashFvUefiBootSize)
+      );
   }
 
   //
@@ -235,10 +242,11 @@ ReportPostMemFv (
       );
   }
 
+
   //
   // Report resource related HOB for flash FV to reserve space in GCD and memory map
   //
-
+  
   BuildResourceDescriptorHob (
     EFI_RESOURCE_MEMORY_MAPPED_IO,
     (EFI_RESOURCE_ATTRIBUTE_PRESENT    |
@@ -253,4 +261,5 @@ ReportPostMemFv (
     (UINTN)PcdGet32 (PcdFlashAreaSize),
     EfiMemoryMappedIO
     );
+    
 }

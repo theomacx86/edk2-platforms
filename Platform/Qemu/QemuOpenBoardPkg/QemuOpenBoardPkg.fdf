@@ -80,7 +80,6 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
   FvNameGuid    = D2F110DB-2388-4963-BEFD-5889EEE01569
 
   INF MdeModulePkg/Core/Dxe/DxeMain.inf
-
   INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
   INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
