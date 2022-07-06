@@ -1,6 +1,7 @@
 [LibraryClasses.common]
 PlatformBootManagerLib|MinPlatformPkg/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
 BoardBootManagerLib|QemuOpenBoardPkg/Library/BoardBootManagerLib/BoardBootManagerLib.inf
+
 [Components]
 MdeModulePkg/Core/Dxe/DxeMain.inf
 MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
