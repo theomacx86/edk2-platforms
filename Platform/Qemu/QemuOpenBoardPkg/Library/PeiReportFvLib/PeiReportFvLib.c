@@ -164,6 +164,13 @@ ReportPostMemFv (
       0
       );
 
+    DEBUG ((DEBUG_INFO, "%Build FlashFvPostMemory FV Hob at %Lx \n",(EFI_PHYSICAL_ADDRESS) PcdGet32 (PcdFlashFvPostMemoryBase)));
+
+    BuildFvHob(
+      (EFI_PHYSICAL_ADDRESS) PcdGet32 (PcdFlashFvPostMemoryBase),
+      PcdGet32 (PcdFlashFvPostMemorySize)
+    );
+
     DEBUG ((DEBUG_INFO, "Install FlashFvBsp - 0x%x, 0x%x\n", PcdGet32 (PcdFlashFvBspBase), PcdGet32 (PcdFlashFvBspSize)));
     PeiServicesInstallFvInfo2Ppi (
       &(((EFI_FIRMWARE_VOLUME_HEADER *)(UINTN)PcdGet32 (PcdFlashFvBspBase))->FileSystemGuid),

@@ -3,11 +3,10 @@
 #include <Library/IoLib.h>
 #include <Library/PcdLib.h>
 #include <Library/DebugLib.h>
-
 #include <Library/PciCf8Lib.h>
 #include <IndustryStandard/Pci.h>
-
 #include <Library/QemuHardware.h>
+#include <Library/HobLib.h>
 
 #define QEMU_IO_DEBUG_MAGIC  0xE9
 

@@ -1,14 +1,13 @@
 [LibraryClasses.common]
 PlatformBootManagerLib|MinPlatformPkg/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
 BoardBootManagerLib|QemuOpenBoardPkg/Library/BoardBootManagerLib/BoardBootManagerLib.inf
-PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
 
 [Components]
 MdeModulePkg/Core/Dxe/DxeMain.inf
 MdeModulePkg/Universal/PCD/Dxe/Pcd.inf{
     <LibraryClasses>
-      PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
-  }
+      PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
+}
 MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
 MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
 MdeModulePkg/Universal/Metronome/Metronome.inf
