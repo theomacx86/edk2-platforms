@@ -1,4 +1,4 @@
-#include <Library/QemuFwCfgLib.h>
+#include <Library/OpenQemuFwCfgLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
 

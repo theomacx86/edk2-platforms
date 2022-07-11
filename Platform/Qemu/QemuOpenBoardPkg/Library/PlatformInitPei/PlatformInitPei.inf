@@ -6,6 +6,9 @@
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = PlatformInit
 
+[Packages]
+  OvmfPkg/OvmfPkg.dec
+
 [Sources]
   PlatformInit.c
   Memory.c
@@ -13,6 +16,10 @@
 [LibraryClasses]
   PeimEntryPoint
   QemuFwCfgLib
+  HobLib
+
+[Guids]
+gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
 
 [Depex]
 TRUE

@@ -6,7 +6,7 @@
 
 
 [LibraryClasses]
-  QemuFwCfgLib|Include/Library/OQemuFwCfgLib.h
+  QemuFwCfgLib|Include/Library/OpenQemuFwCfgLib.h
 
 [Includes]
   Include

@@ -54,7 +54,7 @@
 !include QemuOpenBoardPkg/Include/Dsc/Stage3.dsc.inc
 
 [LibraryClasses.common]
-QemuFwCfgLib|QemuOpenBoardPkg/Library/QemuFwCfgLib/QemuFwCfgLib.inf
+QemuFwCfgLib|QemuOpenBoardPkg/Library/OpenQemuFwCfgLib/OpenQemuFwCfgLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
 PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
 DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf

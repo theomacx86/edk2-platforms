@@ -1,6 +1,6 @@
 #include <PlatformInit.h>
 #include <Library/DebugLib.h>
-#include <Library/QemuFwCfgLib.h>
+#include <Library/OpenQemuFwCfgLib.h>
 #include <Library/PeiServicesTablePointerLib.h>
 #include <Library/HobLib.h>
 
