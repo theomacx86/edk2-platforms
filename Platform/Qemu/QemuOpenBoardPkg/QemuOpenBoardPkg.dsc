@@ -16,6 +16,7 @@
   MdePkg/MdePkg.dec
   MinPlatformPkg/MinPlatformPkg.dec
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
 
 [PcdsFixedAtBuild]
   gMinPlatformPkgTokenSpaceGuid.PcdBootStage|4
@@ -29,8 +30,10 @@
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x100000
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
 
-  #ACPI PIIX4 infos
+  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
 
+  #PIIX4 APIC
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuLocalApicBaseAddress|
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE

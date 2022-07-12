@@ -21,8 +21,8 @@
   #
   # Enable stack and heap protections
   #
-  gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
-  gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
+  #gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
+  #gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
 
 ################################################################################
 #
