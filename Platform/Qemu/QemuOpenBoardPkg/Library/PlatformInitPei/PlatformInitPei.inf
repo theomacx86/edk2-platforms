@@ -17,9 +17,13 @@
   PeimEntryPoint
   QemuFwCfgLib
   HobLib
+  PcdLib
 
 [Guids]
 gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
+
+[Pcd]
+gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId
 
 [Depex]
 TRUE

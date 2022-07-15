@@ -12,6 +12,8 @@
 #include <Library/PeiServicesLib.h>
 #include <Library/IoLib.h>
 
+#include<Library/LocalApicLib.h>
+
 EFI_PEI_CORE_FV_LOCATION_PPI  gEfiPeiCoreFvLocationPpi = {
   (VOID *)0xFFE20000 // Could be done automatically at build
 };
@@ -105,6 +107,19 @@ SecPlatformInformation (
 
   CopyMem (PlatformInformationRecord, BistStart, Length);
   *StructureSize = Length;
+
+  //
+  // Make sure the 8259 is masked before initializing the Debug Agent and the debug timer is enabled
+  //
+  IoWrite8 (0x21, 0xff);
+  IoWrite8 (0xA1, 0xff);
+
+
+  DEBUG ((DEBUG_INFO, "Initialize APIC Timer \n"));
+  InitializeApicTimer (0, MAX_UINT32, TRUE, 5);
+  DEBUG ((DEBUG_INFO, "Disable APIC Timer interrupt\n"));
+  DisableApicTimerInterrupt ();
+
   return EFI_SUCCESS;
 }
 

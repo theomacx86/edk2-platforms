@@ -31,15 +31,17 @@
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
-
-  #PIIX4 APIC
-  gUefiCpuPkgTokenSpaceGuid.PcdCpuLocalApicBaseAddress|
+  gEfiMdePkgTokenSpaceGuid.PcdFSBClock|100000000
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|3
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable | FALSE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable | FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode | FALSE
+
+[PcdsDynamicDefault]
+  gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId|0
 
 
 ################################################################################
@@ -69,6 +71,7 @@ TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
 
 [LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION, LibraryClasses.common.SMM_CORE]
 TimerLib|OvmfPkg/Library/AcpiTimerLib/DxeAcpiTimerLib.inf
+
 
 [LibraryClasses.common.SEC]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf

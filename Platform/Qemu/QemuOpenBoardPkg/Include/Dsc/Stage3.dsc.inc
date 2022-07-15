@@ -1,8 +1,9 @@
 [LibraryClasses.common]
 PlatformBootManagerLib|MinPlatformPkg/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
 BoardBootManagerLib|QemuOpenBoardPkg/Library/BoardBootManagerLib/BoardBootManagerLib.inf
-MpInitLib|UefiCpuPkg/Library/MpInitLib/DxeMpInitLib.inf
-LocalApicLib|UefiCpuPkg/Library/BaseXApicLib/BaseXApicLib.inf
+#MpInitLib|UefiCpuPkg/Library/MpInitLib/DxeMpInitLib.inf
+LocalApicLib|UefiCpuPkg/Library/BaseXApicX2ApicLib/BaseXApicX2ApicLib.inf
+IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
 
 [Components]
 MdeModulePkg/Core/Dxe/DxeMain.inf
@@ -22,38 +23,45 @@ MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
 MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
 MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
 MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-UefiCpuPkg/CpuDxe/CpuDxe.inf
+UefiCpuPkg/CpuDxe/CpuDxe.inf{
+    <LibraryClasses>
+      BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
+      MpInitLib|UefiCpuPkg/Library/MpInitLibUp/MpInitLibUp.inf
+}
 PcAtChipsetPkg/HpetTimerDxe/HpetTimerDxe.inf
 MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
 MdeModulePkg/Universal/Console/GraphicsOutputDxe/GraphicsOutputDxe.inf
 MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
 MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-
-
+MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
+MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
+OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
+MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
+MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
+MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
 #Disabled
-#UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
-#MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
 #MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
 #MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-#MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
 #MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
 #MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
 #MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
 #MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
 #MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
 #MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
-#MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
 #MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
-#MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 #MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
 #MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 #MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
 #MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 #MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
-#MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
+
 #MdeModulePkg/Application/UiApp/UiApp.inf
 #MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
-#MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
 #FatPkg/EnhancedFatDxe/Fat.inf

@@ -1,14 +1,11 @@
+  !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
+
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFF800000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
-  Size          = 0x800000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
+  BaseAddress   = 0xFF6F0000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  Size          = 0x910000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0x800
-
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress  = 0xFFB90000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
-
-  !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
+  NumBlocks     = 0x910
 
   gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
   FV = FvAdvanced
@@ -84,24 +81,32 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x800000
   INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
   INF MdeModulePkg/Universal/Metronome/Metronome.inf
+  INF PcAtChipsetPkg/HpetTimerDxe/HpetTimerDxe.inf
+  INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+  INF UefiCpuPkg/CpuDxe/CpuDxe.inf
   INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   INF PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcatRealTimeClockRuntimeDxe.inf
   INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
   INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
   INF MdeModulePkg/Universal/MonotonicCounterRuntimeDxe/MonotonicCounterRuntimeDxe.inf
-  INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
   INF MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
   INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
   INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-  INF UefiCpuPkg/CpuDxe/CpuDxe.inf
-  INF PcAtChipsetPkg/HpetTimerDxe/HpetTimerDxe.inf
   INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
   INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
   INF MdeModulePkg/Universal/Console/GraphicsOutputDxe/GraphicsOutputDxe.inf
   INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
   INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-
+  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+  INF UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
+  INF OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+  INF MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
+  INF MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
+  
 
 ###########################
 #

@@ -7,6 +7,7 @@
 #include <Library/PciCf8Lib.h>
 #include <IndustryStandard/Pci.h>
 #include <Library/MemoryAllocationLib.h>
+#include <Library/PcdLib.h>
 
 EFI_STATUS
 EFIAPI
@@ -37,6 +38,8 @@ PlatformInit (
   (*EfiPlatformInfo).HostBridgeDevId = DeviceId;
 
   BuildGuidDataHob (&gUefiOvmfPkgPlatformInfoGuid, EfiPlatformInfo, sizeof (EFI_HOB_PLATFORM_INFO));
+
+  PcdSet16S(PcdOvmfHostBridgePciDevId, DeviceId);
 
   return EFI_SUCCESS;
 }

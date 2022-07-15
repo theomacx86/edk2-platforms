@@ -1,5 +1,5 @@
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF800000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x910000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF6F0000
 #
 # 0x270000
 #
@@ -14,7 +14,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize           = 0x00040000
 #
 # 12MiB 0x2C0000
 #
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x00140000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x00250000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00350000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize      = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize      = 0x00080000 #gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
