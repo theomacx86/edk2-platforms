@@ -1,9 +1,18 @@
 [LibraryClasses.common]
-PlatformBootManagerLib|MinPlatformPkg/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
+PlatformBootManagerLib|OvmfPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
+BootLogoLib|MdeModulePkg/Library/BootLogoLib/BootLogoLib.inf
+NvVarsFileLib|OvmfPkg/Library/NvVarsFileLib/NvVarsFileLib.inf
+QemuFwCfgS3Lib|OvmfPkg/Library/QemuFwCfgS3Lib/DxeQemuFwCfgS3LibFwCfg.inf
+QemuLoadImageLib|OvmfPkg/Library/X86QemuLoadImageLib/X86QemuLoadImageLib.inf
+QemuBootOrderLib|OvmfPkg/Library/QemuBootOrderLib/QemuBootOrderLib.inf
+PlatformBmPrintScLib|OvmfPkg/Library/PlatformBmPrintScLib/PlatformBmPrintScLib.inf
+XenPlatformLib|OvmfPkg/Library/XenPlatformLib/XenPlatformLib.inf
+LoadLinuxLib|OvmfPkg/Library/LoadLinuxLib/LoadLinuxLib.inf
+SerializeVariablesLib|OvmfPkg/Library/SerializeVariablesLib/SerializeVariablesLib.inf
 BoardBootManagerLib|QemuOpenBoardPkg/Library/BoardBootManagerLib/BoardBootManagerLib.inf
-#MpInitLib|UefiCpuPkg/Library/MpInitLib/DxeMpInitLib.inf
 LocalApicLib|UefiCpuPkg/Library/BaseXApicX2ApicLib/BaseXApicX2ApicLib.inf
 IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
+
 
 [Components]
 MdeModulePkg/Core/Dxe/DxeMain.inf
@@ -38,30 +47,42 @@ MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
 MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
 MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
-MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
 OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
-MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
-MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
 MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
-MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
 MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
-#Disabled
-#MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
-#MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-#MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
-#MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
-#MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
-#MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
-#MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
-#MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
-#MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
-#MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-#MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-#MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
-#MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
-#MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
+MdeModulePkg/Bus/Isa/IsaBusDxe/IsaBusDxe.inf
+MdeModulePkg/Bus/Isa/Ps2KeyboardDxe/Ps2KeyboardDxe.inf
+MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+PcAtChipsetPkg/Bus/Pci/IdeControllerDxe/IdeControllerDxe.inf
+MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+FatPkg/EnhancedFatDxe/Fat.inf
+OvmfPkg/QemuRamfbDxe/QemuRamfbDxe.inf
+  ShellPkg/Application/Shell/Shell.inf {
+    <LibraryClasses>
+      ShellCommandLib|ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf
+      NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
+      HandleParsingLib|ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf
+      PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
+      BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
 
-#MdeModulePkg/Application/UiApp/UiApp.inf
-#MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
-#FatPkg/EnhancedFatDxe/Fat.inf
+    <PcdsFixedAtBuild>
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
+      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
+      gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|8000
+  }
+MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
+OvmfPkg/PlatformDxe/Platform.inf
+MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
+MdeModulePkg/Application/UiApp/UiApp.inf
+OvmfPkg/IoMmuDxe/IoMmuDxe.inf
+MdeModulePkg/Universal/Acpi/S3SaveStateDxe/S3SaveStateDxe.inf
+OvmfPkg/SioBusDxe/SioBusDxe.inf
+MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf

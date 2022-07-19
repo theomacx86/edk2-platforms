@@ -67,6 +67,20 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = AE8F0EA0-1614-422D-ABC1-C518596F1678
 
+  #ACPI
+  INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
+  INF OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  
+  #Buses
+  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+  INF MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+  INF MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+  INF OvmfPkg/SataControllerDxe/SataControllerDxe.inf
+  INF MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
+  INF MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
+  INF MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+
 ###########################
 #
 # Stage 3 Firmware volumes
@@ -98,14 +112,25 @@
   INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
   INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+  INF PcAtChipsetPkg/Bus/Pci/IdeControllerDxe/IdeControllerDxe.inf
   INF UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
   INF OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
-  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
-  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+  INF  OvmfPkg/PlatformDxe/Platform.inf
   INF MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
+  INF OvmfPkg/SioBusDxe/SioBusDxe.inf
+  INF MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
+  INF MdeModulePkg/Bus/Isa/IsaBusDxe/IsaBusDxe.inf
+  INF MdeModulePkg/Bus/Isa/Ps2KeyboardDxe/Ps2KeyboardDxe.inf
+  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+  INF FatPkg/EnhancedFatDxe/Fat.inf
+  INF OvmfPkg/IoMmuDxe/IoMmuDxe.inf
+  INF  MdeModulePkg/Universal/Acpi/S3SaveStateDxe/S3SaveStateDxe.inf
   INF MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
+  INF ShellPkg/Application/Shell/Shell.inf
+  INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   
 
 ###########################

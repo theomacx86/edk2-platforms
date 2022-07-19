@@ -217,6 +217,13 @@ ReportPostMemFv (
       NULL,
       0
       );
+
+    DEBUG ((DEBUG_INFO, "%Build FlashFvOsBoot FV Hob at %Lx \n",(EFI_PHYSICAL_ADDRESS) PcdGet32 (PcdFlashFvUefiBootBase)));
+
+      BuildFvHob(
+        (EFI_PHYSICAL_ADDRESS) PcdGet32 (PcdFlashFvOsBootBase),
+        PcdGet32 (PcdFlashFvOsBootSize)
+      );
   }
 
   //

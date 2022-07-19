@@ -9,11 +9,14 @@
   BUILD_TARGETS               = DEBUG|RELEASE
   SKUID_IDENTIFIER            = ALL
 
+    SMM_ENABLED                 = FALSE
+
 [SkuIds]
   0|DEFAULT
 
 [Packages]
   MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
   MinPlatformPkg/MinPlatformPkg.dec
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
   UefiCpuPkg/UefiCpuPkg.dec
@@ -22,7 +25,7 @@
   gMinPlatformPkgTokenSpaceGuid.PcdBootStage|4
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel   | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel   | 0x802A00C7
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask           | 0x27
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask           | 0x17
 
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
   # Worth investigating: 0x010000 doesn't work as a temporary ram base once
@@ -32,16 +35,30 @@
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|100000000
-  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|3
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
+  
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable | FALSE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable | FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode | FALSE
+  gMinPlatformPkgTokenSpaceGuid.PcdBootToShellOnly|TRUE
+  gMinPlatformPkgTokenSpaceGuid.PcdSerialTerminalEnable|TRUE
+  gMinPlatformPkgTokenSpaceGuid.PcdTpm2Enable|FALSE
 
 [PcdsDynamicDefault]
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId|0
+
+  #video setup
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|640
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|480
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSmbiosVersion|0x0208
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSmbiosDocRev|0x0
+
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|3
 
 
 ################################################################################
@@ -53,10 +70,11 @@
 !include MinPlatformPkg/Include/Dsc/CoreCommonLib.dsc
 !include MinPlatformPkg/Include/Dsc/CorePeiLib.dsc
 !include MinPlatformPkg/Include/Dsc/CoreDxeLib.dsc
-
 !include QemuOpenBoardPkg/Include/Dsc/Stage1.dsc.inc
 !include QemuOpenBoardPkg/Include/Dsc/Stage2.dsc.inc
 !include QemuOpenBoardPkg/Include/Dsc/Stage3.dsc.inc
+!include QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc
+
 
 [LibraryClasses.common]
 QemuFwCfgLib|QemuOpenBoardPkg/Library/OpenQemuFwCfgLib/OpenQemuFwCfgLib.inf
@@ -66,15 +84,20 @@ DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
 PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
 
+
 [LibraryClasses.common.DXE_CORE]
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
 
 [LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION, LibraryClasses.common.SMM_CORE]
 TimerLib|OvmfPkg/Library/AcpiTimerLib/DxeAcpiTimerLib.inf
-
+QemuFwCfgLib|OvmfPkg/Library/QemuFwCfgLib/QemuFwCfgDxeLib.inf
+MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/DxeMemEncryptSevLib.inf
+MemEncryptTdxLib|OvmfPkg/Library/BaseMemEncryptTdxLib/BaseMemEncryptTdxLibNull.inf
+Tcg2PhysicalPresenceLib|OvmfPkg/Library/Tcg2PhysicalPresenceLibNull/DxeTcg2PhysicalPresenceLib.inf
+ResetSystemLib|OvmfPkg/Library/ResetSystemLib/DxeResetSystemLib.inf
 
 [LibraryClasses.common.SEC]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 
-[Components]
+
 
