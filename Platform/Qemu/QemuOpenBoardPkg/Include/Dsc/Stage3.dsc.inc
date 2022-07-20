@@ -14,7 +14,7 @@ LocalApicLib|UefiCpuPkg/Library/BaseXApicX2ApicLib/BaseXApicX2ApicLib.inf
 IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
 
 
-[Components]
+[Components.X64]
 MdeModulePkg/Core/Dxe/DxeMain.inf
 MdeModulePkg/Universal/PCD/Dxe/Pcd.inf{
     <LibraryClasses>

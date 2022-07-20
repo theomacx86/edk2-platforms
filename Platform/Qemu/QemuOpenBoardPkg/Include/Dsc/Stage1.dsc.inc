@@ -58,7 +58,6 @@
   TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/SmmTestPointLib.inf
 
 [Components.IA32]
-
   UefiCpuPkg/SecCore/SecCore.inf
 
   MdeModulePkg/Core/Pei/PeiMain.inf

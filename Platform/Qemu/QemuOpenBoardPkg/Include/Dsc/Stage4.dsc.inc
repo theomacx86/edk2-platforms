@@ -1,4 +1,4 @@
-[Components]
+[Components.X64]
 OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
 MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
 

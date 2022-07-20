@@ -1,14 +1,13 @@
 [Defines]
-  DSC_SPECIFICATION           = 0x0001001C
-  PLATFORM_GUID               = 94797875-D562-40CF-8D55-ADD623C8D46C
-  PLATFORM_NAME               = QemuOpenBoardPkg
-  PLATFORM_VERSION            = 0.1
-  SUPPORTED_ARCHITECTURES     = IA32
-  FLASH_DEFINITION            = $(PLATFORM_NAME)/$(PLATFORM_NAME).fdf
-  OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
-  BUILD_TARGETS               = DEBUG|RELEASE
-  SKUID_IDENTIFIER            = ALL
-
+    DSC_SPECIFICATION           = 0x0001001C
+    PLATFORM_GUID               = 94797875-D562-40CF-8D55-ADD623C8D46C
+    PLATFORM_NAME               = QemuOpenBoardPkg
+    PLATFORM_VERSION            = 0.1
+    SUPPORTED_ARCHITECTURES     = IA32|X64
+    FLASH_DEFINITION            = $(PLATFORM_NAME)/$(PLATFORM_NAME).fdf
+    OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
+    BUILD_TARGETS               = DEBUG|RELEASE
+    SKUID_IDENTIFIER            = ALL
     SMM_ENABLED                 = FALSE
 
 [SkuIds]
@@ -43,7 +42,7 @@
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable | FALSE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable | FALSE
-  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode | FALSE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdBootToShellOnly|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdSerialTerminalEnable|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdTpm2Enable|FALSE
