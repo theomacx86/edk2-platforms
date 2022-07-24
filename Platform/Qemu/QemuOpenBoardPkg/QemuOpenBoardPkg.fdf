@@ -56,36 +56,18 @@ ErasePolarity = 1
 BlockSize     = 0x1000
 NumBlocks     = 0x100
 
-0 | 0x22000
-FV = FvFspM
-
-0xDF000 | 0x21000
+0x0 | 0x00100000
 FV = FvPreMemory
 
-[FV.FvPreMemorySilicon]
-FvNameGuid      = be98c0c4-680b-489d-b29e-859f7f3188e4
-
-!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-
-INF MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
-INF MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
-
-[FV.FvFspM]
-FvNameGuid      = 78d38fc0-9f43-49cc-a916-3c752d1257a6
-
+[FV.FvPreMemory] #Complete
+FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
 
 INF MdeModulePkg/Core/Pei/PeiMain.inf
 INF MdeModulePkg/Universal/PCD/Pei/Pcd.inf
 
-FILE FV_IMAGE = f936ad31-ba74-48d4-87c1-1057d548bb4a {
-     SECTION FV_IMAGE = FvPreMemorySilicon
-}
-
-
-[FV.FvPreMemory] #Complete
-FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
-!include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+INF MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
+INF MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
 
 
 
@@ -94,33 +76,4 @@ INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
 INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
 
 
-INF OvmfPkg/Sec/SecMain.inf
-INF  RuleOverride=RESET_VECTOR OvmfPkg/ResetVector/ResetVector.inf
-
-
-[Rule.Common.SEC]
-  FILE SEC = $(NAMED_GUID) {
-    PE32     PE32           $(INF_OUTPUT)/$(MODULE_NAME).efi
-    UI       STRING ="$(MODULE_NAME)" Optional
-    VERSION  STRING ="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
-  }
-
-[Rule.Common.SEC.RESET_VECTOR]
-  FILE RAW = $(NAMED_GUID) {
-    RAW BIN   Align = 16   |.bin
-  }
-
-[Rule.Common.PEI_CORE]
-  FILE PEI_CORE = $(NAMED_GUID)            {
-    PE32       PE32     Align = 64       $(INF_OUTPUT)/$(MODULE_NAME).efi
-    UI       STRING="$(MODULE_NAME)" Optional
-    VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
-  }
-
-[Rule.Common.PEIM]
-  FILE PEIM = $(NAMED_GUID) {
-     PEI_DEPEX PEI_DEPEX Optional        $(INF_OUTPUT)/$(MODULE_NAME).depex
-     PE32        PE32    Align = 64      $(INF_OUTPUT)/$(MODULE_NAME).efi
-     UI        STRING="$(MODULE_NAME)" Optional
-     VERSION   STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
-  }
+!include MinPlatformPkg/Include/Fdf/RuleInclude.fdf
