@@ -10,13 +10,13 @@ InstallMemory (
   IN CONST EFI_PEI_SERVICES  **PeiServices
   )
 {
-  EFI_STATUS                  Status;
-  CONST EFI_PEI_SERVICES      **PeiServicesTable;
-  EFI_E820_ENTRY              E820Entry;
-  QEMU_FW_CFG_FILE            FwCfgFile;
-  UINT64                      BaseAddress = 0;
-  UINT64                      Size        = 0;
-  UINT32                      Processed;
+  EFI_STATUS              Status;
+  CONST EFI_PEI_SERVICES  **PeiServicesTable;
+  EFI_E820_ENTRY          E820Entry;
+  QEMU_FW_CFG_FILE        FwCfgFile;
+  UINT64                  BaseAddress = 0;
+  UINT64                  Size        = 0;
+  UINT32                  Processed;
 
   // TODO
 
@@ -49,19 +49,27 @@ InstallMemory (
     Size += E820Entry.Length;
   }
 
-  
-
   PeiServicesTable = GetPeiServicesTablePointer ();
 
   DEBUG ((DEBUG_INFO, "Installing memory\nBase address: %Lx\nSize: %x\n", BaseAddress, Size));
-  Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, (EFI_PHYSICAL_ADDRESS)BaseAddress, Size);
-  
+  Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, (EFI_PHYSICAL_ADDRESS)BaseAddress + 0x100000, Size - 0x100000);
+
   ASSERT_EFI_ERROR (Status);
 
   DEBUG ((DEBUG_INFO, "Declaring system memory HOB\n"));
 
-  
-
+  BuildResourceDescriptorHob (
+    EFI_RESOURCE_SYSTEM_MEMORY,
+    EFI_RESOURCE_ATTRIBUTE_PRESENT |
+    EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
+    EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_WRITE_COMBINEABLE |
+    EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_TESTED,
+    0,
+    0xa0000
+    );
   // Declare system memory
   BuildResourceDescriptorHob (
     EFI_RESOURCE_SYSTEM_MEMORY,
@@ -72,9 +80,28 @@ InstallMemory (
     EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE |
     EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |
     EFI_RESOURCE_ATTRIBUTE_TESTED,
-      BaseAddress,
-      Size
-  );
-
+    0x100000,
+    Size - 0x100000
+    );
+ #if 0
+  BuildResourceDescriptorHob (
+    EFI_RESOURCE_MEMORY_MAPPED_IO,
+    EFI_RESOURCE_ATTRIBUTE_PRESENT     |
+    EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
+    EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_TESTED,
+    0xa0000,
+    0x100000 - 0xa0000
+    );
+  BuildResourceDescriptorHob (
+    EFI_RESOURCE_MEMORY_MAPPED_IO,
+    EFI_RESOURCE_ATTRIBUTE_PRESENT     |
+    EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
+    EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_TESTED,
+    0xFEC00000,
+    0x3000
+    );
+ #endif
   return Status;
 }

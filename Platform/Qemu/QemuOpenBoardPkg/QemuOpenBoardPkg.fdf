@@ -87,7 +87,6 @@
   INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-  !include Features/Ext4Pkg/Ext4.fdf.inc
 
 ###########################
 #
