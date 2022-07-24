@@ -12,18 +12,28 @@
 [SkuIds]
   0|DEFAULT
 
-[PcdsFixedAtBuild.Ia32]
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8040004F
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x17
-  gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
-  gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
-  gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPoolType|0x0000000000000002
+[Packages]
+  MdePkg/MdePkg.dec
+  MinPlatformPkg/MinPlatformPkg.dec
+  QemuOpenBoardPkg/QemuOpenBoardPkg.dec
 
-[PcdsFixedAtBuild.PcdsPatchableInModule]
-  gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|FALSE
-  gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable |FALSE
+[PcdsFeatureFlag]
+  gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
+  gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable | FALSE
+  gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable | FALSE
+
+
+################################################################################
+#
+# Library classes
+#
+################################################################################
 
 !include MinPlatformPkg/Include/Dsc/CoreCommonLib.dsc
+!include MinPlatformPkg/Include/Dsc/CorePeiLib.dsc
+!include MinPlatformPkg/Include/Dsc/CoreDxeLib.dsc
+
+!include QemuOpenBoardPkg/Include/Dsc/Stage1.dsc.inc
 
 [LibraryClasses]
   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
@@ -47,30 +57,8 @@
   ReportCpuHobLib|MinPlatformPkg/PlatformInit/Library/ReportCpuHobLib/ReportCpuHobLib.inf
 
 [LibraryClasses.common]
-PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
-VmgExitLib|UefiCpuPkg/Library/VmgExitLibNull/VmgExitLibNull.inf
-DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
-TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLibBhyve.inf
-CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/SecPeiCpuExceptionHandlerLib.inf
-ReportStatusCodeLib|MdeModulePkg/Library/PeiReportStatusCodeLib/PeiReportStatusCodeLib.inf
-HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
-MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
 PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
-ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
-MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/SecMemEncryptSevLib.inf
-CcProbeLib|OvmfPkg/Library/CcProbeLib/CcProbeLib.inf
-ReportFvLib|MinPlatformPkg/PlatformInit/Library/PeiReportFvLib/PeiReportFvLib.inf
-TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/PeiTestPointLib.inf
-TestPointCheckLib|MinPlatformPkg/Test/Library/TestPointCheckLib/PeiTestPointCheckLib.inf
-PciSegmentInfoLib|MinPlatformPkg/Pci/Library/PciSegmentInfoLibSimple/PciSegmentInfoLibSimple.inf
-BoardInitLib|MinPlatformPkg/PlatformInit/Library/BoardInitLibNull/BoardInitLibNull.inf
-SetCacheMtrrLib|MinPlatformPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
-ReportCpuHobLib|MinPlatformPkg/PlatformInit/Library/ReportCpuHobLib/ReportCpuHobLib.inf
-
-#Silicon doesn't exist in QEMU, NULL libs are sufficient
-SiliconPolicyInitLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyInitLibNull/SiliconPolicyInitLibNull.inf
-SiliconPolicyUpdateLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyUpdateLibNull/SiliconPolicyUpdateLibNull.inf
-
+PlatformSecLib | QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
 
 [LibraryClasses.common.SEC]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
@@ -78,24 +66,3 @@ DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 [LibraryClasses.common.PEI_CORE]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformDebugLibIoPort.inf
 
-[Components.IA32]
-
-#FvPreMemory
-#OvmfPkg/Sec/SecMain.inf
-#OvmfPkg/ResetVector/ResetVector.inf
-
-UefiCpuPkg/SecCore/SecCore.inf
-
-MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
-MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-
-#FvFspM
-MdeModulePkg/Core/Pei/PeiMain.inf
-MdeModulePkg/Universal/PCD/Pei/Pcd.inf
-
-#FvPreMemorySilicon
-MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
-MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
-
-QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf

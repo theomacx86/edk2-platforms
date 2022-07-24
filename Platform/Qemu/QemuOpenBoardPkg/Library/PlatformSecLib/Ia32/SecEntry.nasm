@@ -8,7 +8,6 @@ align 4
 global ASM_PFX(_ModuleEntryPoint)
 ASM_PFX(_ModuleEntryPoint):
     cli 
-    ; lgdt[GDT_Descriptor]
     mov esi, GDT_Descriptor
     db 66h
     lgdt[cs:si]
@@ -27,8 +26,6 @@ ASM_PFX(_ModuleEntryPoint):
     mov esi, ProtectedModeEntryLinearAddress
     
     jmp dword far [cs:si]
-
-
 
 BITS 32
 align 4
