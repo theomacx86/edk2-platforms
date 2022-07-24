@@ -99,4 +99,15 @@ ResetSystemLib|OvmfPkg/Library/ResetSystemLib/DxeResetSystemLib.inf
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 
 
+[Components.X64]
+  MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
+  MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
+  OvmfPkg/SataControllerDxe/SataControllerDxe.inf
+  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
+!include Features/Ext4Pkg/Ext4.dsc.inc

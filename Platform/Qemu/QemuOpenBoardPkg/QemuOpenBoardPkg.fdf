@@ -74,12 +74,20 @@
   #Buses
   INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
   INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
-  INF MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
-  INF MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
-  INF OvmfPkg/SataControllerDxe/SataControllerDxe.inf
+  INF  MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
+  INF  MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
+  INF  OvmfPkg/SataControllerDxe/SataControllerDxe.inf
+  INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+  INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+  INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
   INF MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
   INF MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
   INF MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+
+  INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+  !include Features/Ext4Pkg/Ext4.fdf.inc
 
 ###########################
 #
