@@ -12,7 +12,7 @@ SerializeVariablesLib|OvmfPkg/Library/SerializeVariablesLib/SerializeVariablesLi
 BoardBootManagerLib|QemuOpenBoardPkg/Library/BoardBootManagerLib/BoardBootManagerLib.inf
 LocalApicLib|UefiCpuPkg/Library/BaseXApicX2ApicLib/BaseXApicX2ApicLib.inf
 IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
-
+PciExpressLib|MdePkg/Library/BasePciExpressLib/BasePciExpressLib.inf
 
 [Components.X64]
 MdeModulePkg/Core/Dxe/DxeMain.inf
@@ -49,7 +49,11 @@ MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
 OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
 MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
-MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf{
+  <LibraryClasses>
+  PciLib|OvmfPkg/Library/DxePciLibI440FxQ35/DxePciLibI440FxQ35.inf
+  PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+}
 MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
 MdeModulePkg/Bus/Isa/IsaBusDxe/IsaBusDxe.inf
 MdeModulePkg/Bus/Isa/Ps2KeyboardDxe/Ps2KeyboardDxe.inf

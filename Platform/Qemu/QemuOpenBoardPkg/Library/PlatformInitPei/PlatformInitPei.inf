@@ -8,10 +8,13 @@
 
 [Packages]
   OvmfPkg/OvmfPkg.dec
+  MdePkg/MdePkg.dec
 
 [Sources]
+  PlatformInit.h
   PlatformInit.c
   Memory.c
+  Pcie.c
 
 [LibraryClasses]
   PeimEntryPoint
@@ -24,6 +27,7 @@ gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
 
 [Pcd]
 gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId
+gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
 
 [Depex]
 TRUE

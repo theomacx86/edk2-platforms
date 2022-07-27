@@ -8,6 +8,7 @@
 #include <IndustryStandard/Pci.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
+#include <IndustryStandard/Q35MchIch9.h>
 
 EFI_STATUS
 EFIAPI
@@ -41,5 +42,12 @@ PlatformInit (
 
   PcdSet16S(PcdOvmfHostBridgePciDevId, DeviceId);
 
-  return EFI_SUCCESS;
+  if(DeviceId == INTEL_Q35_MCH_DEVICE_ID){
+    DEBUG ((DEBUG_INFO, "Initializing PCIe\n"));
+    return InitializePcie();
+  }
+  else{
+    return EFI_SUCCESS;
+  }
+
 }

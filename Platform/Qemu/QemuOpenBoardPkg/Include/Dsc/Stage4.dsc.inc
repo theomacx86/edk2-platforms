@@ -11,7 +11,7 @@ MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
 MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
 MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 
-!if SMM_ENABLED == TRUE
+!if $(SMM_ENABLED) == TRUE
     MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
     MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
     MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf

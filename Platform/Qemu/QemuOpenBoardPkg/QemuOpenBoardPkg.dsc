@@ -36,7 +36,7 @@
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|100000000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
-  
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0xB0000000
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
@@ -94,10 +94,9 @@ MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/DxeMemEncryptSevLib.inf
 MemEncryptTdxLib|OvmfPkg/Library/BaseMemEncryptTdxLib/BaseMemEncryptTdxLibNull.inf
 Tcg2PhysicalPresenceLib|OvmfPkg/Library/Tcg2PhysicalPresenceLibNull/DxeTcg2PhysicalPresenceLib.inf
 ResetSystemLib|OvmfPkg/Library/ResetSystemLib/DxeResetSystemLib.inf
-
+PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
 [LibraryClasses.common.SEC]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
-
 
 [Components.X64]
   MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
