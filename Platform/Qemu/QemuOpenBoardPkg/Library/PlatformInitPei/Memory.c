@@ -33,7 +33,8 @@ InstallMemory (
   QemuFwCfgSelectItem (FwCfgFile.select);
   for (Processed = 0; Processed < FwCfgFile.size / sizeof (EFI_E820_ENTRY); Processed++) {
     QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
-    if (E820Entry.Length > LargestE820Entry.Length && E820Entry.Length + E820Entry.Length <= SIZE_4GB) {
+    if (E820Entry.Length > LargestE820Entry.Length && E820Entry.BaseAddr + E820Entry.Length <= SIZE_4GB) {
+      DEBUG ((DEBUG_INFO, "New largest entry for PEI: BaseAddress %lx, Size %lx \n", LargestE820Entry.BaseAddr, LargestE820Entry.Length));
       LargestE820Entry = E820Entry;
     }
 
