@@ -12,7 +12,7 @@
 #include <Library/PeiServicesLib.h>
 #include <Library/IoLib.h>
 
-#include<Library/LocalApicLib.h>
+#include <Library/LocalApicLib.h>
 
 EFI_PEI_CORE_FV_LOCATION_PPI  gEfiPeiCoreFvLocationPpi = {
   (VOID *)0xFFE20000 // Could be done automatically at build
@@ -113,7 +113,6 @@ SecPlatformInformation (
   //
   IoWrite8 (0x21, 0xff);
   IoWrite8 (0xA1, 0xff);
-
 
   DEBUG ((DEBUG_INFO, "Initialize APIC Timer \n"));
   InitializeApicTimer (0, MAX_UINT32, TRUE, 5);

@@ -17,9 +17,9 @@ PlatformInit (
   IN CONST EFI_PEI_SERVICES     **PeiServices
   )
 {
-  EFI_STATUS  Status;
-  UINT16 DeviceId;
-  EFI_HOB_PLATFORM_INFO *EfiPlatformInfo;
+  EFI_STATUS             Status;
+  UINT16                 DeviceId;
+  EFI_HOB_PLATFORM_INFO  *EfiPlatformInfo;
 
   Status = InstallMemory (PeiServices);
   if (EFI_ERROR (Status)) {
@@ -29,25 +29,24 @@ PlatformInit (
     DEBUG ((DEBUG_INFO, "Memory installation success\n", __FUNCTION__, __LINE__));
   }
 
-  EfiPlatformInfo = AllocateZeroPool(sizeof(EFI_HOB_PLATFORM_INFO));
-  if(EfiPlatformInfo == NULL){
+  EfiPlatformInfo = AllocateZeroPool (sizeof (EFI_HOB_PLATFORM_INFO));
+  if (EfiPlatformInfo == NULL) {
     DEBUG ((DEBUG_ERROR, "Failed to allocate pool for EFI_HOB_PLATFORM_INFO\n"));
     return EFI_UNSUPPORTED;
   }
+
   DeviceId = PciCf8Read16 (PCI_CF8_LIB_ADDRESS (0, 0, 0, PCI_DEVICE_ID_OFFSET));
   DEBUG ((DEBUG_INFO, "Building gUefiOvmfPkgPlatformInfoGuid with Host bridge dev ID %x \n", DeviceId));
   (*EfiPlatformInfo).HostBridgeDevId = DeviceId;
 
   BuildGuidDataHob (&gUefiOvmfPkgPlatformInfoGuid, EfiPlatformInfo, sizeof (EFI_HOB_PLATFORM_INFO));
 
-  PcdSet16S(PcdOvmfHostBridgePciDevId, DeviceId);
+  PcdSet16S (PcdOvmfHostBridgePciDevId, DeviceId);
 
-  if(DeviceId == INTEL_Q35_MCH_DEVICE_ID){
+  if (DeviceId == INTEL_Q35_MCH_DEVICE_ID) {
     DEBUG ((DEBUG_INFO, "Initializing PCIe\n"));
-    return InitializePcie();
-  }
-  else{
+    return InitializePcie ();
+  } else {
     return EFI_SUCCESS;
   }
-
 }

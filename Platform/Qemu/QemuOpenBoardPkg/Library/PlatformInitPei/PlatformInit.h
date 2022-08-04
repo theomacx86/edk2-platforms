@@ -14,10 +14,8 @@ InstallMemory (
   IN CONST EFI_PEI_SERVICES  **PeiServices
   );
 
-
 EFI_STATUS
 EFIAPI
-InitializePcie(
-    VOID
-);
-
+InitializePcie (
+  VOID
+  );

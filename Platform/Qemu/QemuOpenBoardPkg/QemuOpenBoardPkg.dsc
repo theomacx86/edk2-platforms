@@ -29,7 +29,7 @@
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
   # Worth investigating: 0x010000 doesn't work as a temporary ram base once
   # I fixed the stack. It should be firmly within lower memory (640KiB). 
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x100000
+  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x1000000
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
