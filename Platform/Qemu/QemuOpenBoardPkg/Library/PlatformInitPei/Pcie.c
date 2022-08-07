@@ -16,6 +16,11 @@ InitializePcie (
   VOID
   )
 {
+  UINTN PciBase;
+  UINTN PciSize;
+  UINTN PciIoBase;
+  UINTN PciIoSize;
+
   union {
     UINT64    Uint64;
     UINT32    Uint32[2];
@@ -51,7 +56,24 @@ InitializePcie (
               PciExBarBase.Uint32[0] | MCH_PCIEXBAR_BUS_FF | MCH_PCIEXBAR_EN
               );
 
-  // Missing ACPI MCFG
+  //todo acpi mcfg
+
+  //Disable Pci MMIO above 4Gb
+  PcdSet64S(PcdPciMmio64Size, 0);
+
+  //Set Pci MMIO space below 4GB
+  PciBase = PcdGet64(PcdPciExpressBaseAddress) + SIZE_256MB;
+  PciSize = 0xFC000000 - PciBase;
+
+  PcdSet64S(PcdPciMmio32Base, PciBase);
+  PcdSet64S(PcdPciMmio32Size, PciSize);
+
+  //Set Pci IO port range
+  PciIoBase = 0x6000;
+  PciIoSize = 0xA000;
+
+  PcdSet64S(PcdPciIoBase, PciIoBase);
+  PcdSet64S(PcdPciIoSize, PciIoSize);
 
   return EFI_SUCCESS;
 }

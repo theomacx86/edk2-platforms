@@ -160,7 +160,7 @@
   INF MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
   INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
   INF MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
-
+  
 ###########################
 #
 # Stage 1 Firmware volumes

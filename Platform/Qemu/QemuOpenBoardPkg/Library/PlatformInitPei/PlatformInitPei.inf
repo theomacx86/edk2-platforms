@@ -9,7 +9,7 @@
 [Packages]
   OvmfPkg/OvmfPkg.dec
   MdePkg/MdePkg.dec
-
+  QemuOpenBoardPkg/QemuOpenBoardPkg.dec
 [Sources]
   PlatformInit.h
   PlatformInit.c
@@ -27,6 +27,16 @@ gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
 
 [Pcd]
 gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId
+gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+
+
+gUefiOvmfPkgTokenSpaceGuid.PcdPciIoBase
+gUefiOvmfPkgTokenSpaceGuid.PcdPciIoSize
+gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base
+gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size
+gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base
+gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size
+
 gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
 
 [Depex]
