@@ -31,6 +31,12 @@ typedef struct {
   UINT32    Type;
 } EFI_E820_ENTRY;
 
+#define EFI_E820_ENTRY_TYPE_RAM       1
+#define EFI_E820_ENTRY_TYPE_RESERVED  2
+#define EFI_E820_ENTRY_TYPE_ACPI      3
+#define EFI_E820_ENTRY_TYPE_NVS       4
+#define EFI_E820_ENTRY_TYPE_UNUSABLE  5
+
 #pragma pack()
 
 /**
