@@ -4,6 +4,35 @@
 #include <Library/PeiServicesTablePointerLib.h>
 #include <Library/HobLib.h>
 
+UINT32
+EFIAPI
+GetMemoryBelow4Gb(
+  VOID
+)
+{
+  EFI_E820_ENTRY          E820Entry;
+  QEMU_FW_CFG_FILE        FwCfgFile;
+  UINT32                  Processed;
+  UINT32                  Size;
+  
+
+  QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
+
+  Size = 0;
+  QemuFwCfgSelectItem (FwCfgFile.select);
+  for (Processed = 0; Processed < FwCfgFile.size / sizeof (EFI_E820_ENTRY); Processed++) {
+    QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
+    if(E820Entry.BaseAddr + E820Entry.Length < SIZE_4GB){
+      Size += E820Entry.Length;
+    }
+    else{
+      return Size;
+    }
+  }
+
+  return Size;
+}
+
 EFI_STATUS
 EFIAPI
 InstallMemory (

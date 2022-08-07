@@ -39,7 +39,7 @@
   SiliconPolicyInitLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyInitLibNull/SiliconPolicyInitLibNull.inf
   SiliconPolicyUpdateLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyUpdateLibNull/SiliconPolicyUpdateLibNull.inf
   ReportFvLib|QemuOpenBoardPkg/Library/PeiReportFvLib/PeiReportFvLib.inf
-
+  PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
 [LibraryClasses.Common.SEC]
   TestPointCheckLib|MinPlatformPkg/Test/Library/TestPointCheckLib/SecTestPointCheckLib.inf
   TimerLib|MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf

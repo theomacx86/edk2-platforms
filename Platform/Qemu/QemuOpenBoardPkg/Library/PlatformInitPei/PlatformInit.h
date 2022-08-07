@@ -8,6 +8,12 @@ PlatformInit (
   IN CONST EFI_PEI_SERVICES     **PeiServices
   );
 
+UINT32
+EFIAPI
+GetMemoryBelow4Gb(
+  VOID
+);
+
 EFI_STATUS
 EFIAPI
 InstallMemory (
@@ -17,5 +23,11 @@ InstallMemory (
 EFI_STATUS
 EFIAPI
 InitializePcie (
+  VOID
+  );
+
+EFI_STATUS
+EFIAPI
+InitializePciPIIX4 (
   VOID
   );

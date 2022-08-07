@@ -42,11 +42,12 @@ PlatformInit (
   BuildGuidDataHob (&gUefiOvmfPkgPlatformInfoGuid, EfiPlatformInfo, sizeof (EFI_HOB_PLATFORM_INFO));
 
   PcdSet16S (PcdOvmfHostBridgePciDevId, DeviceId);
-  
+
   if (DeviceId == INTEL_Q35_MCH_DEVICE_ID) {
-    DEBUG ((DEBUG_INFO, "Initializing PCIe\n"));
+    DEBUG ((DEBUG_INFO, "Q35: Initialize PCIe\n"));
     return InitializePcie ();
   } else {
-    return EFI_SUCCESS;
+    DEBUG ((DEBUG_INFO, "PIIX4: Initialize PCI\n"));
+    return InitializePciPIIX4();
   }
 }

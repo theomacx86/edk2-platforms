@@ -83,10 +83,8 @@ DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
 PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
 
-
 [LibraryClasses.common.DXE_CORE]
 TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
-
 
 [LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION, LibraryClasses.common.SMM_CORE]
 TimerLib|OvmfPkg/Library/AcpiTimerLib/DxeAcpiTimerLib.inf

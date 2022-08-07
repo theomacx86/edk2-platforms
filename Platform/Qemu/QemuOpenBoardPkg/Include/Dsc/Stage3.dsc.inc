@@ -14,12 +14,17 @@ LocalApicLib|UefiCpuPkg/Library/BaseXApicX2ApicLib/BaseXApicX2ApicLib.inf
 IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
 PciExpressLib|MdePkg/Library/BasePciExpressLib/BasePciExpressLib.inf
 PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
+DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+SerialPortLib|PcAtChipsetPkg/Library/SerialIoLib/SerialIoLib.inf
 
 [Components.X64]
 MdeModulePkg/Core/Dxe/DxeMain.inf
 MdeModulePkg/Universal/PCD/Dxe/Pcd.inf{
    <LibraryClasses>
-      PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
+    DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+    PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
+    PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
   }
 MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
 MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
@@ -84,5 +89,8 @@ MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
 MdeModulePkg/Application/UiApp/UiApp.inf
 OvmfPkg/IoMmuDxe/IoMmuDxe.inf
 MdeModulePkg/Universal/Acpi/S3SaveStateDxe/S3SaveStateDxe.inf
-OvmfPkg/SioBusDxe/SioBusDxe.inf
+OvmfPkg/SioBusDxe/SioBusDxe.inf{
+  <LibraryClasses>
+  PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
+}
 MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf

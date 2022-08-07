@@ -15,12 +15,14 @@
   PlatformInit.c
   Memory.c
   Pcie.c
+  Pci.c
 
 [LibraryClasses]
   PeimEntryPoint
   QemuFwCfgLib
   HobLib
   PcdLib
+  PciLib
 
 [Guids]
 gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
