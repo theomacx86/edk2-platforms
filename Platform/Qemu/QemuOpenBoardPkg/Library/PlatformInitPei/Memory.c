@@ -31,6 +31,27 @@ GetMemoryBelow4Gb (
   return Size;
 }
 
+STATIC
+VOID
+ReserveMmioRegion (
+  EFI_PHYSICAL_ADDRESS  Start,
+  UINT64                Length
+  )
+{
+  EFI_RESOURCE_TYPE            ResourceType;
+  EFI_RESOURCE_ATTRIBUTE_TYPE  ResourceAttributes;
+
+  ResourceAttributes = EFI_RESOURCE_ATTRIBUTE_PRESENT | EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE | EFI_RESOURCE_ATTRIBUTE_TESTED;
+  ResourceType       = EFI_RESOURCE_MEMORY_MAPPED_IO;
+
+  BuildResourceDescriptorHob (
+    ResourceType,
+    ResourceAttributes,
+    Start,
+    Length
+    );
+}
+
 EFI_STATUS
 EFIAPI
 InstallMemory (
@@ -83,6 +104,18 @@ InstallMemory (
                            EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE |
                            EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |
                            EFI_RESOURCE_ATTRIBUTE_TESTED;
+      // Lets handle the lower 1MB in a special way
+      if (E820Entry.BaseAddr == 0) {
+        // 0 - 0xa0000 is system memory
+        BuildResourceDescriptorHob (
+          ResourceType,
+          ResourceAttributes,
+          0,
+          0xa0000
+          );
+        E820Entry.BaseAddr += BASE_1MB;
+        E820Entry.Length   -= SIZE_1MB;
+      }
     }
 
     BuildResourceDescriptorHob (
@@ -99,9 +132,20 @@ InstallMemory (
 
   PeiServicesTable = GetPeiServicesTablePointer ();
 
+  if ((LargestE820Entry.BaseAddr == 0) && (LargestE820Entry.Length >= SIZE_1MB)) {
+    // Jump over the first 1MB, since a good chunk of it isn't actually allocatable
+    LargestE820Entry.BaseAddr += BASE_1MB;
+    LargestE820Entry.Length   -= SIZE_1MB;
+  }
+
   Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, LargestE820Entry.BaseAddr, LargestE820Entry.Length);
 
   ASSERT_EFI_ERROR (Status);
 
+  // Reserve architectural PC MMIO regions
+  // VGA space + BIOS shadow mapping
+  ReserveMmioRegion (0xa0000, 0x100000 - 0xa0000);
+  // IO APIC and LAPIC space
+  ReserveMmioRegion (0xfec00000, 0xff000000 - 0xfec00000);
   return Status;
 }
