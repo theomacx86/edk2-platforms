@@ -14,8 +14,19 @@ GetMemoryBelow4Gb (
   QEMU_FW_CFG_FILE  FwCfgFile;
   UINT32            Processed;
   UINT32            Size;
+  EFI_STATUS        Status;
 
-  QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
+  Status = QemuFwCfgIsPresent();
+
+  if(EFI_ERROR(Status)){
+    return 0;
+  }
+
+  Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
+
+  if(EFI_ERROR(Status)){
+    return 0;
+  }
 
   Size = 0;
   QemuFwCfgSelectItem (FwCfgFile.select);

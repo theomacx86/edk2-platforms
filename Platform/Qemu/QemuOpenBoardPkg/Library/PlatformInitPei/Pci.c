@@ -15,11 +15,10 @@ InitializePciPIIX4 (
   VOID
   )
 {
-    UINTN PciIoBase;
-    UINTN PciIoSize;
-
-    UINTN PciMmio32Base;
-    UINTN PciMmio32Size;
+    UINTN           PciIoBase;
+    UINTN           PciIoSize;
+    UINTN           PciMmio32Base;
+    UINTN           PciMmio32Size;
 
     PciIoBase = 0xC000;
     PciIoSize = 0x4000;
@@ -28,11 +27,13 @@ InitializePciPIIX4 (
     PcdSet64S(PcdPciIoSize, PciIoSize);
 
     PciMmio32Base = GetMemoryBelow4Gb();
+
     if(PciMmio32Base == 0){
         DEBUG ((DEBUG_ERROR, "Unable to detect memory below 4Gb\n"));
         CpuDeadLoop();
         return EFI_UNSUPPORTED;
     }
+
     DEBUG ((DEBUG_ERROR, "Memory below 4Gb: %x \n", PciMmio32Base));
     PciMmio32Size = 0xFC000000 - PciMmio32Base;
 
