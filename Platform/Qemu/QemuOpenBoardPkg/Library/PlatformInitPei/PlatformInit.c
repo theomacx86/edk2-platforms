@@ -29,6 +29,8 @@ PlatformInit (
     DEBUG ((DEBUG_INFO, "Memory installation success\n", __FUNCTION__, __LINE__));
   }
 
+  MaxCpuInit();
+
   EfiPlatformInfo = AllocateZeroPool (sizeof (EFI_HOB_PLATFORM_INFO));
   if (EfiPlatformInfo == NULL) {
     DEBUG ((DEBUG_ERROR, "Failed to allocate pool for EFI_HOB_PLATFORM_INFO\n"));

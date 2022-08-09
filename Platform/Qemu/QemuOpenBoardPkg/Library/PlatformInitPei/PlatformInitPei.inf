@@ -16,6 +16,7 @@
   Memory.c
   Pcie.c
   Pci.c
+  Cpu.c
 
 [LibraryClasses]
   PeimEntryPoint
@@ -30,8 +31,8 @@ gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
 [Pcd]
 gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId
 gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
-
-
+gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber
+gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber
 gUefiOvmfPkgTokenSpaceGuid.PcdPciIoBase
 gUefiOvmfPkgTokenSpaceGuid.PcdPciIoSize
 gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base

@@ -31,3 +31,9 @@ EFIAPI
 InitializePciPIIX4 (
   VOID
   );
+
+EFI_STATUS
+EFIAPI
+MaxCpuInit(
+  VOID
+);
