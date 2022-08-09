@@ -16,8 +16,10 @@ MaxCpuInit(
 )
 {
     UINT16 BootCpuCount;
-
+    //TODO
+    //Fix QEMU presence detection
     QemuFwCfgSelectItem(5);
+
     QemuFwCfgReadBytes(sizeof(BootCpuCount), &BootCpuCount);
 
     DEBUG ((DEBUG_ERROR, "BOOT CPU COUNT %u \n", BootCpuCount));

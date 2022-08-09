@@ -154,7 +154,7 @@
 [FV.FvPostMemory]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = 5A1D6978-BABE-42F9-A629-F7B3B6A1E1BD
-
+  INF UefiCpuPkg/CpuMpPei/CpuMpPei.inf
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
   INF MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf

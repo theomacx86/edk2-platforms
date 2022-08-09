@@ -8,8 +8,8 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize  = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize          = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize          = 0x00060000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize          = 0x00010000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize    = 0x00040000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize           = 0x00040000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize    = 0x00050000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize           = 0x00030000
 
 #
 # 12MiB 0x2C0000
