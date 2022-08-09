@@ -27,7 +27,6 @@ GetMemoryBelow4Gb (
       return Size;
     }
   }
-
   return Size;
 }
 

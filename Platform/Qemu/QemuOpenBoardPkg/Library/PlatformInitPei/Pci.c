@@ -33,7 +33,7 @@ InitializePciPIIX4 (
         CpuDeadLoop();
         return EFI_UNSUPPORTED;
     }
-    DEBUG ((DEBUG_ERROR, "Memory below 4Gb: %lx \n", PciMmio32Base));
+    DEBUG ((DEBUG_ERROR, "Memory below 4Gb: %x \n", PciMmio32Base));
     PciMmio32Size = 0xFC000000 - PciMmio32Base;
 
     PcdSet64S(PcdPciMmio32Base, PciMmio32Base);

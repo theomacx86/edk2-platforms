@@ -59,6 +59,9 @@
 
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|3
 
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber|64
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber|0
+
 
 ################################################################################
 #
