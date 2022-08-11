@@ -1,3 +1,10 @@
+/** @file
+  Qemu FW CFG device library
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
 #include <Library/OpenQemuFwCfgLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>

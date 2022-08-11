@@ -1,3 +1,10 @@
+/** @file
+  PCI Express initialization for QEMU Q35
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
 #include "PlatformInit.h"
 #include <IndustryStandard/Pci.h>
 #include <Library/PciCf8Lib.h>
@@ -10,16 +17,21 @@
 #include <Library/PcdLib.h>
 #include <Library/HobLib.h>
 
+/**
+ * Initialize PCI Express support for QEMU Q35 system
+ * It also publishes PCI MMIO and IO ranges PCDs for OVMF PciHostBridgeLib
+ * @retval EFI_SUCCESS Initialization was successful
+ */
 EFI_STATUS
 EFIAPI
 InitializePcie (
   VOID
   )
 {
-  UINTN PciBase;
-  UINTN PciSize;
-  UINTN PciIoBase;
-  UINTN PciIoSize;
+  UINTN  PciBase;
+  UINTN  PciSize;
+  UINTN  PciIoBase;
+  UINTN  PciIoSize;
 
   union {
     UINT64    Uint64;
@@ -30,20 +42,20 @@ InitializePcie (
 
   // Build a reserved memory space for PCIE MMIO
   BuildResourceDescriptorHob (
-                              EFI_RESOURCE_MEMORY_RESERVED,
-                              EFI_RESOURCE_ATTRIBUTE_PRESENT |
-                              EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
-                              EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE |
-                              EFI_RESOURCE_ATTRIBUTE_TESTED,
-                              PciExBarBase.Uint64,
-                              SIZE_256MB
-                              );
+    EFI_RESOURCE_MEMORY_RESERVED,
+    EFI_RESOURCE_ATTRIBUTE_PRESENT |
+    EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
+    EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_TESTED,
+    PciExBarBase.Uint64,
+    SIZE_256MB
+    );
 
   BuildMemoryAllocationHob (
-                            PciExBarBase.Uint64,
-                            SIZE_256MB,
-                            EfiReservedMemoryType
-                            );
+    PciExBarBase.Uint64,
+    SIZE_256MB,
+    EfiReservedMemoryType
+    );
 
   // Clear register
   PciWrite32 (DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_LOW), 0);
@@ -52,28 +64,28 @@ InitializePcie (
   PciWrite32 (DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_HIGH), PciExBarBase.Uint32[1]);
   // Enable 256Mb MMIO space
   PciWrite32 (
-              DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_LOW),
-              PciExBarBase.Uint32[0] | MCH_PCIEXBAR_BUS_FF | MCH_PCIEXBAR_EN
-              );
+    DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_LOW),
+    PciExBarBase.Uint32[0] | MCH_PCIEXBAR_BUS_FF | MCH_PCIEXBAR_EN
+    );
 
-  //todo acpi mcfg
+  // todo acpi mcfg
 
-  //Disable Pci MMIO above 4Gb
-  PcdSet64S(PcdPciMmio64Size, 0);
+  // Disable Pci MMIO above 4Gb
+  PcdSet64S (PcdPciMmio64Size, 0);
 
-  //Set Pci MMIO space below 4GB
-  PciBase = PcdGet64(PcdPciExpressBaseAddress) + SIZE_256MB;
+  // Set Pci MMIO space below 4GB
+  PciBase = PcdGet64 (PcdPciExpressBaseAddress) + SIZE_256MB;
   PciSize = 0xFC000000 - PciBase;
 
-  PcdSet64S(PcdPciMmio32Base, PciBase);
-  PcdSet64S(PcdPciMmio32Size, PciSize);
+  PcdSet64S (PcdPciMmio32Base, PciBase);
+  PcdSet64S (PcdPciMmio32Size, PciSize);
 
-  //Set Pci IO port range
+  // Set Pci IO port range
   PciIoBase = 0x6000;
   PciIoSize = 0xA000;
 
-  PcdSet64S(PcdPciIoBase, PciIoBase);
-  PcdSet64S(PcdPciIoSize, PciIoSize);
+  PcdSet64S (PcdPciIoBase, PciIoBase);
+  PcdSet64S (PcdPciIoSize, PciIoSize);
 
   return EFI_SUCCESS;
 }

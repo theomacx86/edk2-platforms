@@ -1,3 +1,11 @@
+## @file
+#  PlatformInitPei
+#
+#  Simple PEIM for QEMU PIIX4/Q35 Memory, SMP and PCI/PCI Express initialization
+#
+#  Copyright (c) 2022 Théo Jehl
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = PlatformInitPei
@@ -28,20 +36,20 @@
   PciLib
 
 [Guids]
-gUefiOvmfPkgPlatformInfoGuid    #PRODUCE
+  gUefiOvmfPkgPlatformInfoGuid 
 
 [Pcd]
-gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId
-gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
-gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber
-gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber
-gUefiOvmfPkgTokenSpaceGuid.PcdPciIoBase
-gUefiOvmfPkgTokenSpaceGuid.PcdPciIoSize
-gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base
-gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size
-gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base
-gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size
-gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciIoBase
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciIoSize
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
 
 [Depex]
-TRUE
+  TRUE

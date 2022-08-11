@@ -1,3 +1,11 @@
+## @file
+#  OpenQemuFwCfgLib.inf
+#
+#  Simple implementation of the QemuFwCfgLib 
+#
+#  Copyright (c) 2022 Théo Jehl
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = QemuFwCfgLib
@@ -9,7 +17,6 @@
 
 [Sources]
   OpenQemuFwCfgLib.c
-
 
 [LibraryClasses]
   IoLib

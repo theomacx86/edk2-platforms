@@ -1,12 +1,8 @@
 ## @file
-#  Library functions for PlatformSecLib.
+#  PlatformSecLib for QEMU OpenBoardPkg
 #
-#  Null instance of Platform Sec Lib.
-#
-#  Copyright (c) 2013 - 2015, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2022 Théo Jehl
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
-#
-##
 
 [Defines]
   INF_VERSION                    = 0x00010005
@@ -44,8 +40,8 @@
   IntelFsp2WrapperPkg/IntelFsp2WrapperPkg.dec
 
 [Ppis]
-  gTopOfTemporaryRamPpiGuid            ## PRODUCES
+  gTopOfTemporaryRamPpiGuid  
 
 [Pcd]
-gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase
-gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize
+  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase
+  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize

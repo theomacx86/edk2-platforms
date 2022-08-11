@@ -1,3 +1,10 @@
+/** @file
+  Headers for PlatformInitPei PEIM
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
 #include <PiPei.h>
 #include <Uefi.h>
 

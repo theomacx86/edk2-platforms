@@ -1,3 +1,10 @@
+/** @file
+  PlatformSecLib library functions
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
 #include <PiPei.h>
 #include <Ppi/SecPlatformInformation.h>
 #include <Ppi/TemporaryRamSupport.h>
@@ -108,14 +115,13 @@ SecPlatformInformation (
   CopyMem (PlatformInformationRecord, BistStart, Length);
   *StructureSize = Length;
 
-  //
-  // Make sure the 8259 is masked before initializing the Debug Agent and the debug timer is enabled
-  //
+  // Mask the PIC to avoid any interruption down the line
   IoWrite8 (0x21, 0xff);
   IoWrite8 (0xA1, 0xff);
 
   DEBUG ((DEBUG_INFO, "Initialize APIC Timer \n"));
   InitializeApicTimer (0, MAX_UINT32, TRUE, 5);
+
   DEBUG ((DEBUG_INFO, "Disable APIC Timer interrupt\n"));
   DisableApicTimerInterrupt ();
 

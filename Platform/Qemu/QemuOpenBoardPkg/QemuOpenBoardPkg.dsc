@@ -59,7 +59,7 @@
 
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|3
 
-  gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber|64
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber|0
   gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber|0
 
 
@@ -79,23 +79,23 @@
 
 
 [LibraryClasses.common]
-QemuFwCfgLib|QemuOpenBoardPkg/Library/OpenQemuFwCfgLib/OpenQemuFwCfgLib.inf
-PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
-PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
-DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
-PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
-TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
+  QemuFwCfgLib|QemuOpenBoardPkg/Library/OpenQemuFwCfgLib/OpenQemuFwCfgLib.inf
+  PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
+  PlatformSecLib|QemuOpenBoardPkg/Library/PlatformSecLib/PlatformSecLib.inf
+  DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+  PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
+  TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
 
 [LibraryClasses.common.DXE_CORE]
-TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
+  TimerLib|OvmfPkg/Library/AcpiTimerLib/BaseAcpiTimerLib.inf
 
 [LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION, LibraryClasses.common.SMM_CORE]
-TimerLib|OvmfPkg/Library/AcpiTimerLib/DxeAcpiTimerLib.inf
-QemuFwCfgLib|OvmfPkg/Library/QemuFwCfgLib/QemuFwCfgDxeLib.inf
-MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/DxeMemEncryptSevLib.inf
-MemEncryptTdxLib|OvmfPkg/Library/BaseMemEncryptTdxLib/BaseMemEncryptTdxLibNull.inf
-Tcg2PhysicalPresenceLib|OvmfPkg/Library/Tcg2PhysicalPresenceLibNull/DxeTcg2PhysicalPresenceLib.inf
-ResetSystemLib|OvmfPkg/Library/ResetSystemLib/DxeResetSystemLib.inf
+  TimerLib|OvmfPkg/Library/AcpiTimerLib/DxeAcpiTimerLib.inf
+  QemuFwCfgLib|OvmfPkg/Library/QemuFwCfgLib/QemuFwCfgDxeLib.inf
+  MemEncryptSevLib|OvmfPkg/Library/BaseMemEncryptSevLib/DxeMemEncryptSevLib.inf
+  MemEncryptTdxLib|OvmfPkg/Library/BaseMemEncryptTdxLib/BaseMemEncryptTdxLibNull.inf
+  Tcg2PhysicalPresenceLib|OvmfPkg/Library/Tcg2PhysicalPresenceLibNull/DxeTcg2PhysicalPresenceLib.inf
+  ResetSystemLib|OvmfPkg/Library/ResetSystemLib/DxeResetSystemLib.inf
 
 [LibraryClasses.common.SEC]
 DebugLib|OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf

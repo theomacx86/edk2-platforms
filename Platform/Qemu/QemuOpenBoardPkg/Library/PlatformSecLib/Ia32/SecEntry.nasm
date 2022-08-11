@@ -1,3 +1,12 @@
+;------------------------------------------------------------------------------
+;  @file SecEntry
+;  Switch to  32 bits protected flat
+;
+;  Copyright (c) 2022 Théo Jehl
+;  SPDX-License-Identifier: BSD-2-Clause-Patent
+;
+;------------------------------------------------------------------------------
+
 CODE_SEG equ CodeSegDescriptor - GDT_START
 DATA_SEG equ DataSegDescriptor - GDT_START
 

@@ -1,9 +1,21 @@
+/** @file
+  Memory probing and installation
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
 #include <PlatformInit.h>
 #include <Library/DebugLib.h>
 #include <Library/OpenQemuFwCfgLib.h>
 #include <Library/PeiServicesTablePointerLib.h>
 #include <Library/HobLib.h>
 
+/**
+ * Return the memory size below 4GB.
+ *
+ * @return UINT32
+ */
 UINT32
 EFIAPI
 GetMemoryBelow4Gb (
@@ -16,15 +28,15 @@ GetMemoryBelow4Gb (
   UINT32            Size;
   EFI_STATUS        Status;
 
-  Status = QemuFwCfgIsPresent();
+  Status = QemuFwCfgIsPresent ();
 
-  if(EFI_ERROR(Status)){
+  if (EFI_ERROR (Status)) {
     return 0;
   }
 
   Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
 
-  if(EFI_ERROR(Status)){
+  if (EFI_ERROR (Status)) {
     return 0;
   }
 
@@ -38,9 +50,16 @@ GetMemoryBelow4Gb (
       return Size;
     }
   }
+
   return Size;
 }
 
+/**
+ * Reserve an MMIO region
+ *
+ * @param Start
+ * @param Length
+ */
 STATIC
 VOID
 ReserveMmioRegion (
@@ -62,6 +81,15 @@ ReserveMmioRegion (
     );
 }
 
+/**
+ * Install EFI memory by probing Qemu FW CFG devices for valid E820 entries
+ * It also reserve space for MMIO regions such as VGA , BIOS and APIC
+ *
+ * @param PeiServices
+ * @retval EFI_SUCCESS Memory initialization succeded
+ * @retval EFI_UNSUPPORTED Installation failed (etc/e820 file was not found)
+ * @retval EFI_NOT_FOUND  Qemu FW CFG device is not present
+ */
 EFI_STATUS
 EFIAPI
 InstallMemory (
@@ -79,6 +107,7 @@ InstallMemory (
   EFI_RESOURCE_ATTRIBUTE_TYPE  ResourceAttributes;
 
   Status = QemuFwCfgIsPresent ();
+
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is not present\n", __FUNCTION__, __LINE__));
     return EFI_NOT_FOUND;
@@ -89,6 +118,7 @@ InstallMemory (
   Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "etc/e820 was not found \n", __FUNCTION__, __LINE__));
+    return EFI_UNSUPPORTED;
   }
 
   LargestE820Entry.Length = 0;

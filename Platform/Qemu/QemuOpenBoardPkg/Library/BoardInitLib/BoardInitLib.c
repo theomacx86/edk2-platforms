@@ -1,3 +1,10 @@
+/** @file
+  Board initialization library
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
 #include <Library/BoardInitLib.h>
 #include <Uefi.h>
 #include <Library/IoLib.h>

@@ -1,4 +1,4 @@
-  !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
+!include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
 [FD.QemuOpenBoardPkg]
   BaseAddress   = 0xFF6F0000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress

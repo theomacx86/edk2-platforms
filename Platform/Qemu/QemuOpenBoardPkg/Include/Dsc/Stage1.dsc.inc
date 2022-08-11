@@ -8,21 +8,12 @@
 ##
 
 [PcdsFixedAtBuild.IA32]
-  ## MinPlatform Boot Stage Selector
-  # Stage 1 - enable debug (system deadloop after debug init)
-  # Stage 2 - mem init (system deadloop after mem init)
-  # Stage 3 - boot to shell only
-  # Stage 4 - boot to OS
-  # Stage 5 - boot to OS with security boot enabled
-  # Stage 6 - boot with advanced features enabled
-  #
-  
-
   #
   # Enable stack and heap protections
   #
   #gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
   #gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
+
 
 ################################################################################
 #
