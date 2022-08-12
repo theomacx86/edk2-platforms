@@ -1,0 +1,456 @@
+build -a X64 -a IA32 -p Platform/Qemu/QemuOpenBoardPkg/QemuOpenBoardPkg.dsc -y Report.txt
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+
+
+Processing meta-data .Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+
+Architecture(s)  = IA32 X64
+Build target     = DEBUG
+Toolchain        = XCODE5
+
+Active Platform          = /Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/QemuOpenBoardPkg.dsc
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+.Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+.Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+Parser...
+/Users/theo/Desktop/GSOC2022/edk2-platforms/Platform/Qemu/QemuOpenBoardPkg/Include/Dsc/Stage4.dsc.inc(14): warning: Suspicious expression: == Comparison between Operand of string type and Boolean/Number Type always return False.
+    !if SMM_ENABLED == TRUE 
+. done!
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+make[1]: Nothing to be done for `tbuild'.
+
+Fd File Name:QEMUOPENBOARDPKG (/Users/theo/Desktop/GSOC2022/Build/QemuOpenBoardPkg/DEBUG_XCODE5/FV/QEMUOPENBOARDPKG.fd)
+
+Generate Region at Offset 0x0
+   Region Size = 0x80000
+   Region Name = FV
+
+Generating FVADVANCED FV
+
+Generate Region at Offset 0x80000
+   Region Size = 0x80000
+   Region Name = FV
+
+Generating FVSECURITY FV
+
+Generate Region at Offset 0x100000
+   Region Size = 0x150000
+   Region Name = FV
+
+Generating FVOSBOOT FV
+
+Generate Region at Offset 0x250000
+   Region Size = 0x450000
+   Region Name = FV
+
+Generating FVUEFIBOOT FV
+
+Generate Region at Offset 0x6A0000
+   Region Size = 0x40000
+   Region Name = FV
+
+Generating FVBSP FV
+
+Generate Region at Offset 0x6E0000
+   Region Size = 0x40000
+   Region Name = FV
+
+Generating FVPOSTMEMORY FV
+
+Generate Region at Offset 0x720000
+   Region Size = 0x10000
+   Region Name = FV
+
+Generating FVFSPS FV
+
+Generate Region at Offset 0x730000
+   Region Size = 0x60000
+   Region Name = FV
+
+Generating FVFSPM FV
+
+Generating FVPREMEMORYSILICON FV
+####
+Generating FVPREMEMORYSILICON FV
+####
+Generate Region at Offset 0x790000
+   Region Size = 0x80000
+   Region Name = FV
+
+Generating FVFSPT FV
+
+Generate Region at Offset 0x810000
+   Region Size = 0x80000
+   Region Name = FV
+
+Generating FVBSPPREMEMORY FV
+
+Generating FVADVANCEDPREMEMORY FV
+####
+Generating FVADVANCEDPREMEMORY FV
+####
+Generate Region at Offset 0x890000
+   Region Size = 0x80000
+   Region Name = FV
+
+Generating FVPREMEMORY FV
+
+Generating FVSECURITYPREMEMORY FV
+####
+Generating FVSECURITYPREMEMORY FV
+####
+Generating FVPOSTMEMORYSILICON FV
+
+GUID cross reference file can be found at /Users/theo/Desktop/GSOC2022/Build/QemuOpenBoardPkg/DEBUG_XCODE5/FV/Guid.xref
+
+FV Space Information
+FVADVANCED [%Full] 524288 (0x80000) total, 120 (0x78) used, 524168 (0x7ff88) free
+FVSECURITY [%Full] 524288 (0x80000) total, 120 (0x78) used, 524168 (0x7ff88) free
+FVOSBOOT [53%Full] 1376256 (0x150000) total, 737312 (0xb4020) used, 638944 (0x9bfe0) free
+FVUEFIBOOT [66%Full] 4521984 (0x450000) total, 2990568 (0x2da1e8) used, 1531416 (0x175e18) free
+FVBSP [%Full] 262144 (0x40000) total, 120 (0x78) used, 262024 (0x3ff88) free
+FVPOSTMEMORY [80%Full] 262144 (0x40000) total, 210800 (0x33770) used, 51344 (0xc890) free
+FVPOSTMEMORYSILICON [100%Full] 120 (0x78) total, 120 (0x78) used, 0 (0x0) free
+FVFSPS [%Full] 65536 (0x10000) total, 120 (0x78) used, 65416 (0xff88) free
+FVPREMEMORYSILICON [99%Full] 47432 (0xb948) total, 47320 (0xb8d8) used, 112 (0x70) free
+FVFSPM [42%Full] 393216 (0x60000) total, 168520 (0x29248) used, 224696 (0x36db8) free
+FVFSPT [%Full] 524288 (0x80000) total, 120 (0x78) used, 524168 (0x7ff88) free
+FVADVANCEDPREMEMORY [100%Full] 120 (0x78) total, 120 (0x78) used, 0 (0x0) free
+FVBSPPREMEMORY [%Full] 524288 (0x80000) total, 280 (0x118) used, 524008 (0x7fee8) free
+FVSECURITYPREMEMORY [100%Full] 120 (0x78) total, 120 (0x78) used, 0 (0x0) free
+FVPREMEMORY [52%Full] 524288 (0x80000) total, 274872 (0x431b8) used, 249416 (0x3ce48) free

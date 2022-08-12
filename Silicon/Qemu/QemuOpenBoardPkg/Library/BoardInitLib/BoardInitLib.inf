@@ -1,0 +1,29 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BoardInitLib
+  FILE_GUID                      = 70EE7BD9-08FF-4D0E-AA7B-4320844F939A
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = BoardInitLib
+
+[Sources]
+  BoardInitLib.c
+
+[Packages]
+QemuOpenBoardPkg/QemuOpenBoardPkg.dec
+MdePkg/MdePkg.dec
+MinPlatformPkg/MinPlatformPkg.dec
+
+[LibraryClasses]
+DebugLib
+PcdLib
+IoLib
+PciCf8Lib
+    
+[Ppis]
+
+[Protocols]
+
+[FeaturePcd]
+
+[Pcd]
