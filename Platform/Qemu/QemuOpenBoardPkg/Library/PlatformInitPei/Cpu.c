@@ -9,6 +9,7 @@
 #include <IndustryStandard/Pci.h>
 #include <Library/PciCf8Lib.h>
 #include <Library/OpenQemuFwCfgLib.h>
+#include <IndustryStandard/QemuFwCfg.h>
 #include <IndustryStandard/MemoryMappedConfigurationSpaceAccessTable.h>
 #include <Library/DebugLib.h>
 #include <IndustryStandard/Acpi30.h>
@@ -17,10 +18,10 @@
 #include <Library/HobLib.h>
 
 /**
- * Probe Qemu FW CFG device for current CPU count and report to MpInitLib
- *
- * @return EFI_SUCCESS Detection was successful
- * @retval EFI_UNSUPPORTED Qemu FW CFG device is not present
+  Probe Qemu FW CFG device for current CPU count and report to MpInitLib
+
+  @return EFI_SUCCESS Detection was successful
+  @retval EFI_UNSUPPORTED Qemu FW CFG device is not present
  */
 EFI_STATUS
 EFIAPI
@@ -38,16 +39,14 @@ MaxCpuInit (
     CpuDeadLoop ();
     return EFI_UNSUPPORTED;
   }
-
-  Status = QemuFwCfgSelectItem (5);
+  
+  Status = QemuFwCfgSelectItem (QemuFwCfgItemSmpCpuCount);
 
   if (EFI_ERROR (Status)) {
     return Status;
   }
 
   QemuFwCfgReadBytes (sizeof (BootCpuCount), &BootCpuCount);
-
-  DEBUG ((DEBUG_ERROR, "BOOT CPU COUNT %u \n", BootCpuCount));
 
   PcdSet32S (PcdCpuBootLogicalProcessorNumber, BootCpuCount);
 

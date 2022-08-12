@@ -14,6 +14,7 @@
 #define FW_CFG_ID         0x0001
 #define FW_CFG_FILE_DIR   0x0019
 
+
 #define FW_CFG_QEMU_SIGNATURE  "QEMU"
 
 typedef struct {

@@ -1,6 +1,6 @@
 ;------------------------------------------------------------------------------
 ;  @file SecEntry
-;  Switch to  32 bits protected flat
+;  Sec entry implementation
 ;
 ;  Copyright (c) 2022 Théo Jehl
 ;  SPDX-License-Identifier: BSD-2-Clause-Patent

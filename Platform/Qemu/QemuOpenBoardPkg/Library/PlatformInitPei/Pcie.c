@@ -10,6 +10,7 @@
 #include <Library/PciCf8Lib.h>
 #include <IndustryStandard/Q35MchIch9.h>
 #include <Library/OpenQemuFwCfgLib.h>
+#include <IndustryStandard/QemuFwCfg.h>
 #include <IndustryStandard/MemoryMappedConfigurationSpaceAccessTable.h>
 #include <Library/DebugLib.h>
 #include <IndustryStandard/Acpi30.h>
@@ -18,10 +19,10 @@
 #include <Library/HobLib.h>
 
 /**
- * Initialize PCI Express support for QEMU Q35 system
- * It also publishes PCI MMIO and IO ranges PCDs for OVMF PciHostBridgeLib
- * @retval EFI_SUCCESS Initialization was successful
- */
+  Initialize PCI Express support for QEMU Q35 system
+  It also publishes PCI MMIO and IO ranges PCDs for OVMF PciHostBridgeLib
+  @retval EFI_SUCCESS Initialization was successful
+**/
 EFI_STATUS
 EFIAPI
 InitializePcie (
@@ -68,21 +69,19 @@ InitializePcie (
     PciExBarBase.Uint32[0] | MCH_PCIEXBAR_BUS_FF | MCH_PCIEXBAR_EN
     );
 
-  // todo acpi mcfg
-
   // Disable Pci MMIO above 4Gb
   PcdSet64S (PcdPciMmio64Size, 0);
 
   // Set Pci MMIO space below 4GB
   PciBase = PcdGet64 (PcdPciExpressBaseAddress) + SIZE_256MB;
-  PciSize = 0xFC000000 - PciBase;
+  PciSize = PCI_MMIO_TOP_ADDRESS - PciBase;
 
   PcdSet64S (PcdPciMmio32Base, PciBase);
   PcdSet64S (PcdPciMmio32Size, PciSize);
 
   // Set Pci IO port range
-  PciIoBase = 0x6000;
-  PciIoSize = 0xA000;
+  PciIoBase = Q35_PCI_IO_BASE;
+  PciIoSize = Q35_PCI_IO_SIZE;
 
   PcdSet64S (PcdPciIoBase, PciIoBase);
   PcdSet64S (PcdPciIoSize, PciIoSize);

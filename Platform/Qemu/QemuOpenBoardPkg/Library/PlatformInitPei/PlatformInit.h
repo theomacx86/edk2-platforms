@@ -8,6 +8,14 @@
 #include <PiPei.h>
 #include <Uefi.h>
 
+#define PIIX4_PCI_IO_BASE 0xC000
+#define PIIX4_PCI_IO_SIZE 0x4000
+
+#define Q35_PCI_IO_BASE 0x6000
+#define Q35_PCI_IO_SIZE 0xA000
+
+#define PCI_MMIO_TOP_ADDRESS 0xFC000000
+
 EFI_STATUS
 EFIAPI
 PlatformInit (

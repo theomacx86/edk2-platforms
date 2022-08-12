@@ -17,13 +17,13 @@
 #include <Library/HobLib.h>
 
 /**
- * Initialize PCI support for QEMU PIIX4 machine
- *
- * It also publishes PCI MMIO and IO ranges PCDs for OVMF PciHostBridgeLib
- *
- * @retval EFI_SUCCESS Initialization was a success
- * @retval EFI_UNSUPPORTED Initialization failed (Memory below 4Gb probing failed)
- */
+  Initialize PCI support for QEMU PIIX4 machine
+
+  It also publishes PCI MMIO and IO ranges PCDs for OVMF PciHostBridgeLib
+
+  @retval EFI_SUCCESS Initialization was a success
+  @retval EFI_UNSUPPORTED Initialization failed (Memory below 4Gb probing failed)
+**/
 EFI_STATUS
 EFIAPI
 InitializePciPIIX4 (
@@ -35,8 +35,8 @@ InitializePciPIIX4 (
   UINTN  PciMmio32Base;
   UINTN  PciMmio32Size;
 
-  PciIoBase = 0xC000;
-  PciIoSize = 0x4000;
+  PciIoBase = PIIX4_PCI_IO_BASE;
+  PciIoSize = PIIX4_PCI_IO_SIZE;
 
   PcdSet64S (PcdPciIoBase, PciIoBase);
   PcdSet64S (PcdPciIoSize, PciIoSize);
@@ -50,7 +50,7 @@ InitializePciPIIX4 (
   }
 
   DEBUG ((DEBUG_ERROR, "Memory below 4Gb: %x \n", PciMmio32Base));
-  PciMmio32Size = 0xFC000000 - PciMmio32Base;
+  PciMmio32Size = PCI_MMIO_TOP_ADDRESS - PciMmio32Base;
 
   PcdSet64S (PcdPciMmio32Base, PciMmio32Base);
   PcdSet64S (PcdPciMmio32Size, PciMmio32Size);

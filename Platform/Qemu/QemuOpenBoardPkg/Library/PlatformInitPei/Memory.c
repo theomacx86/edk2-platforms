@@ -12,10 +12,10 @@
 #include <Library/HobLib.h>
 
 /**
- * Return the memory size below 4GB.
- *
- * @return UINT32
- */
+  Return the memory size below 4GB.
+
+  @return UINT32
+**/
 UINT32
 EFIAPI
 GetMemoryBelow4Gb (
@@ -31,13 +31,13 @@ GetMemoryBelow4Gb (
   Status = QemuFwCfgIsPresent ();
 
   if (EFI_ERROR (Status)) {
-    return 0;
+    return Status;
   }
 
   Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
 
   if (EFI_ERROR (Status)) {
-    return 0;
+    return Status;
   }
 
   Size = 0;
@@ -55,11 +55,11 @@ GetMemoryBelow4Gb (
 }
 
 /**
- * Reserve an MMIO region
- *
- * @param Start
- * @param Length
- */
+  Reserve an MMIO region
+
+  @param Start
+  @param Length
+**/
 STATIC
 VOID
 ReserveMmioRegion (
@@ -82,14 +82,14 @@ ReserveMmioRegion (
 }
 
 /**
- * Install EFI memory by probing Qemu FW CFG devices for valid E820 entries
- * It also reserve space for MMIO regions such as VGA , BIOS and APIC
- *
- * @param PeiServices
- * @retval EFI_SUCCESS Memory initialization succeded
- * @retval EFI_UNSUPPORTED Installation failed (etc/e820 file was not found)
- * @retval EFI_NOT_FOUND  Qemu FW CFG device is not present
- */
+  Install EFI memory by probing Qemu FW CFG devices for valid E820 entries
+  It also reserve space for MMIO regions such as VGA, BIOS and APIC
+
+  @param PeiServices
+  @retval EFI_SUCCESS Memory initialization succeded
+  @retval EFI_UNSUPPORTED Installation failed (etc/e820 file was not found)
+  @retval EFI_NOT_FOUND  Qemu FW CFG device is not present
+**/
 EFI_STATUS
 EFIAPI
 InstallMemory (
@@ -109,15 +109,15 @@ InstallMemory (
   Status = QemuFwCfgIsPresent ();
 
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is not present\n", __FUNCTION__, __LINE__));
+    DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is not present\n"));
     return EFI_NOT_FOUND;
   } else {
-    DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is present\n", __FUNCTION__, __LINE__));
+    DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is present\n"));
   }
 
   Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "etc/e820 was not found \n", __FUNCTION__, __LINE__));
+    DEBUG ((DEBUG_ERROR, "etc/e820 was not found \n"));
     return EFI_UNSUPPORTED;
   }
 
