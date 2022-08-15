@@ -10,9 +10,10 @@
   BoardInitLib.c
 
 [Packages]
-QemuOpenBoardPkg/QemuOpenBoardPkg.dec
-MdePkg/MdePkg.dec
-MinPlatformPkg/MinPlatformPkg.dec
+  QemuOpenBoardPkg/QemuOpenBoardPkg.dec
+  MdePkg/MdePkg.dec
+  MinPlatformPkg/MinPlatformPkg.dec
+  OvmfPkg/OvmfPkg.dec
 
 [LibraryClasses]
 DebugLib

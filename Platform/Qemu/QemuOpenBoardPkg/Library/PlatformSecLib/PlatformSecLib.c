@@ -51,14 +51,14 @@ SecPlatformMain (
   // Use half of available heap size for PpiList
   EFI_PEI_PPI_DESCRIPTOR  *PpiList;
 
-  PpiList = (VOID *)(SecCoreData->PeiTemporaryRamBase + (SecCoreData->PeiTemporaryRamSize/2));
+  PpiList = (VOID *)((UINTN) SecCoreData->PeiTemporaryRamBase + (UINTN) SecCoreData->PeiTemporaryRamSize/2);
 
   CopyMem (PpiList, &gEfiPeiCoreFvLocationDescriptor, sizeof (EFI_PEI_PPI_DESCRIPTOR));
 
   CopyMem (&PpiList[1], &mPeiSecPlatformPpi, sizeof (EFI_PEI_PPI_DESCRIPTOR));
   // Patch the top of RAM PPI
 
-  PpiList[1].Ppi = SecCoreData->TemporaryRamBase + SecCoreData->TemporaryRamSize;
+  PpiList[1].Ppi = (VOID *)((UINTN) SecCoreData->TemporaryRamBase + SecCoreData->TemporaryRamSize);
   DEBUG ((DEBUG_INFO, "SecPlatformMain(): Top of memory %p\n", PpiList[1].Ppi));
 
   return PpiList;

@@ -73,7 +73,7 @@ InitializePcie (
   PcdSet64S (PcdPciMmio64Size, 0);
 
   // Set Pci MMIO space below 4GB
-  PciBase = PcdGet64 (PcdPciExpressBaseAddress) + SIZE_256MB;
+  PciBase = (UINTN) (PcdGet64 (PcdPciExpressBaseAddress) + SIZE_256MB);
   PciSize = PCI_MMIO_TOP_ADDRESS - PciBase;
 
   PcdSet64S (PcdPciMmio32Base, PciBase);

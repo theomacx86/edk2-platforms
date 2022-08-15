@@ -23,9 +23,9 @@ PlatformInit (
   IN CONST EFI_PEI_SERVICES     **PeiServices
   );
 
-UINT32
+UINT64
 EFIAPI
-GetMemoryBelow4Gb(
+GetMemoryBelow4Gb (
   VOID
 );
 

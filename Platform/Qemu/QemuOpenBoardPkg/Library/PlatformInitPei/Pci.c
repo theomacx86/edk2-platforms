@@ -41,7 +41,7 @@ InitializePciPIIX4 (
   PcdSet64S (PcdPciIoBase, PciIoBase);
   PcdSet64S (PcdPciIoSize, PciIoSize);
 
-  PciMmio32Base = GetMemoryBelow4Gb ();
+  PciMmio32Base = (UINTN) GetMemoryBelow4Gb ();
 
   if (PciMmio32Base == 0) {
     DEBUG ((DEBUG_ERROR, "Unable to detect memory below 4Gb\n"));

@@ -12,7 +12,8 @@
 #include <Library/DebugLib.h>
 #include <Library/PciCf8Lib.h>
 #include <IndustryStandard/Pci.h>
-#include <Library/QemuHardware.h>
+#include <IndustryStandard/I440FxPiix4.h>
+#include <IndustryStandard/Q35MchIch9.h>
 #include <Library/HobLib.h>
 
 #define QEMU_IO_DEBUG_MAGIC  0xE9
@@ -37,11 +38,11 @@ BoardDetect (
   VendorID = PciCf8Read16 (PCI_CF8_LIB_ADDRESS (0, 0, 0, PCI_VENDOR_ID_OFFSET));
 
   switch (DeviceID) {
-    case PIIX4_DEVICE_ID:
+    case INTEL_82441_DEVICE_ID:
       DEBUG ((DEBUG_INFO, "PIIX4\n"));
       return EFI_SUCCESS;
 
-    case ICH9_DEVICE_ID:
+    case INTEL_Q35_MCH_DEVICE_ID:
       DEBUG ((DEBUG_INFO, "ICH9\n"));
       return EFI_SUCCESS;
 
@@ -49,9 +50,6 @@ BoardDetect (
       DEBUG ((DEBUG_ERROR, "Unable to detect board (Device id %u Vendor ID %u)\n", DeviceID, VendorID));
       return EFI_NOT_FOUND;
   }
-
-  // Should not be reached
-  return EFI_NOT_FOUND;
 }
 
 /**

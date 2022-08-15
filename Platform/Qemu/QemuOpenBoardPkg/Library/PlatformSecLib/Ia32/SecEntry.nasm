@@ -110,4 +110,3 @@ ProtectedModeEntryLinearAddress:
 ProtectedModeEntryLinear:
     DD      ProtectedModeEntry  ; Offset of our 32 bit code
     DW      CODE_SEL
-

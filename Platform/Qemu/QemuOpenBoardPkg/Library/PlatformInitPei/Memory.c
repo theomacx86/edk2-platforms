@@ -10,22 +10,23 @@
 #include <Library/OpenQemuFwCfgLib.h>
 #include <Library/PeiServicesTablePointerLib.h>
 #include <Library/HobLib.h>
+#include <IndustryStandard/E820.h>
 
 /**
   Return the memory size below 4GB.
 
   @return UINT32
 **/
-UINT32
+UINT64
 EFIAPI
 GetMemoryBelow4Gb (
   VOID
   )
 {
-  EFI_E820_ENTRY    E820Entry;
+  EFI_E820_ENTRY64  E820Entry;
   QEMU_FW_CFG_FILE  FwCfgFile;
   UINT32            Processed;
-  UINT32            Size;
+  UINT64            Size;
   EFI_STATUS        Status;
 
   Status = QemuFwCfgIsPresent ();
@@ -98,8 +99,8 @@ InstallMemory (
 {
   EFI_STATUS                   Status;
   CONST EFI_PEI_SERVICES       **PeiServicesTable;
-  EFI_E820_ENTRY               E820Entry;
-  EFI_E820_ENTRY               LargestE820Entry;
+  EFI_E820_ENTRY64             E820Entry;
+  EFI_E820_ENTRY64             LargestE820Entry;
   QEMU_FW_CFG_FILE             FwCfgFile;
   UINT32                       Processed;
   BOOLEAN                      ValidMemory;
@@ -126,7 +127,7 @@ InstallMemory (
   for (Processed = 0; Processed < FwCfgFile.size / sizeof (EFI_E820_ENTRY); Processed++) {
     QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
 
-    ValidMemory        = E820Entry.Type == EFI_E820_ENTRY_TYPE_RAM;
+    ValidMemory        = E820Entry.Type == EfiAcpiAddressRangeMemory;
     ResourceType       = EFI_RESOURCE_MEMORY_RESERVED;
     ResourceAttributes = EFI_RESOURCE_ATTRIBUTE_PRESENT | EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE | EFI_RESOURCE_ATTRIBUTE_TESTED;
 

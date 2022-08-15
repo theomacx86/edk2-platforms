@@ -89,7 +89,6 @@
   INF MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
   INF MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
   INF MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
-
   INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
@@ -129,7 +128,7 @@
   INF PcAtChipsetPkg/Bus/Pci/IdeControllerDxe/IdeControllerDxe.inf
   INF UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
   INF OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
-  INF  OvmfPkg/PlatformDxe/Platform.inf
+  INF OvmfPkg/PlatformDxe/Platform.inf
   INF MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
   INF OvmfPkg/SioBusDxe/SioBusDxe.inf
   INF MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
@@ -140,7 +139,7 @@
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   INF FatPkg/EnhancedFatDxe/Fat.inf
   INF OvmfPkg/IoMmuDxe/IoMmuDxe.inf
-  INF  MdeModulePkg/Universal/Acpi/S3SaveStateDxe/S3SaveStateDxe.inf
+  INF MdeModulePkg/Universal/Acpi/S3SaveStateDxe/S3SaveStateDxe.inf
   INF MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
   INF ShellPkg/Application/Shell/Shell.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
@@ -156,10 +155,10 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = FCA0BC4A-994D-4EF9-BD56-A8C45872C2A8
 
-
 [FV.FvPostMemory]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = 5A1D6978-BABE-42F9-A629-F7B3B6A1E1BD
+
   INF UefiCpuPkg/CpuMpPei/CpuMpPei.inf
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
@@ -191,7 +190,6 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 03982cf7-246a-4356-b6ba-436a2251595c
 
-  
   INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
   INF  MdeModulePkg/Core/Pei/PeiMain.inf  
 
@@ -199,18 +197,15 @@
       SECTION FV_IMAGE = FvPreMemorySilicon
   }
 
-
 [FV.FvFspT]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
 
-  
 [FV.FvAdvancedPreMemory]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 43528CE0-812B-4074-B77E-C49E7A2F4FE1
 
 [FV.FvBspPreMemory] 
-
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 5CF9C072-385F-44FC-B21B-002074251C08
 
@@ -219,13 +214,10 @@
   } 
 
 [FV.FvSecurityPreMemory]
-  
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = F626B0FB-D759-44A8-B131-42408BB3533D
 
-
 [FV.FvPreMemory] 
-
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 
