@@ -1,3 +1,11 @@
+## @file
+#  QemuOpenBoardPkg.dec
+#
+#  Declaration file for QemuOpenBoardPkg 
+#
+#  Copyright (c) 2022 Théo Jehl
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+
 [Defines]
   DEC_SPECIFICATION              = 0x00010005
   PACKAGE_NAME                   = QemuOpenBoardPkg

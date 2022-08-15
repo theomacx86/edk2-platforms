@@ -7,14 +7,6 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
-[PcdsFixedAtBuild.IA32]
-  #
-  # Enable stack and heap protections
-  #
-  #gEfiMdeModulePkgTokenSpaceGuid.PcdHeapGuardPropertyMask|0xFF
-  #gEfiMdeModulePkgTokenSpaceGuid.PcdCpuStackGuard|TRUE
-
-
 ################################################################################
 #
 # Library Class section - list of all Library Classes needed by this Platform.
@@ -23,7 +15,6 @@
 
 [LibraryClasses]
   PciSegmentInfoLib|MinPlatformPkg/Pci/Library/PciSegmentInfoLibSimple/PciSegmentInfoLibSimple.inf
-  #BoardInitLib|MinPlatformPkg/PlatformInit/Library/BoardInitLibNull/BoardInitLibNull.inf
   BoardInitLib|QemuOpenBoardPkg/Library/BoardInitLib/BoardInitLib.inf
   SetCacheMtrrLib|MinPlatformPkg/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
   ReportCpuHobLib|MinPlatformPkg/PlatformInit/Library/ReportCpuHobLib/ReportCpuHobLib.inf

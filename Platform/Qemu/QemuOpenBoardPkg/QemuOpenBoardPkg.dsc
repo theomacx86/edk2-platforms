@@ -1,3 +1,11 @@
+## @file
+#  QemuOpenBoardPkg.dsc
+#
+#  Description file for QemuOpenBoardPkg 
+#
+#  Copyright (c) 2022 Théo Jehl
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+
 [Defines]
     DSC_SPECIFICATION           = 0x0001001C
     PLATFORM_GUID               = 94797875-D562-40CF-8D55-ADD623C8D46C
@@ -50,7 +58,7 @@
 [PcdsDynamicDefault]
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId|0
 
-  #video setup
+  # Video setup
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|640
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|480
 

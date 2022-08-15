@@ -1,3 +1,13 @@
+/** @file OpenQemuFwCfgLib.h
+  OpenQemuFwCfgLib Headers
+
+  Implements a minimal library to interact with Qemu FW CFG device
+
+  Copyright (c) 2022 Théo Jehl All rights reserved.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+**/
+
+
 #ifndef QEMUOPENBOARDPKG_QEMUFWCFGLIB_H
 #define QEMUOPENBOARDPKG_QEMUFWCFGLIB_H
 
@@ -41,10 +51,10 @@ typedef struct {
 #pragma pack()
 
 /**
- * @brief Checks for Qemu fw_cfg device by reading "QEMU" using the signature selector
- *
- * @retval EFI_SUCCESS - The fw_cfg device is present
- * @retval EFI_UNSUPPORTED - The device is absent
+  Checks for Qemu fw_cfg device by reading "QEMU" using the signature selector
+
+  @return EFI_SUCCESS - The fw_cfg device is present
+  @return EFI_UNSUPPORTED - The device is absent
  */
 EFI_STATUS
 EFIAPI
@@ -52,11 +62,11 @@ QemuFwCfgIsPresent (
   );
 
 /**
- * @brief Sets the selector register to the specified value
- *
- * @param Selector
- * @retval EFI_SUCCESS
- * @retval EFI_UNSUPPORTED
+ Sets the selector register to the specified value
+
+  @param[in] Selector
+  @return EFI_SUCCESS
+  @return EFI_UNSUPPORTED
  */
 EFI_STATUS
 EFIAPI
@@ -65,9 +75,9 @@ QemuFwCfgSelectItem (
   );
 
 /**
- * @brief Reads 8 bits from the data register
- *
- * @retval UINT8
+ Reads 8 bits from the data register
+
+  @return UINT8
  */
 UINT8
 EFIAPI
@@ -75,11 +85,10 @@ QemuFwCfgRead8 (
   );
 
 /**
- * @brief Reads N bytes from the data register
- *
- * @param Size
- * @param Buffer
- * @return VOID
+  Reads N bytes from the data register
+
+  @param Size
+  @param Buffer
  */
 VOID
 EFIAPI
@@ -89,12 +98,12 @@ QemuFwCfgReadBytes (
   );
 
 /**
- * @brief Finds a file in fw_cfg by its name
- *
- * @param String Pointer to an ASCII string to match in the database
- * @param FWConfigFile Buffer for the config file
- * @retval EFI_STATUS - Entry was found, FWConfigFile is populated
- * @retval EFI_ERROR - Entry was not found
+  Finds a file in fw_cfg by its name
+
+  @param[in] String Pointer to an ASCII string to match in the database
+  @param[out] FWConfigFile Buffer for the config file
+  @return EFI_STATUS - Entry was found, FWConfigFile is populated
+  @return EFI_ERROR - Entry was not found
  */
 EFI_STATUS
 EFIAPI

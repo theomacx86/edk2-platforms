@@ -1,3 +1,9 @@
+## @file
+#  QemuOpenBoardPkg.fdf
+#
+#  Copyright (c) 2022 Théo Jehl
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+
 !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
 [FD.QemuOpenBoardPkg]
