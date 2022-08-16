@@ -116,9 +116,9 @@ QemuFwCfgFindFile (
 
   for (Idx = 0; Idx < FilesCount; Idx++) {
     QemuFwCfgReadBytes (sizeof (QEMU_FW_CFG_FILE), &FirmwareConfigFile);
-    if (AsciiStrCmp ((CHAR8 *)&(FirmwareConfigFile.name), String) == 0) {
-      FirmwareConfigFile.select = SwapBytes16 (FirmwareConfigFile.select);
-      FirmwareConfigFile.size   = SwapBytes32 (FirmwareConfigFile.size);
+    if (AsciiStrCmp ((CHAR8 *)&(FirmwareConfigFile.Name), String) == 0) {
+      FirmwareConfigFile.Select = SwapBytes16 (FirmwareConfigFile.Select);
+      FirmwareConfigFile.Size   = SwapBytes32 (FirmwareConfigFile.Size);
       CopyMem (FWConfigFile, &FirmwareConfigFile, sizeof (QEMU_FW_CFG_FILE));
       return EFI_SUCCESS;
     }

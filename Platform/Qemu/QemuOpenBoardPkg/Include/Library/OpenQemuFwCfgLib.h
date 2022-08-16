@@ -24,16 +24,14 @@
 #define FW_CFG_ID         0x0001
 #define FW_CFG_FILE_DIR   0x0019
 
-
 #define FW_CFG_QEMU_SIGNATURE  "QEMU"
 
 typedef struct {
-  UINT32    size;
-  UINT16    select;
-  UINT16    reserved;
-  CHAR8     name[56];
+  UINT32    Size;
+  UINT16    Select;
+  UINT16    Reserved;
+  CHAR8     Name[56];
 } QEMU_FW_CFG_FILE;
-
 
 /**
   Checks for Qemu fw_cfg device by reading "QEMU" using the signature selector
@@ -44,6 +42,7 @@ typedef struct {
 EFI_STATUS
 EFIAPI
 QemuFwCfgIsPresent (
+  VOID
   );
 
 /**
@@ -67,6 +66,7 @@ QemuFwCfgSelectItem (
 UINT8
 EFIAPI
 QemuFwCfgRead8 (
+  VOID
   );
 
 /**

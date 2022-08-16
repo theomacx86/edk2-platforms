@@ -42,8 +42,8 @@ GetMemoryBelow4Gb (
   }
 
   Size = 0;
-  QemuFwCfgSelectItem (FwCfgFile.select);
-  for (Processed = 0; Processed < FwCfgFile.size / sizeof (EFI_E820_ENTRY); Processed++) {
+  QemuFwCfgSelectItem (FwCfgFile.Select);
+  for (Processed = 0; Processed < FwCfgFile.Size / sizeof (EFI_E820_ENTRY); Processed++) {
     QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
     if (E820Entry.BaseAddr + E820Entry.Length < SIZE_4GB) {
       Size += E820Entry.Length;
@@ -123,8 +123,8 @@ InstallMemory (
   }
 
   LargestE820Entry.Length = 0;
-  QemuFwCfgSelectItem (FwCfgFile.select);
-  for (Processed = 0; Processed < FwCfgFile.size / sizeof (EFI_E820_ENTRY); Processed++) {
+  QemuFwCfgSelectItem (FwCfgFile.Select);
+  for (Processed = 0; Processed < FwCfgFile.Size / sizeof (EFI_E820_ENTRY); Processed++) {
     QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
 
     ValidMemory        = E820Entry.Type == EfiAcpiAddressRangeMemory;

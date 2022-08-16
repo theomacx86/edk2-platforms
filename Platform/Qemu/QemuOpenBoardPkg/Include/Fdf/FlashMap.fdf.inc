@@ -1,3 +1,12 @@
+## @file
+# Flashmap and variable definitions for QemuOpenBoardPkg FVs and FD
+#
+# @copyright
+# Copyright (C) 2022 Jehl Théo
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x910000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF6F0000
 #

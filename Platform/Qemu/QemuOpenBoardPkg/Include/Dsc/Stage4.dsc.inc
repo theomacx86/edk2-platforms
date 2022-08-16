@@ -1,3 +1,12 @@
+## @file
+# Common DSC content to begin Stage 4 enabling
+#
+# @copyright
+# Copyright (C) 2022 Jehl Théo
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
 [Components.X64]
   OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf

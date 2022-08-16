@@ -22,6 +22,7 @@
   SiliconPolicyUpdateLib|MinPlatformPkg/PlatformInit/Library/SiliconPolicyUpdateLibNull/SiliconPolicyUpdateLibNull.inf
   ReportFvLib|QemuOpenBoardPkg/Library/PeiReportFvLib/PeiReportFvLib.inf
   PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
+
 [LibraryClasses.Common.SEC]
   TestPointCheckLib|MinPlatformPkg/Test/Library/TestPointCheckLib/SecTestPointCheckLib.inf
   TimerLib|MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
@@ -41,9 +42,7 @@
 
 [Components.IA32]
   UefiCpuPkg/SecCore/SecCore.inf
-
   MdeModulePkg/Core/Pei/PeiMain.inf
-
   MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
   UefiCpuPkg/CpuIoPei/CpuIoPei.inf
   MdeModulePkg/Universal/PcatSingleSegmentPciCfg2Pei/PcatSingleSegmentPciCfg2Pei.inf
@@ -55,13 +54,10 @@
   }
   MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
   MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
-
   MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
   MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
   MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-
   MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
-
   QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
 
   

@@ -1,3 +1,12 @@
+## @file
+# Common DSC content to begin Stage 3 enabling
+#
+# @copyright
+# Copyright (C) 2022 Jehl Théo
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
 [LibraryClasses.common]
   PlatformBootManagerLib|OvmfPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
   BootLogoLib|MdeModulePkg/Library/BootLogoLib/BootLogoLib.inf
