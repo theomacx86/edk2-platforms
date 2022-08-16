@@ -1,5 +1,14 @@
+## @file
+# Common DSC content to begin Stage 2 enabling
+#
+# @copyright
+# Copyright (C) 2022 Jehl Théo
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
 [LibraryClasses.common]
-  ResetSystemLib|QemuOpenBoardPkg/Library/ResetSystemLib/ResetSystemLib.inf
+  ResetSystemLib|OvmfPkg/Library/ResetSystemLib/BaseResetSystemLib.inf
   PciHostBridgeLib|OvmfPkg/Library/PciHostBridgeLib/PciHostBridgeLib.inf
   PciHostBridgeUtilityLib|OvmfPkg/Library/PciHostBridgeUtilityLib/PciHostBridgeUtilityLib.inf
   DxeHardwareInfoLib|OvmfPkg/Library/HardwareInfoLib/DxeHardwareInfoLib.inf

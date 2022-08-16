@@ -93,6 +93,19 @@
   INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
+  !if $(SMM_ENABLED) == TRUE
+      INF OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
+      INF OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
+      INF MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
+      INF MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
+      INF MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf
+      INF MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
+      INF UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
+      INF UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
+      INF MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteSmm.inf
+      INF IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
+  !endif
+
 ###########################
 #
 # Stage 3 Firmware volumes

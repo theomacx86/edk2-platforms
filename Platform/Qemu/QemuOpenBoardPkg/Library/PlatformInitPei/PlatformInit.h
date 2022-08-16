@@ -5,6 +5,8 @@
   SPDX-License-Identifier: BSD-2-Clause-Patent
 **/
 
+#ifndef QEMUOPENBOARDPKG_PLATFORMINIT_H
+
 #include <PiPei.h>
 #include <Uefi.h>
 
@@ -52,3 +54,5 @@ EFIAPI
 MaxCpuInit(
   VOID
 );
+
+#endif

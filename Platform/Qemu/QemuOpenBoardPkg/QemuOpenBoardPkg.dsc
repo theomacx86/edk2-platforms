@@ -55,6 +55,11 @@
   gMinPlatformPkgTokenSpaceGuid.PcdSerialTerminalEnable|TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdTpm2Enable|FALSE
 
+  !if $(SMM_ENABLED) == TRUE
+    gUefiOvmfPkgTokenSpaceGuid.PcdSmmSmramRequire|TRUE
+    gUefiCpuPkgTokenSpaceGuid.PcdCpuHotPlugSupport|FALSE
+    gEfiMdeModulePkgTokenSpaceGuid.PcdEnableVariableRuntimeCache|FALSE
+  !endif
 [PcdsDynamicDefault]
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId|0
 
@@ -70,6 +75,12 @@
   gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber|0
   gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber|0
 
+  !if $(SMM_ENABLED) == TRUE
+    gUefiOvmfPkgTokenSpaceGuid.PcdQ35TsegMbytes|8
+    gUefiOvmfPkgTokenSpaceGuid.PcdQ35SmramAtDefaultSmbase|FALSE
+    gUefiCpuPkgTokenSpaceGuid.PcdCpuSmmSyncMode|0x01
+    gUefiCpuPkgTokenSpaceGuid.PcdCpuSmmApSyncTimeout|100000
+  !endif
 
 ################################################################################
 #
