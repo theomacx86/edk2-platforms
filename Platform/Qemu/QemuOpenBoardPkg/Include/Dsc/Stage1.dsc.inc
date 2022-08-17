@@ -32,14 +32,6 @@
   TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/PeiTestPointLib.inf
   TimerLib|MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
 
-[LibraryClasses.common.DXE_CORE, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.SMM_CORE, LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION]
-  TestPointCheckLib|MinPlatformPkg/Test/Library/TestPointCheckLibNull/TestPointCheckLibNull.inf
-  TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/DxeTestPointLib.inf
-
-[LibraryClasses.Common.DXE_SMM_DRIVER]
-  TestPointCheckLib|MinPlatformPkg/Test/Library/TestPointCheckLib/SmmTestPointCheckLib.inf
-  TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/SmmTestPointLib.inf
-
 [Components.IA32]
   UefiCpuPkg/SecCore/SecCore.inf
   MdeModulePkg/Core/Pei/PeiMain.inf
