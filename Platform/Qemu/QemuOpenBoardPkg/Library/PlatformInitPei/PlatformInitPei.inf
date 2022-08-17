@@ -50,6 +50,10 @@
   gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base
   gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size
   gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gUefiOvmfPkgTokenSpaceGuid.PcdQ35TsegMbytes
+
+[FeaturePcd]
+  gUefiOvmfPkgTokenSpaceGuid.PcdSmmSmramRequire
 
 [Depex]
   TRUE

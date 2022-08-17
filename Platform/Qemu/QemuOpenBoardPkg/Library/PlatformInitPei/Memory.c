@@ -11,6 +11,7 @@
 #include <Library/PeiServicesTablePointerLib.h>
 #include <Library/HobLib.h>
 #include <IndustryStandard/E820.h>
+#include <Library/PcdLib.h>
 
 /**
   Return the memory size below 4GB.
@@ -106,6 +107,7 @@ InstallMemory (
   BOOLEAN                      ValidMemory;
   EFI_RESOURCE_TYPE            ResourceType;
   EFI_RESOURCE_ATTRIBUTE_TYPE  ResourceAttributes;
+  UINTN                        MemoryBelow4G;
 
   Status = QemuFwCfgIsPresent ();
 
@@ -121,6 +123,8 @@ InstallMemory (
     DEBUG ((DEBUG_ERROR, "etc/e820 was not found \n"));
     return EFI_UNSUPPORTED;
   }
+
+  MemoryBelow4G = GetMemoryBelow4Gb();
 
   LargestE820Entry.Length = 0;
   QemuFwCfgSelectItem (FwCfgFile.Select);
@@ -159,12 +163,24 @@ InstallMemory (
       }
     }
 
-    BuildResourceDescriptorHob (
+    if(FeaturePcdGet(PcdSmmSmramRequire) && E820Entry.BaseAddr + E820Entry.Length == MemoryBelow4G){
+      DEBUG ((DEBUG_INFO, "Stealing some memory for SMRAM...\n"));
+      BuildResourceDescriptorHob (
+      ResourceType,
+      ResourceAttributes,
+      E820Entry.BaseAddr,
+      E820Entry.Length - (PcdGet16(PcdQ35TsegMbytes) * SIZE_1MB)
+      );
+    }
+    else{
+      BuildResourceDescriptorHob (
       ResourceType,
       ResourceAttributes,
       E820Entry.BaseAddr,
       E820Entry.Length
       );
+    }
+
     DEBUG ((DEBUG_INFO, "Processed base address %lx size %lx type %x\n", E820Entry.BaseAddr, E820Entry.Length, E820Entry.Type));
   }
 
@@ -177,6 +193,11 @@ InstallMemory (
     // Jump over the first 1MB, since a good chunk of it isn't actually allocatable
     LargestE820Entry.BaseAddr += BASE_1MB;
     LargestE820Entry.Length   -= SIZE_1MB;
+  }
+
+  if(FeaturePcdGet(PcdSmmSmramRequire) && LargestE820Entry.BaseAddr + LargestE820Entry.Length == MemoryBelow4G){
+    DEBUG ((DEBUG_ERROR, "SMM is enabled !\nTrying to install EFI memory on SMM RAM, stealing %u Mb.. \n", PcdGet16(PcdQ35TsegMbytes)));
+    LargestE820Entry.Length -= PcdGet16(PcdQ35TsegMbytes) * SIZE_1MB;
   }
 
   Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, LargestE820Entry.BaseAddr, LargestE820Entry.Length);
