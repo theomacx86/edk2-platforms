@@ -124,7 +124,7 @@ InstallMemory (
     return EFI_UNSUPPORTED;
   }
 
-  MemoryBelow4G = GetMemoryBelow4Gb();
+  MemoryBelow4G = GetMemoryBelow4Gb ();
 
   LargestE820Entry.Length = 0;
   QemuFwCfgSelectItem (FwCfgFile.Select);
@@ -137,6 +137,11 @@ InstallMemory (
 
     if (ValidMemory) {
       if ((E820Entry.Length > LargestE820Entry.Length) && (E820Entry.BaseAddr + E820Entry.Length <= SIZE_4GB)) {
+        if (FeaturePcdGet (PcdSmmSmramRequire) && (E820Entry.BaseAddr + E820Entry.Length == MemoryBelow4G)) {
+          DEBUG ((DEBUG_ERROR, "SMM is enabled ! Stealing %u Mb.. \n", PcdGet16 (PcdQ35TsegMbytes)));
+          E820Entry.Length -= (PcdGet16 (PcdQ35TsegMbytes) * SIZE_1MB);
+        }
+
         DEBUG ((DEBUG_INFO, "New largest entry for PEI: BaseAddress %lx, Size %lx \n", LargestE820Entry.BaseAddr, LargestE820Entry.Length));
         LargestE820Entry = E820Entry;
       }
@@ -149,6 +154,7 @@ InstallMemory (
                            EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE |
                            EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |
                            EFI_RESOURCE_ATTRIBUTE_TESTED;
+
       // Lets handle the lower 1MB in a special way
       if (E820Entry.BaseAddr == 0) {
         // 0 - 0xa0000 is system memory
@@ -163,23 +169,12 @@ InstallMemory (
       }
     }
 
-    if(FeaturePcdGet(PcdSmmSmramRequire) && E820Entry.BaseAddr + E820Entry.Length == MemoryBelow4G){
-      DEBUG ((DEBUG_INFO, "Stealing some memory for SMRAM...\n"));
-      BuildResourceDescriptorHob (
-      ResourceType,
-      ResourceAttributes,
-      E820Entry.BaseAddr,
-      E820Entry.Length - (PcdGet16(PcdQ35TsegMbytes) * SIZE_1MB)
-      );
-    }
-    else{
-      BuildResourceDescriptorHob (
+    BuildResourceDescriptorHob (
       ResourceType,
       ResourceAttributes,
       E820Entry.BaseAddr,
       E820Entry.Length
       );
-    }
 
     DEBUG ((DEBUG_INFO, "Processed base address %lx size %lx type %x\n", E820Entry.BaseAddr, E820Entry.Length, E820Entry.Type));
   }
@@ -193,11 +188,6 @@ InstallMemory (
     // Jump over the first 1MB, since a good chunk of it isn't actually allocatable
     LargestE820Entry.BaseAddr += BASE_1MB;
     LargestE820Entry.Length   -= SIZE_1MB;
-  }
-
-  if(FeaturePcdGet(PcdSmmSmramRequire) && LargestE820Entry.BaseAddr + LargestE820Entry.Length == MemoryBelow4G){
-    DEBUG ((DEBUG_ERROR, "SMM is enabled !\nTrying to install EFI memory on SMM RAM, stealing %u Mb.. \n", PcdGet16(PcdQ35TsegMbytes)));
-    LargestE820Entry.Length -= PcdGet16(PcdQ35TsegMbytes) * SIZE_1MB;
   }
 
   Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, LargestE820Entry.BaseAddr, LargestE820Entry.Length);
