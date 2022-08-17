@@ -136,12 +136,12 @@ InstallMemory (
     ResourceAttributes = EFI_RESOURCE_ATTRIBUTE_PRESENT | EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE | EFI_RESOURCE_ATTRIBUTE_TESTED;
 
     if (ValidMemory) {
-      if ((E820Entry.Length > LargestE820Entry.Length) && (E820Entry.BaseAddr + E820Entry.Length <= SIZE_4GB)) {
-        if (FeaturePcdGet (PcdSmmSmramRequire) && (E820Entry.BaseAddr + E820Entry.Length == MemoryBelow4G)) {
-          DEBUG ((DEBUG_ERROR, "SMM is enabled ! Stealing %u Mb.. \n", PcdGet16 (PcdQ35TsegMbytes)));
-          E820Entry.Length -= (PcdGet16 (PcdQ35TsegMbytes) * SIZE_1MB);
-        }
+      if (FeaturePcdGet (PcdSmmSmramRequire) && (E820Entry.BaseAddr + E820Entry.Length == MemoryBelow4G)) {
+        DEBUG ((DEBUG_ERROR, "SMM is enabled ! Stealing %u Mb.. \n", PcdGet16 (PcdQ35TsegMbytes)));
+        E820Entry.Length -= (PcdGet16 (PcdQ35TsegMbytes) * SIZE_1MB);
+      }
 
+      if ((E820Entry.Length > LargestE820Entry.Length) && (E820Entry.BaseAddr + E820Entry.Length <= SIZE_4GB)) {
         DEBUG ((DEBUG_INFO, "New largest entry for PEI: BaseAddress %lx, Size %lx \n", LargestE820Entry.BaseAddr, LargestE820Entry.Length));
         LargestE820Entry = E820Entry;
       }
