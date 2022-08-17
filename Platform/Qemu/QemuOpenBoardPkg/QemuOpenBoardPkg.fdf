@@ -85,7 +85,6 @@
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 43528CE0-812B-4074-B77E-C49E7A2F4FE1
 
-
 [FV.FvFspT]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
