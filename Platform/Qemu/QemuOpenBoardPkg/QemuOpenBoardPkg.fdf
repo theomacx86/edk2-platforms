@@ -65,6 +65,9 @@
   INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
   INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
   INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
+  !if $(SMM_ENABLED) == TRUE
+    INF OvmfPkg/SmmAccess/SmmAccessPei.inf
+  !endif
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
   INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
   INF UefiCpuPkg/SecCore/SecCore.inf
