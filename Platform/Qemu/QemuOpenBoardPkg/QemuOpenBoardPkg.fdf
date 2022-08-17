@@ -48,63 +48,92 @@
 
 ###########################
 #
-# Stage 6 Firmware volumes
+# Stage 1 Firmware volumes
 #
 ###########################
-[FV.FvAdvanced]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = 936D6D65-CB6C-4B87-A51C-70D56511CB55
 
-###########################
-#
-# Stage 5 Firmware volumes
-#
-###########################
-[FV.FvSecurity]
+[FV.FvPreMemory] 
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = 1AE6AB90-9431-425B-9A92-ED2708A4E982
+  FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
 
-###########################
-#
-# Stage 4 Firmware volumes
-#
-###########################
-[FV.FvOsBoot]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = AE8F0EA0-1614-422D-ABC1-C518596F1678
-
-  #ACPI
-  INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
-  INF OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  FILE FV_IMAGE = 618FBA00-2231-41F6-9931-25A89DF501D3 {
+      SECTION FV_IMAGE = FvSecurityPreMemory
+  }
   
-  #Buses
-  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
-  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
-  INF  MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
-  INF  MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
-  INF  OvmfPkg/SataControllerDxe/SataControllerDxe.inf
-  INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
-  INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
-  INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
-  INF MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
-  INF MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
-  INF MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
-  INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-  INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-  INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+  INF MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
+  INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
+  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
+  INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
+  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
+  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
+  INF UefiCpuPkg/SecCore/SecCore.inf
 
-  !if $(SMM_ENABLED) == TRUE
-      INF OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
-      INF OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
-      INF MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
-      INF MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
-      INF MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf
-      INF MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
-      INF UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
-      INF UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
-      INF MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteSmm.inf
-      INF IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
-  !endif
+[FV.FvSecurityPreMemory]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = F626B0FB-D759-44A8-B131-42408BB3533D
+
+[FV.FvBspPreMemory] 
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 5CF9C072-385F-44FC-B21B-002074251C08
+
+  FILE FV_IMAGE = 90B948EA-FF73-4689-B90A-A54F86C1FC01 {
+      SECTION FV_IMAGE = FvAdvancedPreMemory
+  } 
+
+[FV.FvAdvancedPreMemory]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 43528CE0-812B-4074-B77E-C49E7A2F4FE1
+
+
+[FV.FvFspT]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
+
+[FV.FvFspM]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid      = 03982cf7-246a-4356-b6ba-436a2251595c
+
+  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+  INF  MdeModulePkg/Core/Pei/PeiMain.inf  
+
+  FILE FV_IMAGE = 83B39C64-BFB9-42EC-A7A3-527854A5C4C3 {
+      SECTION FV_IMAGE = FvPreMemorySilicon
+  }
+
+[FV.FvPreMemorySilicon]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = F0205C0E-0AD1-499C-A5F9-96BAF98248A0
+  INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
+  INF  MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
+
+[FV.FvFspS]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = C6786443-AFCA-471B-A8FC-E8C330708F99
+
+[FV.FvPostMemorySilicon]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = EF76DFDC-2B7D-423D-BFE4-8FD4BB22E770
+
+###########################
+#
+# Stage 2 Firmware volumes
+#
+###########################
+[FV.FvPostMemory]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = 5A1D6978-BABE-42F9-A629-F7B3B6A1E1BD
+
+  INF UefiCpuPkg/CpuMpPei/CpuMpPei.inf
+  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
+  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
+  INF MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+  INF MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+
+[FV.FvBsp]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = FCA0BC4A-994D-4EF9-BD56-A8C45872C2A8
 
 ###########################
 #
@@ -157,94 +186,65 @@
   INF ShellPkg/Application/Shell/Shell.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   
-
 ###########################
 #
-# Stage 2 Firmware volumes
+# Stage 4 Firmware volumes
 #
 ###########################
-
-[FV.FvBsp]
+[FV.FvOsBoot]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = FCA0BC4A-994D-4EF9-BD56-A8C45872C2A8
+  FvNameGuid    = AE8F0EA0-1614-422D-ABC1-C518596F1678
 
-[FV.FvPostMemory]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = 5A1D6978-BABE-42F9-A629-F7B3B6A1E1BD
-
-  INF UefiCpuPkg/CpuMpPei/CpuMpPei.inf
-  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
-  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
-  INF MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
-  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-  INF MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+  #ACPI
+  INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
+  INF OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
   
+  #Buses
+  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+  INF  MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
+  INF  MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
+  INF  OvmfPkg/SataControllerDxe/SataControllerDxe.inf
+  INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+  INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+  INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+  INF MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
+  INF MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
+  INF MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+  INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+
+  !if $(SMM_ENABLED) == TRUE
+      INF OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
+      INF OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
+      INF MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
+      INF MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
+      INF MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf
+      INF MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
+      INF UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
+      INF UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
+      INF MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteSmm.inf
+      INF IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
+  !endif
+
 ###########################
 #
-# Stage 1 Firmware volumes
+# Stage 5 Firmware volumes
 #
 ###########################
-
-[FV.FvPostMemorySilicon]
+[FV.FvSecurity]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = EF76DFDC-2B7D-423D-BFE4-8FD4BB22E770
+  FvNameGuid    = 1AE6AB90-9431-425B-9A92-ED2708A4E982
 
-[FV.FvFspS]
+###########################
+#
+# Stage 6 Firmware volumes
+#
+###########################
+[FV.FvAdvanced]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = C6786443-AFCA-471B-A8FC-E8C330708F99
+  FvNameGuid    = 936D6D65-CB6C-4B87-A51C-70D56511CB55
 
-[FV.FvPreMemorySilicon]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = F0205C0E-0AD1-499C-A5F9-96BAF98248A0
-  INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
-  INF  MdeModulePkg/Universal/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
-
-[FV.FvFspM]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = 03982cf7-246a-4356-b6ba-436a2251595c
-
-  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
-  INF  MdeModulePkg/Core/Pei/PeiMain.inf  
-
-  FILE FV_IMAGE = 83B39C64-BFB9-42EC-A7A3-527854A5C4C3 {
-      SECTION FV_IMAGE = FvPreMemorySilicon
-  }
-
-[FV.FvFspT]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = 958CAF39-0B6C-40F1-B190-EC91C536CFF9
-
-[FV.FvAdvancedPreMemory]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = 43528CE0-812B-4074-B77E-C49E7A2F4FE1
-
-[FV.FvBspPreMemory] 
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = 5CF9C072-385F-44FC-B21B-002074251C08
-
-  FILE FV_IMAGE = 90B948EA-FF73-4689-B90A-A54F86C1FC01 {
-      SECTION FV_IMAGE = FvAdvancedPreMemory
-  } 
-
-[FV.FvSecurityPreMemory]
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = F626B0FB-D759-44A8-B131-42408BB3533D
-
-[FV.FvPreMemory] 
-  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid      = BD479C6B-2EFF-401F-A7F1-566347B41D07
-
-  FILE FV_IMAGE = 618FBA00-2231-41F6-9931-25A89DF501D3 {
-      SECTION FV_IMAGE = FvSecurityPreMemory
-  }
-  
-  INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
-  INF MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
-  INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
-  INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
-  INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
-  INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
-  INF MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPreMem.inf
-  INF UefiCpuPkg/SecCore/SecCore.inf
 
 !include MinPlatformPkg/Include/Fdf/RuleInclude.fdf
