@@ -44,6 +44,6 @@
   gTopOfTemporaryRamPpiGuid
 
 [Pcd]
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize
   gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMBase
