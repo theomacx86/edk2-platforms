@@ -51,7 +51,7 @@ SecPlatformMain (
   // Use half of available heap size for PpiList
   EFI_PEI_PPI_DESCRIPTOR  *PpiList;
 
-  PpiList = (VOID *)((UINTN)SecCoreData->PeiTemporaryRamBase + (UINTN)SecCoreData->PeiTemporaryRamSize/2);
+  PpiList = (VOID *)((UINTN)SecCoreData->PeiTemporaryRamBase + (UINTN)SecCoreData->PeiTemporaryRamSize / 2);
 
   CopyMem (PpiList, &gEfiPeiCoreFvLocationDescriptor, sizeof (EFI_PEI_PPI_DESCRIPTOR));
 
