@@ -64,7 +64,7 @@
   INF MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
   INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
   INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
-  INF QemuOpenBoardPkg/Library/PlatformInitPei/PlatformInitPei.inf
+  INF QemuOpenBoardPkg/PlatformInitPei/PlatformInitPei.inf
   !if $(SMM_ENABLED) == TRUE
     INF OvmfPkg/SmmAccess/SmmAccessPei.inf
   !endif
