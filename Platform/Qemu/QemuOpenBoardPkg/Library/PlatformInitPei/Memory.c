@@ -124,7 +124,7 @@ InstallMemory (
     return EFI_UNSUPPORTED;
   }
 
-  MemoryBelow4G = GetMemoryBelow4Gb ();
+  MemoryBelow4G = (UINTN)GetMemoryBelow4Gb ();
 
   LargestE820Entry.Length = 0;
   QemuFwCfgSelectItem (FwCfgFile.Select);

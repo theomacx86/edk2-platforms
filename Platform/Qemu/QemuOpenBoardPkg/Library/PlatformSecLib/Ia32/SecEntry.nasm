@@ -15,6 +15,8 @@ extern ASM_PFX(SecStartup)
 extern ASM_PFX(PcdGet32(PcdTemporaryRamBase))
 extern ASM_PFX(PcdGet32(PcdTemporaryRamSize))
 
+SECTION .text
+
 BITS 16
 align 4
 global ASM_PFX(_ModuleEntryPoint)
