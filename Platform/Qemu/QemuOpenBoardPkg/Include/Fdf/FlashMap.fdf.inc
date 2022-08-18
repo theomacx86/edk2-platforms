@@ -64,8 +64,13 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryOffset      = gMinPlatfo
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemoryOffset         = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryOffset      + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize
 
 #
-# Calculate base
+# Calculate base addresses
 #
+
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase    = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase  = gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase    + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase    = gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase  + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedBase            = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress           + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityBase            = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedBase            + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootBase              = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityBase            + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
