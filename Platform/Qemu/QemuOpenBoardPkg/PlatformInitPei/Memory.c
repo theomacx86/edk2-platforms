@@ -199,7 +199,7 @@ InstallMemory (
           DEBUG_INFO,
           "New largest entry for PEI: BaseAddress %lx, Size %lx\n",
           LargestE820Entry.BaseAddr,
-          (UINT32)LargestE820Entry.Length
+          LargestE820Entry.Length
           ));
       }
     }
