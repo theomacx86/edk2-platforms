@@ -109,7 +109,7 @@ InstallMemory (
   EFI_RESOURCE_TYPE            ResourceType;
   EFI_RESOURCE_ATTRIBUTE_TYPE  ResourceAttributes;
   UINT32                       MemoryBelow4G;
-  UINT16                       RequiredBySmm;
+  UINT32                       RequiredBySmm;
 
   Status = QemuFwCfgIsPresent ();
 

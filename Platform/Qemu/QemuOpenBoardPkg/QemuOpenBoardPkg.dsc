@@ -16,7 +16,7 @@
     OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
     BUILD_TARGETS               = DEBUG|RELEASE
     SKUID_IDENTIFIER            = ALL
-    SMM_ENABLED                 = FALSE
+    SMM_ENABLED                 = TRUE
 
 [SkuIds]
   0|DEFAULT
