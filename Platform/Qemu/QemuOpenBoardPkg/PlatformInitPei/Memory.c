@@ -12,13 +12,14 @@
 #include <Library/HobLib.h>
 #include <IndustryStandard/E820.h>
 #include <Library/PcdLib.h>
+#include <Library/BaseMemoryLib.h>
 
 /**
   Return the memory size below 4GB.
 
   @return UINT32
 **/
-UINT64
+UINT32
 EFIAPI
 GetMemoryBelow4Gb (
   VOID
@@ -107,7 +108,8 @@ InstallMemory (
   BOOLEAN                      ValidMemory;
   EFI_RESOURCE_TYPE            ResourceType;
   EFI_RESOURCE_ATTRIBUTE_TYPE  ResourceAttributes;
-  UINTN                        MemoryBelow4G;
+  UINT32                       MemoryBelow4G;
+  UINT16                       RequiredBySmm;
 
   Status = QemuFwCfgIsPresent ();
 
@@ -124,7 +126,7 @@ InstallMemory (
     return EFI_UNSUPPORTED;
   }
 
-  MemoryBelow4G = (UINTN)GetMemoryBelow4Gb ();
+  MemoryBelow4G = GetMemoryBelow4Gb ();
 
   LargestE820Entry.Length = 0;
   QemuFwCfgSelectItem (FwCfgFile.Select);
@@ -137,13 +139,24 @@ InstallMemory (
 
     if (ValidMemory) {
       if (FeaturePcdGet (PcdSmmSmramRequire) && (E820Entry.BaseAddr + E820Entry.Length == MemoryBelow4G)) {
-        DEBUG ((DEBUG_ERROR, "SMM is enabled ! Stealing %u Mb.. \n", PcdGet16 (PcdQ35TsegMbytes)));
-        E820Entry.Length -= (PcdGet16 (PcdQ35TsegMbytes) * SIZE_1MB);
-      }
+        RequiredBySmm = PcdGet16 (PcdQ35TsegMbytes) * SIZE_1MB;
+        if (E820Entry.Length < RequiredBySmm) {
+          DEBUG ((
+            DEBUG_ERROR,
+            "Error: There's not enough memory below TOLUD for SMM (%lx < %x)\n",
+            E820Entry.Length,
+            RequiredBySmm
+            ));
+        }
 
-      if ((E820Entry.Length > LargestE820Entry.Length) && (E820Entry.BaseAddr + E820Entry.Length <= SIZE_4GB)) {
-        DEBUG ((DEBUG_INFO, "New largest entry for PEI: BaseAddress %lx, Size %lx \n", LargestE820Entry.BaseAddr, LargestE820Entry.Length));
-        LargestE820Entry = E820Entry;
+        E820Entry.Length -= RequiredBySmm;
+        DEBUG ((
+          DEBUG_INFO,
+          "SMM is enabled! Stealing [%lx, %lx](%u MiB) for SMRAM...\n",
+          E820Entry.BaseAddr + E820Entry.Length,
+          E820Entry.BaseAddr + E820Entry.Length + RequiredBySmm - 1,
+          PcdGet16 (PcdQ35TsegMbytes)
+          ));
       }
 
       ResourceType       = EFI_RESOURCE_SYSTEM_MEMORY;
@@ -155,17 +168,39 @@ InstallMemory (
                            EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |
                            EFI_RESOURCE_ATTRIBUTE_TESTED;
 
+      //
       // Lets handle the lower 1MB in a special way
+      //
+
       if (E820Entry.BaseAddr == 0) {
-        // 0 - 0xa0000 is system memory
+        //
+        // 0 - 0xa0000 is system memory, everything above that up to 1MB is not
+        // Note that we check if we actually have 1MB
+        //
+
         BuildResourceDescriptorHob (
           ResourceType,
           ResourceAttributes,
           0,
-          0xa0000
+          MIN (0xa0000, E820Entry.Length)
           );
+
         E820Entry.BaseAddr += BASE_1MB;
-        E820Entry.Length   -= SIZE_1MB;
+        E820Entry.Length   -= MIN (BASE_1MB, E820Entry.Length);
+      }
+
+      //
+      // Note that we can only check if this is the largest entry after reserving everything we have to reserve
+      //
+
+      if ((E820Entry.Length > LargestE820Entry.Length) && (E820Entry.BaseAddr + E820Entry.Length <= SIZE_4GB)) {
+        CopyMem (&LargestE820Entry, &E820Entry, sizeof (EFI_E820_ENTRY64));
+        DEBUG ((
+          DEBUG_INFO,
+          "New largest entry for PEI: BaseAddress %lx, Size %lx\n",
+          LargestE820Entry.BaseAddr,
+          (UINT32)LargestE820Entry.Length
+          ));
       }
     }
 
@@ -176,19 +211,24 @@ InstallMemory (
       E820Entry.Length
       );
 
-    DEBUG ((DEBUG_INFO, "Processed base address %lx size %lx type %x\n", E820Entry.BaseAddr, E820Entry.Length, E820Entry.Type));
+    DEBUG ((
+      DEBUG_INFO,
+      "Processed E820 entry [%lx, %lx] with type %x\n",
+      E820Entry.BaseAddr,
+      E820Entry.BaseAddr + E820Entry.Length - 1,
+      E820Entry.Type
+      ));
   }
 
   ASSERT (LargestE820Entry.Length != 0);
-  DEBUG ((DEBUG_INFO, "Largest memory chunk found: address %lx size %lx \n", LargestE820Entry.BaseAddr, LargestE820Entry.Length));
+  DEBUG ((
+    DEBUG_INFO,
+    "Largest memory chunk found: [%lx, %lx]\n",
+    LargestE820Entry.BaseAddr,
+    LargestE820Entry.BaseAddr + LargestE820Entry.Length - 1
+    ));
 
   PeiServicesTable = GetPeiServicesTablePointer ();
-
-  if ((LargestE820Entry.BaseAddr == 0) && (LargestE820Entry.Length >= SIZE_1MB)) {
-    // Jump over the first 1MB, since a good chunk of it isn't actually allocatable
-    LargestE820Entry.BaseAddr += BASE_1MB;
-    LargestE820Entry.Length   -= SIZE_1MB;
-  }
 
   Status = (*PeiServices)->InstallPeiMemory (PeiServicesTable, LargestE820Entry.BaseAddr, LargestE820Entry.Length);
 
