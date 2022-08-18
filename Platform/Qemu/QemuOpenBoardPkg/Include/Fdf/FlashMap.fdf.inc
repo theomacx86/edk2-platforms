@@ -7,26 +7,24 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x910000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF6F0000
-#
-# 0x270000
-#
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF800000
+
+# Note that all the sizes below sum up to 8MiB, such that the image spans
+# from PcdFlashAreaBaseAddress to PcdFlashAreaBaseAddress + PcdFlashAreaSize
+
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize     = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize  = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize          = 0x00080000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize          = 0x00060000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize          = 0x00010000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize          = 0x00020000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize    = 0x00050000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize           = 0x00030000
 
-#
-# 12MiB 0x2C0000
-#
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x00450000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00150000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x00300000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00180000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize      = 0x00080000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize      = 0x00080000 #gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize      = 0x00080000
 
 #
 # Calculate Offsets Once (Do not modify)

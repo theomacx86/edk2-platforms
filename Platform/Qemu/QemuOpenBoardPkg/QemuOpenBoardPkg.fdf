@@ -7,11 +7,11 @@
 !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFF6F0000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
-  Size          = 0x910000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
+  BaseAddress   = 0xFF800000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  Size          = 0x800000|gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0x910
+  NumBlocks     = 0x800
 
   gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset|gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
   FV = FvAdvanced

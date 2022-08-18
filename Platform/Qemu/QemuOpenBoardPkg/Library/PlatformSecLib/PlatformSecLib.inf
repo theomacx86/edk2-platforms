@@ -38,6 +38,7 @@
   UefiCpuPkg/UefiCpuPkg.dec
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
   IntelFsp2WrapperPkg/IntelFsp2WrapperPkg.dec
+  MinPlatformPkg/MinPlatformPkg.dec
 
 [Ppis]
   gTopOfTemporaryRamPpiGuid  
@@ -45,3 +46,4 @@
 [Pcd]
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMBase
