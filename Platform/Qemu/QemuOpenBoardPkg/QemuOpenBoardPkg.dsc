@@ -45,6 +45,7 @@
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
   gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0xB0000000
+  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMBase|0x00000000
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable|TRUE
