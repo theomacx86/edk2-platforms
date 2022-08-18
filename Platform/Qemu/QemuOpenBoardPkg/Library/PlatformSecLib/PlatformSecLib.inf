@@ -32,7 +32,7 @@
   PcdLib
   HobLib
   MtrrLib
-   
+
 [Packages]
   MdePkg/MdePkg.dec
   UefiCpuPkg/UefiCpuPkg.dec
@@ -41,7 +41,7 @@
   MinPlatformPkg/MinPlatformPkg.dec
 
 [Ppis]
-  gTopOfTemporaryRamPpiGuid  
+  gTopOfTemporaryRamPpiGuid
 
 [Pcd]
   gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase

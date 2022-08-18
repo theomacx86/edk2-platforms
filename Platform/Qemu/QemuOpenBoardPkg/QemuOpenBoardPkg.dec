@@ -1,17 +1,21 @@
-## @file
-#  QemuOpenBoardPkg.dec
+## @file QemuOpenBoardPkg.dec
+#  Declaration file for QemuOpenBoardPkg.
 #
-#  Declaration file for QemuOpenBoardPkg 
+#  This package supports a simple QEMU port implemented per the MinPlatform
+#  Arch specification.
 #
 #  Copyright (c) 2022 Théo Jehl
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#  @par Specification Reference:
+#   -https://tianocore-docs.github.io/edk2-MinimumPlatformSpecification/draft/ 0.7
+##
 
 [Defines]
   DEC_SPECIFICATION              = 0x00010005
   PACKAGE_NAME                   = QemuOpenBoardPkg
   PACKAGE_GUID                   = 3487DE0A-6770-48A2-9833-FB426A42D7B2
   PACKAGE_VERSION                = 0.1
-
 
 [LibraryClasses]
   QemuFwCfgLib|Include/Library/OpenQemuFwCfgLib.h
@@ -20,21 +24,9 @@
   Include
 
 [Guids]
-  gUefiQemuOpenBoardPkgTokenSpaceGuid = {0x221b20c4, 0xa3dc, 0x4b8f, {0xb6, 0x94, 0x03, 0xc7, 0xf4, 0x76, 0x51, 0x2b}}
-  gCpPlatFlashTokenSpaceGuid                          = { 0xc9c39664, 0x96dd, 0x4c5c, { 0xaf, 0xd7, 0xcd, 0x65, 0x76, 0x29, 0xcf, 0xb0 } }
+  gQemuOpenBoardPkgTokenSpaceGuid                     = { 0x221b20c4, 0xa3dc, 0x4b8f, { 0xb6, 0x94, 0x03, 0xc7, 0xf4, 0x76, 0x51, 0x2b } }
 
-[PcdsFixedAtBuild]  
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0|UINT32|0x00000001
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0|UINT32|0x00000002
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0|UINT16|0x00000003
-  #
-  # These need to move to MinPlatformPkg.dec
-  #
-  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize|0|UINT32|0xF00000A9
-  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryBase|0|UINT32|0xF00000AA
-  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemoryOffset|0|UINT32|0xF00000AB
-  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize|0|UINT32|0xF00000AC
-  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspBase|0|UINT32|0xF00000AD
-  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspOffset|0|UINT32|0xF00000AE
-
-  gCpPlatFlashTokenSpaceGuid.PcdFlashFvNvStorageEventLogSize         |0x00200000 |UINT32|0x50000351
+[PcdsFixedAtBuild]
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0|UINT32|0x00000001
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0|UINT32|0x00000002
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0|UINT16|0x00000003

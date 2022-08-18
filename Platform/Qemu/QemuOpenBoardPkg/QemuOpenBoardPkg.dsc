@@ -1,7 +1,7 @@
 ## @file
 #  QemuOpenBoardPkg.dsc
 #
-#  Description file for QemuOpenBoardPkg 
+#  Description file for QemuOpenBoardPkg
 #
 #  Copyright (c) 2022 Théo Jehl
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -34,11 +34,11 @@
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel   | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask           | 0x17
 
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0x402
   # Worth investigating: 0x010000 doesn't work as a temporary ram base once
-  # I fixed the stack. It should be firmly within lower memory (640KiB). 
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x1000000
-  gUefiQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
+  # I fixed the stack. It should be firmly within lower memory (640KiB).
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0x1000000
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0x010000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|100000000
