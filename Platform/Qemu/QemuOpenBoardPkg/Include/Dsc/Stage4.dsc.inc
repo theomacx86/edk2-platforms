@@ -26,15 +26,25 @@
   MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 
   !if $(SMM_ENABLED) == TRUE
-      OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
-      OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
-      MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
-      MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
-      MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf
-      MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
-      UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
-      UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
-      MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteSmm.inf
-      IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
+    OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
+    OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
+    MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
+    MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
+
+    MdeModulePkg/Universal/LockBox/SmmLockBox/SmmLockBox.inf {
+      <LibraryClasses>
+        LockBoxLib|MdeModulePkg/Library/SmmLockBoxLib/SmmLockBoxSmmLib.inf
+    }
+    UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf {
+      <LibraryClasses>
+        SmmCpuPlatformHookLib|OvmfPkg/Library/SmmCpuPlatformHookLibQemu/SmmCpuPlatformHookLibQemu.inf
+        SmmCpuFeaturesLib|OvmfPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.inf
+    }
+
+    MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf
+    MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
+    UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
+    MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteSmm.inf
+    IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
   !endif
 
