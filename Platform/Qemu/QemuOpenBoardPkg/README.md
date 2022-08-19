@@ -25,7 +25,6 @@ This project brings UEFI support to QEMU x86_64 following the MinPlatform specif
   - WORKSPACE set to your current workspace
   - PACKAGES_PATH should contain path to:
     - edk2
-    - edk2/OvmfPkg
     - edk2-platforms
     - edk2-platforms/Platform/Intel
     - edk2-platforms/Platform/Qemu
@@ -41,11 +40,11 @@ QemuOpenBoardPkg (IA32 PEI - X64 DXE)
 
 ```build -a IA32 -a X64 -D PEI_ARCH=IA32 -D DXE_ARCH=X64```
 
-To build with SMM support, set the ```SMM_REQUIRED``` flag to TRUE (Q35 only)
+To build with SMM support, set the ```SMM_REQUIRED``` flag to TRUE (Q35 only) in QemuOpenBoardPkg.dsc
 
 ## How to use
 
-Using qemu-system-x86_64, use 
+Using qemu-system-x86_64, use
 
 ```-bios <path to QemuOpenBoard FV>```
 
@@ -62,4 +61,3 @@ To redirect serial output to the console
 - While PIIX4 supports SMM, the maximum SMRAM size does not allow for UEFI support with SMM on this platform, if you plan on using SMM, use Q35.
 
 - Secure boot is not yet available due to QemuOpenBoardPkg lacking secure boot keys.
-
