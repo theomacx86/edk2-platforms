@@ -1,4 +1,4 @@
-/** @file
+/** @file PlatformInit.h
   Headers for PlatformInitPei PEIM
 
   Copyright (c) 2022 Théo Jehl All rights reserved.

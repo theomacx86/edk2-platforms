@@ -15,9 +15,9 @@
     SUPPORTED_ARCHITECTURES     = IA32 | X64
     FLASH_DEFINITION            = $(PLATFORM_NAME)/$(PLATFORM_NAME).fdf
     OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
-    BUILD_TARGETS               = DEBUG | RELEASE
+    BUILD_TARGETS               = DEBUG | RELEASE | NOOPT
     SKUID_IDENTIFIER            = ALL
-    SMM_ENABLED                 = TRUE
+    SMM_REQUIRED                = FALSE
 
 [SkuIds]
   0 | DEFAULT
@@ -59,7 +59,7 @@
   gMinPlatformPkgTokenSpaceGuid.PcdSerialTerminalEnable     | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdTpm2Enable               | FALSE
 
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
     gUefiOvmfPkgTokenSpaceGuid.PcdSmmSmramRequire                 | TRUE
     gUefiCpuPkgTokenSpaceGuid.PcdCpuHotPlugSupport                | FALSE
     gEfiMdeModulePkgTokenSpaceGuid.PcdEnableVariableRuntimeCache  | FALSE
@@ -80,7 +80,7 @@
   gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber   | 0
   gUefiCpuPkgTokenSpaceGuid.PcdCpuBootLogicalProcessorNumber  | 0
 
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
     gUefiOvmfPkgTokenSpaceGuid.PcdQ35TsegMbytes               | 8
     gUefiOvmfPkgTokenSpaceGuid.PcdQ35SmramAtDefaultSmbase     | FALSE
     gUefiCpuPkgTokenSpaceGuid.PcdCpuSmmSyncMode               | 0x01

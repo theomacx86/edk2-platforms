@@ -9,7 +9,7 @@
 
 
 [LibraryClasses.X64]
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
     SpiFlashCommonLib|IntelSiliconPkg/Library/SmmSpiFlashCommonLib/SmmSpiFlashCommonLib.inf
   !endif
 
@@ -25,7 +25,7 @@
   MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
   MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
     OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
     OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
     MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
