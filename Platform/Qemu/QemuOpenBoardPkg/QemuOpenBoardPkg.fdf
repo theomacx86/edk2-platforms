@@ -4,17 +4,17 @@
 #  Copyright (c) 2022 Théo Jehl
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF800000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x00800000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF700000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x900000
 
 !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFF800000
-  Size          = 0x00800000
+  BaseAddress   = 0xFF700000
+  Size          = 0x900000
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0x0800
+  NumBlocks     = 0x900
 
   #
   # Do not modify this block

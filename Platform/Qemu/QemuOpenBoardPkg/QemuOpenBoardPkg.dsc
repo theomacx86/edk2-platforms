@@ -15,9 +15,9 @@
     SUPPORTED_ARCHITECTURES     = IA32 | X64
     FLASH_DEFINITION            = $(PLATFORM_NAME)/$(PLATFORM_NAME).fdf
     OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
-    BUILD_TARGETS               = DEBUG | RELEASE
+    BUILD_TARGETS               = DEBUG | RELEASE | NOOPT
     SKUID_IDENTIFIER            = ALL
-    SMM_ENABLED                 = TRUE
+    SMM_ENABLED                 = FALSE
 
 [SkuIds]
   0 | DEFAULT
