@@ -4,17 +4,17 @@
 #  Copyright (c) 2022 Théo Jehl
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF700000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x900000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF600000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0xA00000
 
 !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFF700000
-  Size          = 0x900000
+  BaseAddress   = 0xFF600000
+  Size          = 0xA00000
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0x900
+  NumBlocks     = 0xA00
 
   #
   # Do not modify this block
@@ -79,7 +79,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x900000
   INF MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
   INF MinPlatformPkg/PlatformInit/ReportFv/ReportFvPei.inf
   INF QemuOpenBoardPkg/PlatformInitPei/PlatformInitPei.inf
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
     INF OvmfPkg/SmmAccess/SmmAccessPei.inf
   !endif
   INF MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
@@ -231,7 +231,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x900000
   INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
       INF OvmfPkg/SmmAccess/SmmAccess2Dxe.inf
       INF OvmfPkg/SmmControl2Dxe/SmmControl2Dxe.inf
       INF MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf

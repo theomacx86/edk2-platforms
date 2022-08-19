@@ -50,6 +50,6 @@
   MinPlatformPkg/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPreMem.inf
   MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
   QemuOpenBoardPkg/PlatformInitPei/PlatformInitPei.inf
-  !if $(SMM_ENABLED) == TRUE
+  !if $(SMM_REQUIRED) == TRUE
     OvmfPkg/SmmAccess/SmmAccessPei.inf
   !endif

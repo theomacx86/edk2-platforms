@@ -1,4 +1,4 @@
-/** @file
+/** @file PlarformInit.c
   Platform initialization PEIM for QEMU
 
   Copyright (c) 2022 Théo Jehl All rights reserved.

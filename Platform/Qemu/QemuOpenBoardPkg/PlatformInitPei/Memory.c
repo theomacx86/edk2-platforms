@@ -1,4 +1,4 @@
-/** @file
+/** @file Memory.c
   Memory probing and installation
 
   Copyright (c) 2022 Théo Jehl All rights reserved.

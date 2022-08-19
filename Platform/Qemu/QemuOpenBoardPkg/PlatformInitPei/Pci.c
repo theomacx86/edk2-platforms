@@ -1,4 +1,4 @@
-/** @file
+/** @file Pci.c
   PCI Initialization for PIIX4 QEMU
 
   Copyright (c) 2022 Théo Jehl All rights reserved.

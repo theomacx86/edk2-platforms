@@ -1,4 +1,4 @@
-/** @file
+/** @file Cpu.c
   CPU Count initialization
 
   Copyright (c) 2022 Théo Jehl All rights reserved.
