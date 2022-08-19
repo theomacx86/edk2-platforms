@@ -57,37 +57,8 @@ BOOLEAN                     mForceX2ApicId;
 BOOLEAN                     mX2ApicEnabled;
 
 EFI_MP_SERVICES_PROTOCOL    *mMpService;
-BOOLEAN                     mCpuOrderSorted;
-EFI_CPU_ID_ORDER_MAP        *mCpuApicIdOrderTable = NULL;
 UINTN                       mNumberOfCpus = 0;
 UINTN                       mNumberOfEnabledCPUs = 0;
-
-
-/**
-  The function is called by PerformQuickSort to compare int values.
-
-  @param[in] Left            The pointer to first buffer.
-  @param[in] Right           The pointer to second buffer.
-
-  @return -1                 Buffer1 is less than Buffer2.
-  @return  1                 Buffer1 is greater than Buffer2.
-
-**/
-INTN
-EFIAPI
-ApicIdCompareFunction (
-  IN CONST VOID                         *Left,
-  IN CONST VOID                         *Right
-  )
-{
-  UINT32  LeftApicId;
-  UINT32  RightApicId;
-
-  LeftApicId = ((EFI_CPU_ID_ORDER_MAP *) Left)->ApicId;
-  RightApicId = ((EFI_CPU_ID_ORDER_MAP *) Right)->ApicId;
-
-  return (LeftApicId > RightApicId)? 1 : (-1);
-}
 
 /**
   Print Cpu Apic ID Table
@@ -116,7 +87,8 @@ DebugDisplayReOrderTable (
 EFI_STATUS
 AppendCpuMapTableEntry (
     IN VOID   *ApicPtr,
-    IN UINT32 LocalApicCounter
+    IN UINT32 LocalApicCounter,
+    IN EFI_CPU_ID_ORDER_MAP *CpuApicIdOrderTable
   )
 {
   EFI_STATUS    Status;
@@ -131,9 +103,9 @@ AppendCpuMapTableEntry (
 
   if(Type == EFI_ACPI_6_3_PROCESSOR_LOCAL_APIC) {
     if(!mX2ApicEnabled) {
-      LocalApicPtr->Flags            = (UINT8)mCpuApicIdOrderTable[LocalApicCounter].Flags;
-      LocalApicPtr->ApicId           = (UINT8)mCpuApicIdOrderTable[LocalApicCounter].ApicId;
-      LocalApicPtr->AcpiProcessorUid = (UINT8)mCpuApicIdOrderTable[LocalApicCounter].AcpiProcessorUid;
+      LocalApicPtr->Flags            = (UINT8)CpuApicIdOrderTable[LocalApicCounter].Flags;
+      LocalApicPtr->ApicId           = (UINT8)CpuApicIdOrderTable[LocalApicCounter].ApicId;
+      LocalApicPtr->AcpiProcessorUid = (UINT8)CpuApicIdOrderTable[LocalApicCounter].AcpiProcessorUid;
     } else {
       LocalApicPtr->Flags            = 0;
       LocalApicPtr->ApicId           = 0xFF;
@@ -142,9 +114,9 @@ AppendCpuMapTableEntry (
     }
   } else if(Type == EFI_ACPI_6_3_PROCESSOR_LOCAL_X2APIC) {
     if(mX2ApicEnabled) {
-      LocalX2ApicPtr->Flags            = (UINT8)mCpuApicIdOrderTable[LocalApicCounter].Flags;
-      LocalX2ApicPtr->X2ApicId         = mCpuApicIdOrderTable[LocalApicCounter].ApicId;
-      LocalX2ApicPtr->AcpiProcessorUid = mCpuApicIdOrderTable[LocalApicCounter].AcpiProcessorUid;
+      LocalX2ApicPtr->Flags            = (UINT8)CpuApicIdOrderTable[LocalApicCounter].Flags;
+      LocalX2ApicPtr->X2ApicId         = CpuApicIdOrderTable[LocalApicCounter].ApicId;
+      LocalX2ApicPtr->AcpiProcessorUid = CpuApicIdOrderTable[LocalApicCounter].AcpiProcessorUid;
     } else {
       LocalX2ApicPtr->Flags            = 0;
       LocalX2ApicPtr->X2ApicId         = (UINT32)-1;
@@ -159,31 +131,24 @@ AppendCpuMapTableEntry (
 
 }
 
+/**
+  Collect all processors information and create a Cpu Apic Id table.
+
+  @param[in]  CpuApicIdOrderTable       Buffer to store information of Cpu.
+**/
 EFI_STATUS
-SortCpuLocalApicInTable (
-  VOID
+CreateCpuLocalApicInTable (
+  IN EFI_CPU_ID_ORDER_MAP *CpuApicIdOrderTable
   )
 {
   EFI_STATUS                                Status;
   EFI_PROCESSOR_INFORMATION                 ProcessorInfoBuffer;
   UINT32                                    Index;
   UINT32                                    CurrProcessor;
-  UINT32                                    BspApicId;
-  EFI_CPU_ID_ORDER_MAP                      TempVal;
   EFI_CPU_ID_ORDER_MAP                      *CpuIdMapPtr;
-  UINT32                                    CoreThreadMask;
-  EFI_CPU_ID_ORDER_MAP                      *TempCpuApicIdOrderTable;
   UINT32                                    Socket;
 
-  Index      = 0;
   Status     = EFI_SUCCESS;
-
-  if (mCpuOrderSorted) {
-    return Status;
-  }
-
-  TempCpuApicIdOrderTable = AllocateZeroPool (mNumberOfCpus * sizeof (EFI_CPU_ID_ORDER_MAP));
-  CoreThreadMask = (UINT32) ((1 << mNumOfBitShift) - 1);
 
   for (CurrProcessor = 0, Index = 0; CurrProcessor < mNumberOfCpus; CurrProcessor++, Index++) {
     Status = mMpService->GetProcessorInfo (
@@ -192,7 +157,7 @@ SortCpuLocalApicInTable (
                            &ProcessorInfoBuffer
                            );
 
-    CpuIdMapPtr = (EFI_CPU_ID_ORDER_MAP *) &TempCpuApicIdOrderTable[Index];
+    CpuIdMapPtr = (EFI_CPU_ID_ORDER_MAP *) &CpuApicIdOrderTable[Index];
     if ((ProcessorInfoBuffer.StatusFlag & PROCESSOR_ENABLED_BIT) != 0) {
       CpuIdMapPtr->ApicId  = (UINT32)ProcessorInfoBuffer.ProcessorId;
       CpuIdMapPtr->Thread  = ProcessorInfoBuffer.Location.Thread;
@@ -214,89 +179,26 @@ SortCpuLocalApicInTable (
     } //end if PROC ENABLE
   } //end for CurrentProcessor
 
-  //keep for debug purpose
-  DEBUG ((DEBUG_INFO, "::ACPI::  APIC ID Order Table Init.   CoreThreadMask = %x,  mNumOfBitShift = %x\n", CoreThreadMask, mNumOfBitShift));
-  DebugDisplayReOrderTable (TempCpuApicIdOrderTable);
-
   //
   // Get Bsp Apic Id
   //
-  BspApicId = GetApicId ();
-  DEBUG ((DEBUG_INFO, "BspApicId - 0x%x\n", BspApicId));
+  DEBUG ((DEBUG_INFO, "BspApicId - 0x%x\n", GetApicId ()));
+
 
   //
-  //check to see if 1st entry is BSP, if not swap it
-  //
-  if (TempCpuApicIdOrderTable[0].ApicId != BspApicId) {
-    for (Index = 0; Index < mNumberOfCpus; Index++) {
-      if ((TempCpuApicIdOrderTable[Index].Flags == 1) && (TempCpuApicIdOrderTable[Index].ApicId == BspApicId)) {
-        CopyMem (&TempVal, &TempCpuApicIdOrderTable[Index], sizeof (EFI_CPU_ID_ORDER_MAP));
-        CopyMem (&TempCpuApicIdOrderTable[Index], &TempCpuApicIdOrderTable[0], sizeof (EFI_CPU_ID_ORDER_MAP));
-        CopyMem (&TempCpuApicIdOrderTable[0], &TempVal, sizeof (EFI_CPU_ID_ORDER_MAP));
-        break;
-      }
-    }
-
-    if (mNumberOfCpus <= Index) {
-      DEBUG ((DEBUG_ERROR, "Asserting the SortCpuLocalApicInTable Index Bufferflow\n"));
-      return EFI_INVALID_PARAMETER;
-    }
-  }
-
-  //
-  // 1. Sort TempCpuApicIdOrderTable,
-  //    sort it by using ApicId from minimum to maximum (Socket0 to SocketN), and the BSP must in the fist location of the table.
-  //    So, start sorting the table from the second element and total elements are mNumberOfCpus-1.
-  //
-  PerformQuickSort ((TempCpuApicIdOrderTable + 1), (mNumberOfCpus - 1), sizeof (EFI_CPU_ID_ORDER_MAP), (SORT_COMPARE) ApicIdCompareFunction);
-
-  //
-  // 2. Sort and map the primary threads to the front of the CpuApicIdOrderTable
-  //
-  for (CurrProcessor = 0, Index = 0; Index < mNumberOfCpus; Index++) {
-    if ((TempCpuApicIdOrderTable[Index].Thread) == 0) { // primary thread
-      CopyMem (&mCpuApicIdOrderTable[CurrProcessor], &TempCpuApicIdOrderTable[Index], sizeof (EFI_CPU_ID_ORDER_MAP));
-      CurrProcessor++;
-    }
-  }
-
-  //
-  // 3. Sort and map the second threads to the middle of the CpuApicIdOrderTable
-  //
-  for (Index = 0; Index < mNumberOfCpus; Index++) {
-    if ((TempCpuApicIdOrderTable[Index].Thread) == 1) { //second thread
-      CopyMem (&mCpuApicIdOrderTable[CurrProcessor], &TempCpuApicIdOrderTable[Index], sizeof (EFI_CPU_ID_ORDER_MAP));
-      CurrProcessor++;
-    }
-  }
-
-  //
-  // 4. Sort and map the not enabled threads to the bottom of the CpuApicIdOrderTable
-  //
-  for (Index = 0; Index < mNumberOfCpus; Index++) {
-    if (TempCpuApicIdOrderTable[Index].Flags == 0) { // not enabled
-      CopyMem (&mCpuApicIdOrderTable[CurrProcessor], &TempCpuApicIdOrderTable[Index], sizeof (EFI_CPU_ID_ORDER_MAP));
-      CurrProcessor++;
-    }
-  }
-
-  //
-  // 5. Re-assign AcpiProcessorId for AcpiProcessorUid uses purpose.
+  // Fill in AcpiProcessorUid.
   //
   for (Socket = 0; Socket < FixedPcdGet32 (PcdMaxCpuSocketCount); Socket++) {
     for (CurrProcessor = 0, Index = 0; CurrProcessor < mNumberOfCpus; CurrProcessor++) {
-      if (mCpuApicIdOrderTable[CurrProcessor].Flags && (mCpuApicIdOrderTable[CurrProcessor].SocketNum == Socket)) {
-        mCpuApicIdOrderTable[CurrProcessor].AcpiProcessorUid = (mCpuApicIdOrderTable[CurrProcessor].SocketNum << mNumOfBitShift) + Index;
+      if (CpuApicIdOrderTable[CurrProcessor].Flags && (CpuApicIdOrderTable[CurrProcessor].SocketNum == Socket)) {
+        CpuApicIdOrderTable[CurrProcessor].AcpiProcessorUid = (CpuApicIdOrderTable[CurrProcessor].SocketNum << mNumOfBitShift) + Index;
         Index++;
       }
     }
   }
 
-  //keep for debug purpose
-  DEBUG ((DEBUG_INFO, "APIC ID Order Table ReOrdered\n"));
-  DebugDisplayReOrderTable (mCpuApicIdOrderTable);
-
-  mCpuOrderSorted = TRUE;
+  DEBUG ((DEBUG_INFO, "::ACPI::  APIC ID Order Table Init.   mNumOfBitShift = %x\n", mNumOfBitShift));
+  DebugDisplayReOrderTable (CpuApicIdOrderTable);
 
   return Status;
 }
@@ -750,6 +652,7 @@ InstallMadtFromScratch (
   EFI_ACPI_6_3_LOCAL_APIC_NMI_STRUCTURE               LocalApciNmiStruct;
   EFI_ACPI_6_3_PROCESSOR_LOCAL_X2APIC_STRUCTURE       ProcLocalX2ApicStruct;
   EFI_ACPI_6_3_LOCAL_X2APIC_NMI_STRUCTURE             LocalX2ApicNmiStruct;
+  EFI_CPU_ID_ORDER_MAP                                *CpuApicIdOrderTable;
   STRUCTURE_HEADER                                    **MadtStructs;
   UINTN                                               MaxMadtStructCount;
   UINTN                                               MadtStructsIndex;
@@ -760,18 +663,19 @@ InstallMadtFromScratch (
 
   MadtStructs = NULL;
   NewMadtTable = NULL;
+  CpuApicIdOrderTable = NULL;
   MaxMadtStructCount = 0;
 
-  mCpuApicIdOrderTable = AllocateZeroPool (mNumberOfCpus * sizeof (EFI_CPU_ID_ORDER_MAP));
-  if (mCpuApicIdOrderTable == NULL) {
-    DEBUG ((DEBUG_ERROR, "Could not allocate mCpuApicIdOrderTable structure pointer array\n"));
+  CpuApicIdOrderTable = AllocateZeroPool (mNumberOfCpus * sizeof (EFI_CPU_ID_ORDER_MAP));
+  if (CpuApicIdOrderTable == NULL) {
+    DEBUG ((DEBUG_ERROR, "Could not allocate CpuApicIdOrderTable structure pointer array\n"));
     return EFI_OUT_OF_RESOURCES;
   }
 
   // Call for Local APIC ID Reorder
-  Status = SortCpuLocalApicInTable ();
+  Status = CreateCpuLocalApicInTable (CpuApicIdOrderTable);
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "SortCpuLocalApicInTable failed: %r\n", Status));
+    DEBUG ((DEBUG_ERROR, "CreateCpuLocalApicInTable failed: %r\n", Status));
     goto Done;
   }
 
@@ -824,10 +728,10 @@ InstallMadtFromScratch (
     // APIC ID as a UINT8, use a processor local APIC structure. Otherwise,
     // use a processor local x2APIC structure.
     //
-    if (!mX2ApicEnabled && mCpuApicIdOrderTable[Index].ApicId < MAX_UINT8) {
-      ProcLocalApicStruct.Flags            = (UINT8) mCpuApicIdOrderTable[Index].Flags;
-      ProcLocalApicStruct.ApicId           = (UINT8) mCpuApicIdOrderTable[Index].ApicId;
-      ProcLocalApicStruct.AcpiProcessorUid = (UINT8) mCpuApicIdOrderTable[Index].AcpiProcessorUid;
+    if (!mX2ApicEnabled && CpuApicIdOrderTable[Index].ApicId < MAX_UINT8) {
+      ProcLocalApicStruct.Flags            = (UINT8) CpuApicIdOrderTable[Index].Flags;
+      ProcLocalApicStruct.ApicId           = (UINT8) CpuApicIdOrderTable[Index].ApicId;
+      ProcLocalApicStruct.AcpiProcessorUid = (UINT8) CpuApicIdOrderTable[Index].AcpiProcessorUid;
 
       ASSERT (MadtStructsIndex < MaxMadtStructCount);
       Status = CopyStructure (
@@ -835,10 +739,10 @@ InstallMadtFromScratch (
                  (STRUCTURE_HEADER *) &ProcLocalApicStruct,
                  &MadtStructs[MadtStructsIndex++]
                  );
-    } else if (mCpuApicIdOrderTable[Index].ApicId != 0xFFFFFFFF) {
-      ProcLocalX2ApicStruct.Flags            = (UINT8) mCpuApicIdOrderTable[Index].Flags;
-      ProcLocalX2ApicStruct.X2ApicId         = mCpuApicIdOrderTable[Index].ApicId;
-      ProcLocalX2ApicStruct.AcpiProcessorUid = mCpuApicIdOrderTable[Index].AcpiProcessorUid;
+    } else if (CpuApicIdOrderTable[Index].ApicId != 0xFFFFFFFF) {
+      ProcLocalX2ApicStruct.Flags            = (UINT8) CpuApicIdOrderTable[Index].Flags;
+      ProcLocalX2ApicStruct.X2ApicId         = CpuApicIdOrderTable[Index].ApicId;
+      ProcLocalX2ApicStruct.AcpiProcessorUid = CpuApicIdOrderTable[Index].AcpiProcessorUid;
 
       ASSERT (MadtStructsIndex < MaxMadtStructCount);
       Status = CopyStructure (
@@ -1033,8 +937,8 @@ Done:
     FreePool (NewMadtTable);
   }
 
-  if (mCpuApicIdOrderTable != NULL) {
-    FreePool (mCpuApicIdOrderTable);
+  if (CpuApicIdOrderTable != NULL) {
+    FreePool (CpuApicIdOrderTable);
   }
 
   return Status;
@@ -1207,6 +1111,7 @@ PlatformUpdateTables (
     FadtHeader->Gpe0Blk                           = PcdGet16 (PcdAcpiGpe0BlockAddress);
     FadtHeader->Gpe0BlkLen                        = PcdGet8 (PcdAcpiGpe0BlockLength);
     FadtHeader->Gpe1Blk                           = PcdGet16 (PcdAcpiGpe1BlockAddress);
+    FadtHeader->Gpe1BlkLen                        = PcdGet8 (PcdAcpiGpe1BlockLength);
     FadtHeader->Gpe1Base                          = PcdGet8 (PcdAcpiGpe1Base);
 
     FadtHeader->XPm1aEvtBlk.Address               = PcdGet16 (PcdAcpiPm1AEventBlockAddress);
@@ -1227,6 +1132,7 @@ PlatformUpdateTables (
     FadtHeader->XPmTmrBlk.AccessSize              = PcdGet8 (PcdAcpiXPmTmrBlkAccessSize);
     FadtHeader->XGpe0Blk.AccessSize               = PcdGet8 (PcdAcpiXGpe0BlkAccessSize);
     FadtHeader->XGpe1Blk.AccessSize               = PcdGet8 (PcdAcpiXGpe1BlkAccessSize);
+    FadtHeader->XGpe1Blk.RegisterBitWidth         = PcdGet8 (PcdAcpiXGpe1BlkRegisterBitWidth);
 
     FadtHeader->SleepControlReg.AddressSpaceId    = PcdGet8 (PcdAcpiSleepControlRegisterAddressSpaceId);
     FadtHeader->SleepControlReg.RegisterBitWidth  = PcdGet8 (PcdAcpiSleepControlRegisterBitWidth);

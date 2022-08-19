@@ -53,12 +53,18 @@
   UserAuthFeaturePkg/UserAuthFeaturePkg.dec
   VirtualKeyboardFeaturePkg/VirtualKeyboardFeaturePkg.dec
 
+  #
+  # Individual features
+  #
+  PlatformPayloadFeaturePkg/PlatformPayloadFeaturePkg.dec
+
 #
 # The section below sets all PCDs to FALSE in this DSC file so the feature is not enabled by default.
 # Board can set PCDs to TRUE in its DSC file to enable a subset of advanced features
 #
 [PcdsFeatureFlag]
   gAcpiDebugFeaturePkgTokenSpaceGuid.PcdAcpiDebugFeatureEnable              |FALSE
+  gAcpiDebugFeaturePkgTokenSpaceGuid.PcdUseSmmVersion                       |FALSE
   gBeepDebugFeaturePkgTokenSpaceGuid.PcdBeepDebugFeatureEnable              |FALSE
   gPostCodeDebugFeaturePkgTokenSpaceGuid.PcdPostCodeDebugFeatureEnable      |FALSE
   gUsb3DebugFeaturePkgTokenSpaceGuid.PcdUsb3DebugFeatureEnable              |FALSE
@@ -75,6 +81,8 @@
   gLogoFeaturePkgTokenSpaceGuid.PcdLogoFeatureEnable                        |FALSE
   gUserAuthFeaturePkgTokenSpaceGuid.PcdUserAuthenticationFeatureEnable      |FALSE
   gVirtualKeyboardFeaturePkgTokenSpaceGuid.PcdVirtualKeyboardFeatureEnable  |FALSE
+
+  gPlatformPayloadFeaturePkgTokenSpaceGuid.PcdPlatformPayloadFeatureEnable  |FALSE
 
 #
 # There seems to be some build parsing odd behavior that requires this PCD to be specified even though

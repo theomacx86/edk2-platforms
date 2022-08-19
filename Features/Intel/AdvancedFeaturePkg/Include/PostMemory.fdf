@@ -76,3 +76,10 @@
 !if gVirtualKeyboardFeaturePkgTokenSpaceGuid.PcdVirtualKeyboardFeatureEnable == TRUE
   !include VirtualKeyboardFeaturePkg/Include/PostMemory.fdf
 !endif
+
+#
+# Individual features
+#
+!if gPlatformPayloadFeaturePkgTokenSpaceGuid.PcdPlatformPayloadFeatureEnable == TRUE
+  !include PlatformPayloadFeaturePkg/Include/PostMemory.fdf
+!endif
