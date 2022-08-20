@@ -17,7 +17,7 @@
     OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
     BUILD_TARGETS               = DEBUG | RELEASE | NOOPT
     SKUID_IDENTIFIER            = ALL
-    SMM_REQUIRED                = FALSE
+    SMM_REQUIRED                = TRUE
 
 [SkuIds]
   0 | DEFAULT
@@ -30,7 +30,7 @@
   UefiCpuPkg/UefiCpuPkg.dec
 
 [PcdsFixedAtBuild]
-  gMinPlatformPkgTokenSpaceGuid.PcdBootStage | 4
+  gMinPlatformPkgTokenSpaceGuid.PcdBootStage | 5
 
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel        | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel   | 0x802A00C7
@@ -52,7 +52,7 @@
 
 [PcdsFeatureFlag]
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable  | TRUE
-  gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable     | FALSE
+  gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable     | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable        | FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode  | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdBootToShellOnly          | TRUE
@@ -64,6 +64,11 @@
     gUefiCpuPkgTokenSpaceGuid.PcdCpuHotPlugSupport                | FALSE
     gEfiMdeModulePkgTokenSpaceGuid.PcdEnableVariableRuntimeCache  | FALSE
   !endif
+
+[Defines]
+!if gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable == TRUE
+  DEFINE SECURE_BOOT_ENABLE = TRUE
+!endif
 
 [PcdsDynamicDefault]
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId | 0
@@ -128,3 +133,4 @@
   MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+  !include MinPlatformPkg/Include/Dsc/CoreDxeInclude.dsc
