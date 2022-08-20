@@ -4,17 +4,17 @@
 #  Copyright (c) 2022 Théo Jehl
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF600000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0xA00000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress      = 0xFF800000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
 
 !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
 [FD.QemuOpenBoardPkg]
-  BaseAddress   = 0xFF600000
-  Size          = 0xA00000
+  BaseAddress   = 0xFF800000
+  Size          = 0x800000
   ErasePolarity = 1
   BlockSize     = 0x1000
-  NumBlocks     = 0xA00
+  NumBlocks     = 0x800
 
   #
   # Do not modify this block
@@ -253,6 +253,9 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0xA00000
 [FV.FvSecurity]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = 1AE6AB90-9431-425B-9A92-ED2708A4E982
+  !include MinPlatformPkg/Include/Fdf/CoreSecurityLateInclude.fdf
+  !include MinPlatformPkg/Include/Fdf/CoreSecurityPreMemoryInclude.fdf
+
 
 ###########################
 #
