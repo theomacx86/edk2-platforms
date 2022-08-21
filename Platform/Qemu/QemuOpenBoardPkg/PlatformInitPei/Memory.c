@@ -47,6 +47,10 @@ GetMemoryBelow4Gb (
   QemuFwCfgSelectItem (FwCfgFile.Select);
   for (Processed = 0; Processed < FwCfgFile.Size / sizeof (EFI_E820_ENTRY); Processed++) {
     QemuFwCfgReadBytes (sizeof (EFI_E820_ENTRY), &E820Entry);
+    if (E820Entry.Type != EfiAcpiAddressRangeMemory) {
+      continue;
+    }
+
     if (E820Entry.BaseAddr + E820Entry.Length < SIZE_4GB) {
       Size += E820Entry.Length;
     } else {

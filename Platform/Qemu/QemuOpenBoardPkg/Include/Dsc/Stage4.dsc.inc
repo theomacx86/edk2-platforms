@@ -48,3 +48,13 @@
     IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
   !endif
 
+  #
+  # SMBIOS Support
+  #
+  MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf {
+    <LibraryClasses>
+      NULL|OvmfPkg/Library/SmbiosVersionLib/DetectSmbiosVersionLib.inf
+  }
+  OvmfPkg/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
+
+
