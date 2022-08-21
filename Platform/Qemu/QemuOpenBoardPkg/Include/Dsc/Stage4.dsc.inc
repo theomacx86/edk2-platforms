@@ -8,12 +8,12 @@
 ##
 
 
-[LibraryClasses.X64]
+[LibraryClasses.$(DXE_ARCH)]
   !if $(SMM_REQUIRED) == TRUE
     SpiFlashCommonLib|IntelSiliconPkg/Library/SmmSpiFlashCommonLib/SmmSpiFlashCommonLib.inf
   !endif
 
-[Components.X64]
+[Components.$(DXE_ARCH)]
   OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   OvmfPkg/SataControllerDxe/SataControllerDxe.inf

@@ -16,7 +16,7 @@
 [LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION, LibraryClasses.common.SMM_CORE]
   PciLib|OvmfPkg/Library/DxePciLibI440FxQ35/DxePciLibI440FxQ35.inf
 
-[Components.IA32]
+[Components.$(PEI_ARCH)]
   UefiCpuPkg/CpuMpPei/CpuMpPei.inf{
     <LibraryClasses>
     MpInitLib|UefiCpuPkg/Library/MpInitLib/PeiMpInitLib.inf
@@ -26,7 +26,7 @@
   MinPlatformPkg/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
   MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
 
-  [Components.X64]
+[Components.$(DXE_ARCH)]
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
   MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
   

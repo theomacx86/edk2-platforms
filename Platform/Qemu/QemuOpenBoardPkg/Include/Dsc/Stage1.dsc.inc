@@ -32,7 +32,7 @@
   TestPointLib|MinPlatformPkg/Test/Library/TestPointLib/PeiTestPointLib.inf
   TimerLib|MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
 
-[Components.IA32]
+[Components.$(PEI_ARCH)]
   UefiCpuPkg/SecCore/SecCore.inf
   MdeModulePkg/Core/Pei/PeiMain.inf
   MdeModulePkg/Universal/Variable/Pei/VariablePei.inf

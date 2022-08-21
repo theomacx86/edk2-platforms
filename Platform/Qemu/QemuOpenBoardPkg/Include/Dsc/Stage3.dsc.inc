@@ -27,7 +27,7 @@
   DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
   SerialPortLib|PcAtChipsetPkg/Library/SerialIoLib/SerialIoLib.inf
 
-[Components.X64]
+[Components.$(DXE_ARCH)]
   MdeModulePkg/Core/Dxe/DxeMain.inf
   MdeModulePkg/Universal/PCD/Dxe/Pcd.inf{
     <LibraryClasses>

@@ -54,7 +54,13 @@
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable  | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable     | FALSE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable        | FALSE
-  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode  | TRUE
+
+  !if $(DXE_ARCH) == X64
+    gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode  | TRUE
+  !else 
+    gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode  | FALSE
+  !endif
+  
   gMinPlatformPkgTokenSpaceGuid.PcdBootToShellOnly          | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdSerialTerminalEnable     | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdTpm2Enable               | FALSE
@@ -118,7 +124,7 @@
 [LibraryClasses.Common.SEC]
   DebugLib | OvmfPkg/Library/PlatformDebugLibIoPort/PlatformRomDebugLibIoPort.inf
 
-[Components.X64]
+[Components.$(DXE_ARCH)]
   MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
   OvmfPkg/SataControllerDxe/SataControllerDxe.inf
