@@ -24,21 +24,21 @@ SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize    = gEfiMdeMod
 #
 # Early FV
 #
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize     = 0x00081000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize  = 0x00040000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize          = 0x00010000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize          = 0x00040000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize          = 0x00020000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize    = 0x00080000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize           = 0x00020000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize           = 0x00081000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize        = 0x00040000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize                = 0x00010000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize                = 0x00040000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize                = 0x00020000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize          = 0x00080000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize                 = 0x00020000
 
 #
 # Later FV
 #
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x00400000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00100000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize      = 0x00080000
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize      = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize - gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize - gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize - gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize            = 0x00400000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize              = 0x00100000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize            = 0x00080000
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize            = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize - gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize - gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize - gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPostMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspMSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspTSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvBspPreMemorySize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
 
 #
 # Calculate Offsets Once (Do not modify)

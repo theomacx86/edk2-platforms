@@ -75,7 +75,7 @@ QemuFwCfgIsPresent (
   )
 {
   EFI_STATUS  Status;
-  CHAR8       Control[4];
+  UINT32      Control;
 
   Status = QemuFwCfgSelectItem (FW_CFG_SIGNATURE);
   if (EFI_ERROR (Status)) {
@@ -83,7 +83,8 @@ QemuFwCfgIsPresent (
   }
 
   QemuFwCfgReadBytes (4, &Control);
-  if (AsciiStrnCmp ((CHAR8 *)&Control, FW_CFG_QEMU_SIGNATURE, 4) != 0) {
+  if (Control != FW_CFG_QEMU_SIGNATURE) {
+    ASSERT (Control == FW_CFG_QEMU_SIGNATURE);
     return EFI_UNSUPPORTED;
   }
 
