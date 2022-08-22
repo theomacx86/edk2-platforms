@@ -8,10 +8,15 @@
 ##
 
 
-[LibraryClasses.$(DXE_ARCH)]
+[LibraryClasses]
   !if $(SMM_REQUIRED) == TRUE
-    SpiFlashCommonLib|IntelSiliconPkg/Library/SmmSpiFlashCommonLib/SmmSpiFlashCommonLib.inf
+    SpiFlashCommonLib     | IntelSiliconPkg/Library/SmmSpiFlashCommonLib/SmmSpiFlashCommonLib.inf
   !endif
+
+[LibraryClasses.Common.DXE_SMM_DRIVER]
+  LockBoxLib              | MdeModulePkg/Library/SmmLockBoxLib/SmmLockBoxSmmLib.inf
+  SmmCpuPlatformHookLib   | OvmfPkg/Library/SmmCpuPlatformHookLibQemu/SmmCpuPlatformHookLibQemu.inf
+  SmmCpuFeaturesLib       | OvmfPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.inf
 
 [Components.$(DXE_ARCH)]
   OvmfPkg/AcpiPlatformDxe/AcpiPlatformDxe.inf
@@ -31,15 +36,8 @@
     MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
     MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
 
-    MdeModulePkg/Universal/LockBox/SmmLockBox/SmmLockBox.inf {
-      <LibraryClasses>
-        LockBoxLib|MdeModulePkg/Library/SmmLockBoxLib/SmmLockBoxSmmLib.inf
-    }
-    UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf {
-      <LibraryClasses>
-        SmmCpuPlatformHookLib|OvmfPkg/Library/SmmCpuPlatformHookLibQemu/SmmCpuPlatformHookLibQemu.inf
-        SmmCpuFeaturesLib|OvmfPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.inf
-    }
+    MdeModulePkg/Universal/LockBox/SmmLockBox/SmmLockBox.inf
+    UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
 
     MdeModulePkg/Universal/ReportStatusCodeRouter/Smm/ReportStatusCodeRouterSmm.inf
     MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
@@ -53,8 +51,6 @@
   #
   MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf {
     <LibraryClasses>
-      NULL|OvmfPkg/Library/SmbiosVersionLib/DetectSmbiosVersionLib.inf
+      NULL | OvmfPkg/Library/SmbiosVersionLib/DetectSmbiosVersionLib.inf
   }
   OvmfPkg/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
-
-

@@ -8,8 +8,8 @@
 **/
 
 
-#ifndef QEMUOPENBOARDPKG_QEMUFWCFGLIB_H
-#define QEMUOPENBOARDPKG_QEMUFWCFGLIB_H
+#ifndef QEMU_OPEN_BOARD_PKG_QEMU_FW_CFG_LIB_H_
+#define QEMU_OPEN_BOARD_PKG_QEMU_FW_CFG_LIB_H_
 
 #include <PiPei.h>
 #include <Library/IoLib.h>
@@ -24,7 +24,7 @@
 #define FW_CFG_ID         0x0001
 #define FW_CFG_FILE_DIR   0x0019
 
-#define FW_CFG_QEMU_SIGNATURE  "QEMU"
+#define FW_CFG_QEMU_SIGNATURE SIGNATURE_32('Q', 'E', 'M', 'U')
 
 typedef struct {
   UINT32    Size;
@@ -35,6 +35,8 @@ typedef struct {
 
 /**
   Checks for Qemu fw_cfg device by reading "QEMU" using the signature selector
+
+  @param None
 
   @return EFI_SUCCESS - The fw_cfg device is present
   @return EFI_UNSUPPORTED - The device is absent
@@ -49,6 +51,7 @@ QemuFwCfgIsPresent (
  Sets the selector register to the specified value
 
   @param[in] Selector
+
   @return EFI_SUCCESS
   @return EFI_UNSUPPORTED
  */
@@ -60,6 +63,8 @@ QemuFwCfgSelectItem (
 
 /**
  Reads 8 bits from the data register
+
+  @param None
 
   @return UINT8
  */
@@ -74,6 +79,8 @@ QemuFwCfgRead8 (
 
   @param Size
   @param Buffer
+
+  @return None
  */
 VOID
 EFIAPI
@@ -87,6 +94,7 @@ QemuFwCfgReadBytes (
 
   @param[in] String Pointer to an ASCII string to match in the database
   @param[out] FWConfigFile Buffer for the config file
+
   @return EFI_STATUS - Entry was found, FWConfigFile is populated
   @return EFI_ERROR - Entry was not found
  */
@@ -97,4 +105,4 @@ QemuFwCfgFindFile (
   OUT QEMU_FW_CFG_FILE  *FWConfigFile
   );
 
-#endif
+#endif // QEMU_OPEN_BOARD_PKG_QEMU_FW_CFG_LIB_H_
