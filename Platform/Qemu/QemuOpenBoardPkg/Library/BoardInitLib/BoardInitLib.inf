@@ -1,3 +1,10 @@
+## @file
+#  QemuOpenBoardPkg BoardInitLib instance
+#
+#  Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = BoardInitLib
@@ -16,15 +23,7 @@
   OvmfPkg/OvmfPkg.dec
 
 [LibraryClasses]
-DebugLib
-PcdLib
-IoLib
-PciCf8Lib
-    
-[Ppis]
-
-[Protocols]
-
-[FeaturePcd]
-
-[Pcd]
+  DebugLib
+  PcdLib
+  IoLib
+  PciCf8Lib

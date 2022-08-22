@@ -73,7 +73,6 @@ BoardBootModeDetect (
   VOID
   )
 {
-  // Placeholder
   DEBUG ((DEBUG_INFO, "BoardBootModeDetect()\n"));
   return BOOT_WITH_FULL_CONFIGURATION;
 }
