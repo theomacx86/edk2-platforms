@@ -19,7 +19,7 @@ This project brings UEFI support to QEMU x86_64 following the MinPlatform specif
   - How to setup a local tree: https://github.com/tianocore/tianocore.github.io/wiki/Getting-Started-with-EDK-II
 
 - EDK2 Platforms
-  - https://github.com/tianocore/edk2-platforms/tree/devel-MinPlatform/Platform/Intel/MinPlatformPkg
+  - https://github.com/tianocore/edk2-platforms
 
 - Environnements variables:
   - WORKSPACE set to your current workspace
@@ -62,3 +62,4 @@ To redirect serial output to the console
 - While PIIX4 supports SMM, the maximum SMRAM size does not allow for UEFI support with SMM on this platform, if you plan on using SMM, use Q35.
 
 - Secure boot is not yet available due to QemuOpenBoardPkg lacking secure boot keys.
+
