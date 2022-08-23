@@ -17,6 +17,7 @@
 UINT8
 EFIAPI
 QemuFwCfgRead8 (
+  VOID
   )
 {
   return IoRead8 (FW_CFG_PORT_DATA);
@@ -26,6 +27,7 @@ QemuFwCfgRead8 (
   Sets the selector register to the specified value
 
   @param Selector
+
   @retval EFI_SUCCESS
   @retval EFI_UNSUPPORTED
 **/
@@ -51,7 +53,6 @@ QemuFwCfgSelectItem (
 
   @param Size
   @param Buffer
-  @return VOID
 **/
 VOID
 EFIAPI

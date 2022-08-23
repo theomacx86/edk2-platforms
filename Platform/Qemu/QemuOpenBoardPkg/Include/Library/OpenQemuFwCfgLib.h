@@ -36,8 +36,6 @@ typedef struct {
 /**
   Checks for Qemu fw_cfg device by reading "QEMU" using the signature selector
 
-  @param None
-
   @return EFI_SUCCESS - The fw_cfg device is present
   @return EFI_UNSUPPORTED - The device is absent
  */
@@ -64,8 +62,6 @@ QemuFwCfgSelectItem (
 /**
  Reads 8 bits from the data register
 
-  @param None
-
   @return UINT8
  */
 UINT8
@@ -79,8 +75,6 @@ QemuFwCfgRead8 (
 
   @param Size
   @param Buffer
-
-  @return None
  */
 VOID
 EFIAPI
