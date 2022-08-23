@@ -58,11 +58,12 @@ InitializePcie (
     EfiReservedMemoryType
     );
 
-  // Clear register
+  // Clear lower 32 bits of register
   PciWrite32 (DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_LOW), 0);
 
   // Program PCIE MMIO Base address in MCH PCIEXBAR register
   PciWrite32 (DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_HIGH), PciExBarBase.Uint32[1]);
+
   // Enable 256Mb MMIO space
   PciWrite32 (
     DRAMC_REGISTER_Q35 (MCH_PCIEXBAR_LOW),

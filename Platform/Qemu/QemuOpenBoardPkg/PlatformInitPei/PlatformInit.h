@@ -5,7 +5,8 @@
   SPDX-License-Identifier: BSD-2-Clause-Patent
 **/
 
-#ifndef QEMUOPENBOARDPKG_PLATFORMINIT_H
+#ifndef QEMU_OPEN_BOARD_PKG_PLATFORM_INIT_H_
+#define QEMU_OPEN_BOARD_PKG_PLATFORM_INIT_H_
 
 #include <PiPei.h>
 #include <Uefi.h>
@@ -55,4 +56,4 @@ MaxCpuInit (
   VOID
   );
 
-#endif
+#endif //QEMU_OPEN_BOARD_PKG_PLATFORM_INIT_H_
