@@ -56,8 +56,8 @@ SecPlatformMain (
   CopyMem (PpiList, &gEfiPeiCoreFvLocationDescriptor, sizeof (EFI_PEI_PPI_DESCRIPTOR));
 
   CopyMem (&PpiList[1], &mPeiSecPlatformPpi, sizeof (EFI_PEI_PPI_DESCRIPTOR));
-  // Patch the top of RAM PPI
 
+  // Patch the top of RAM PPI
   PpiList[1].Ppi = (VOID *)((UINTN)SecCoreData->TemporaryRamBase + SecCoreData->TemporaryRamSize);
   DEBUG ((DEBUG_INFO, "SecPlatformMain(): Top of memory %p\n", PpiList[1].Ppi));
 
@@ -91,7 +91,6 @@ SecPlatformInformation (
   UINT32      Length;
 
   Status = (*PeiServices)->LocatePpi (PeiServices, &gTopOfTemporaryRamPpiGuid, 0, NULL, &TopOfRamPpi);
-
   if (EFI_ERROR (Status)) {
     return Status;
   }
@@ -137,4 +136,5 @@ SecPlatformDisableTemporaryMemory (
   VOID
   )
 {
+  return;
 }
