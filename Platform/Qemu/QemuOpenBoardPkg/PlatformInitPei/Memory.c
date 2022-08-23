@@ -32,13 +32,11 @@ GetMemoryBelow4Gb (
   EFI_STATUS        Status;
 
   Status = QemuFwCfgIsPresent ();
-
   if (EFI_ERROR (Status)) {
     return Status;
   }
 
   Status = QemuFwCfgFindFile ("etc/e820", &FwCfgFile);
-
   if (EFI_ERROR (Status)) {
     return Status;
   }
@@ -116,7 +114,6 @@ InstallMemory (
   UINT32                       RequiredBySmm;
 
   Status = QemuFwCfgIsPresent ();
-
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_INFO, "QEMU fw_cfg device is not present\n"));
     return EFI_NOT_FOUND;

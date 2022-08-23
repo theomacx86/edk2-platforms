@@ -36,10 +36,10 @@ MaxCpuInit (
 
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "QemuFwCfg not present, unable to detect CPU count \n"));
-    CpuDeadLoop ();
+    ASSERT_EFI_ERROR (Status);
     return EFI_UNSUPPORTED;
   }
-  
+
   Status = QemuFwCfgSelectItem (QemuFwCfgItemSmpCpuCount);
 
   if (EFI_ERROR (Status)) {

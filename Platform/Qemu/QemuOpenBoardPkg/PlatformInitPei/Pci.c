@@ -45,7 +45,7 @@ InitializePciPIIX4 (
 
   if (PciMmio32Base == 0) {
     DEBUG ((DEBUG_ERROR, "Unable to detect memory below 4Gb\n"));
-    CpuDeadLoop ();
+    ASSERT (PciMmio32Base != 0);
     return EFI_UNSUPPORTED;
   }
 
