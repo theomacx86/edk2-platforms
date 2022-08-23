@@ -26,7 +26,6 @@
   MdeModulePkg/MdeModulePkg.dec
   MinPlatformPkg/MinPlatformPkg.dec
   QemuOpenBoardPkg/QemuOpenBoardPkg.dec
-  
 
 [Sources]
   PeiReportFvLib.c
