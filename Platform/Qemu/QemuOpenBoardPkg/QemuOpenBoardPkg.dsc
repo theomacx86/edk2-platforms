@@ -61,6 +61,7 @@
   gMinPlatformPkgTokenSpaceGuid.PcdSmiHandlerProfileEnable  | TRUE
   gMinPlatformPkgTokenSpaceGuid.PcdUefiSecureBootEnable     | FALSE
   gMinPlatformPkgTokenSpaceGuid.PcdPerformanceEnable        | FALSE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSupportUefiDecompress|TRUE
 
   !if $(DXE_ARCH) == X64
     gEfiMdeModulePkgTokenSpaceGuid.PcdDxeIplSwitchToLongMode  | TRUE

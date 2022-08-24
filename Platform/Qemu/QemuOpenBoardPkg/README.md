@@ -7,7 +7,6 @@ This project brings UEFI support to QEMU x86_64 following the MinPlatform specif
 - Supports IA-32 and hybrid X64 (IA32 PEI Core and X64 DXE Core)
 - Modern QEMU (Tested on 7.0.0)
   - PIIX4 and Q35 machines
-  - Supports SMM (Q35 only)
 - Boot UEFI Linux
 - Boot UEFI Windows
 
@@ -40,24 +39,16 @@ QemuOpenBoardPkg (IA32 PEI - X64 DXE)
 
 ```build -a IA32 -a X64 -D PEI_ARCH=IA32 -D DXE_ARCH=X64```
 
-To build with SMM support, set the ```SMM_REQUIRED``` flag to TRUE (Q35 only) in QemuOpenBoardPkg.dsc
-
 ## How to use
 
 Using qemu-system-x86_64, use
 
 ```-bios <path to QemuOpenBoard FV>```
 
-for SMM, specify Q35 (default PIIX4)
-
-```-machine Q35```
-
 To redirect serial output to the console
 
 ```-serial stdio```
 
 ## Important notes
+- Secure boot is not yet available due to QemuOpenBoardPkg NVRAM storage not being persistent yet.
 
-- While PIIX4 supports SMM, the maximum SMRAM size does not allow for UEFI support with SMM on this platform, if you plan on using SMM, use Q35.
-
-- Secure boot is not yet available due to QemuOpenBoardPkg lacking secure boot keys.

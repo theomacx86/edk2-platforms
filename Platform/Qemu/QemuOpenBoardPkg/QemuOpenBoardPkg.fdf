@@ -167,11 +167,10 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
 # Stage 3 Firmware Volumes
 #
 ###########################
-[FV.FvUefiBoot]
+
+[FV.FvUefiBootUnCompressed]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = D2F110DB-2388-4963-BEFD-5889EEE01569
-
-  INF MdeModulePkg/Core/Dxe/DxeMain.inf
 
   INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 
@@ -212,6 +211,20 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
   INF OvmfPkg/SioBusDxe/SioBusDxe.inf
   INF MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
   INF MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
+
+
+[FV.FvUefiBoot]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = D0C15ADB-FE38-4331-841C-0E96C1B0FBFA
+
+  INF MdeModulePkg/Core/Dxe/DxeMain.inf
+
+   FILE FV_IMAGE = D2F110DB-2388-4963-BEFD-5889EEE01569 {
+    SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
+      SECTION FV_IMAGE = FvUefiBootUncompressed
+    }
+  }
+
 
 ###########################
 #

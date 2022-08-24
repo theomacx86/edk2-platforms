@@ -28,7 +28,10 @@
   SerialPortLib           | PcAtChipsetPkg/Library/SerialIoLib/SerialIoLib.inf
 
 [Components.$(DXE_ARCH)]
-  MdeModulePkg/Core/Dxe/DxeMain.inf
+  MdeModulePkg/Core/Dxe/DxeMain.inf {
+    <LibraryClasses>
+      NULL|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
+  }
   MdeModulePkg/Universal/PCD/Dxe/Pcd.inf {
     <LibraryClasses>
       PcdLib | MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
