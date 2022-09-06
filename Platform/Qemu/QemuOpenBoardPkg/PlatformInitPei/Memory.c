@@ -248,4 +248,4 @@ InstallMemory (
 
   ReserveMmioRegion (0xfec00000, 0xff000000 - 0xfec00000);
   return Status;
-*}
+}

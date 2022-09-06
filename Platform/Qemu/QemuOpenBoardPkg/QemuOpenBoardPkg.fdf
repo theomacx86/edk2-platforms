@@ -9,12 +9,12 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
 
 !include QemuOpenBoardPkg/Include/Fdf/FlashMap.fdf.inc
 
-[FD.QemuOpenBoardPkg]
+[FD.QemuOpenBoardPkgVars]
   BaseAddress   = 0xFF800000
-  Size          = 0x800000
+  Size          = 0x80000
   ErasePolarity = 1
-  BlockSize     = 0x1000
-  NumBlocks     = 0x800
+  BlockSize     = 0x800|gQemuOpenBoardPkgTokenSpaceGuid.PcdFdVarBlockSize
+  NumBlocks     = 0x100
 
   #
   # Do not modify this block
@@ -29,6 +29,13 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
   !include WhitleyOpenBoardPkg/Include/Fdf/CommonNvStorageFtwWorking.fdf
   gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareOffset | gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
   DATA = { 0xFF } # Hack to ensure build doesn't treat the next PCD as Base/Size to be written
+
+[FD.QemuOpenBoardPkg]
+  BaseAddress   = 0xFF880000
+  Size          = 0x780000
+  ErasePolarity = 1
+  BlockSize     = 0x1000
+  NumBlocks     = 0x780
 
   gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset | gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
   FV = FvAdvanced
@@ -214,6 +221,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
   INF MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
 
 
+
 [FV.FvUefiBoot]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid    = D0C15ADB-FE38-4331-841C-0E96C1B0FBFA
@@ -232,9 +240,9 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
 # Stage 4 Firmware Volumes
 #
 ###########################
-[FV.FvOsBoot]
+[FV.FvOsBootUncompressed]
   !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
-  FvNameGuid    = AE8F0EA0-1614-422D-ABC1-C518596F1678
+  FvNameGuid    = 4bb59c22-e1b8-414e-9de8-559db4054c4c
 
   INF OvmfPkg/QemuVideoDxe/QemuVideoDxe.inf
 
@@ -278,11 +286,23 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize             = 0x800000
       INF MdeModulePkg/Universal/StatusCodeHandler/Smm/StatusCodeHandlerSmm.inf
       INF UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
       INF UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
+      INF QemuOpenBoardPkg/QemuOpenFvbServicesRuntimeDxe/QemuOpenFvbServicesRuntimeDxe.inf
       INF MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteSmm.inf
       INF IntelSiliconPkg/Feature/Flash/SpiFvbService/SpiFvbServiceSmm.inf
   !endif
+
   INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   INF OvmfPkg/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
+
+[FV.FvOsBoot]
+  !include MinPlatformPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
+  FvNameGuid    = AE8F0EA0-1614-422D-ABC1-C518596F1678
+
+   FILE FV_IMAGE = 4bb59c22-e1b8-414e-9de8-559db4054c4c {
+    SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
+      SECTION FV_IMAGE = FvOsBootUncompressed
+    }
+  }
 
 
 ###########################

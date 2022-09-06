@@ -50,7 +50,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableOffset   = 0x00000000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingOffset = gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableOffset   + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareOffset   = gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingOffset + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
 
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset          = gMinPlatformPkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareOffset   + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset          = 0x00000000
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityOffset          = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset          + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootOffset            = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityOffset          + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootOffset          = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootOffset            + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize
@@ -65,6 +65,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvPreMemoryOffset         = gMinPlatfo
 
 #
 # Calculate base addresses
+# QemuOpenBoardPkgVars FD
 #
 
 SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase    = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress
@@ -75,7 +76,11 @@ SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase      = gMinPlat
 SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase    = gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize  + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
 SET gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase      = gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase  +  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
 
-SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedBase            = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress           + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedOffset
+#
+# QemuOpenBoardPkg FD
+#
+
+SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedBase            = gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaBaseAddress           + gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize +gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityBase            = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedBase            + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootBase              = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecurityBase            + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
 SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootBase            = gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootBase              + gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize

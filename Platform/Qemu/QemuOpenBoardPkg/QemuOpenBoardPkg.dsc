@@ -17,7 +17,7 @@
   OUTPUT_DIRECTORY            = Build/$(PLATFORM_NAME)
   BUILD_TARGETS               = DEBUG | RELEASE | NOOPT
   SKUID_IDENTIFIER            = ALL
-  SMM_REQUIRED                = FALSE
+  SMM_REQUIRED                = TRUE
 
 !ifndef $(PEI_ARCH)
   !error "PEI_ARCH must be specified to build this feature!"
@@ -145,3 +145,5 @@
   MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+
+  QemuOpenBoardPkg/QemuOpenFvbServicesRuntimeDxe/QemuOpenFvbServicesRuntimeDxe.inf

@@ -30,3 +30,4 @@
   gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamBase|0|UINT32|0x00000001
   gQemuOpenBoardPkgTokenSpaceGuid.PcdTemporaryRamSize|0|UINT32|0x00000002
   gQemuOpenBoardPkgTokenSpaceGuid.PcdDebugIoPort|0|UINT16|0x00000003
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdFdVarBlockSize|0|UINT16|0x00000004
