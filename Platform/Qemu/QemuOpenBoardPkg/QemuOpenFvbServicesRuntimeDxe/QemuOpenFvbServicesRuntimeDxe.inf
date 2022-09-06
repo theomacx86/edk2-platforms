@@ -1,0 +1,53 @@
+## @file
+#  PlatformInitPei
+#
+#  Simple PEIM for QEMU PIIX4/Q35 Memory, SMP and PCI/PCI Express initialization
+#
+#  Copyright (c) 2022 Théo Jehl
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = QemuOpenFvbServicesRuntimeDxe
+  FILE_GUID                      = 81d92520-e04a-47d1-9b89-0775786dd477
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = InitializeFvb
+
+[Packages]
+  OvmfPkg/OvmfPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QemuOpenBoardPkg/QemuOpenBoardPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[Sources]
+  QemuOpenFvbService.c
+  QemuOpenFvbService.h
+  QemuPflash.c
+  QemuPflash.h
+
+[LibraryClasses]
+  PcdLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+
+[Guids]
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable
+
+  gQemuOpenBoardPkgTokenSpaceGuid.PcdFdVarBlockSize
+[FeaturePcd]
+
+[Depex]
+  TRUE
