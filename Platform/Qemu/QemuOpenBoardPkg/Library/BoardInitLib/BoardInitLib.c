@@ -34,7 +34,10 @@ BoardDetect (
 
   DEBUG ((DEBUG_INFO, "BoardDetect()\n"));
 
-  //Retrieve chipset device ID and vendor ID
+  //
+  // Retrieve chipset device ID and vendor ID
+  //
+
   DeviceID = PciCf8Read16 (PCI_CF8_LIB_ADDRESS (0, 0, 0, PCI_DEVICE_ID_OFFSET));
   VendorID = PciCf8Read16 (PCI_CF8_LIB_ADDRESS (0, 0, 0, PCI_VENDOR_ID_OFFSET));
 

@@ -103,14 +103,14 @@ QemuFwCfgIsPresent (
 
   @param String Pointer to an ASCII string to match in the database
   @param FWConfigFile Buffer for the config file
-  @retval EFI_STATUS - Entry was found, FWConfigFile is populated
-  @retval EFI_ERROR - Entry was not found
+  @retval EFI_STATUS Entry was found, FWConfigFile is populated
+  @retval EFI_ERROR Entry was not found
 **/
 EFI_STATUS
 EFIAPI
 QemuFwCfgFindFile (
-  IN CHAR8              *String,
-  OUT QEMU_FW_CFG_FILE  *FWConfigFile
+  IN  CHAR8              *String,
+  OUT QEMU_FW_CFG_FILE   *FWConfigFile
   )
 {
   QEMU_FW_CFG_FILE  FirmwareConfigFile;
