@@ -3,7 +3,7 @@
 #include <Library/DebugLib.h>
 #include <Library/BaseLib.h>
 
-UINT8 * PflashBasePointer;
+volatile UINT8 * PflashBasePointer;
 UINT16 BlockSize;
 UINT32 NvStorageSize;
 
@@ -91,7 +91,6 @@ QemuPflashInit(
  * @brief Read a byte from the QEMU flash device.
  *
  * @param Offset
- * @return UINT8
  */
 UINT8
 EFIAPI
@@ -109,17 +108,14 @@ QemuPflashReadByte(
  * @param Value
  * @return EFI_STATUS
  */
-EFI_STATUS
+VOID
 EFIAPI
 QemuPflashWriteByte(
   IN UINTN Offset,
   IN UINT8 Value
 )
 {
-  *(PflashBasePointer + Offset) = 0x40;
   *(PflashBasePointer + Offset) = Value;
-  *(PflashBasePointer + Offset) = QEMU_PFLASH_READ_ARRAY;
-  return EFI_SUCCESS;
 }
 
 UINT8 *
@@ -129,4 +125,22 @@ QemuPflashGetBaseAddress(
 )
 {
   return PflashBasePointer;
+}
+
+UINT32
+EFIAPI
+QemuPflashGetSize(
+  VOID
+)
+{
+  return NvStorageSize;
+}
+
+UINT16
+EFIAPI
+QemuPflashGetBlockSize(
+  VOID
+)
+{
+  return BlockSize;
 }

@@ -11,6 +11,7 @@
 
 #define QEMU_PFLASH_WRITE_BYTE          0x10
 #define QEMU_PFLASH_ERASE_BLOCK         0x20
+#define QEMU_PFLASH_ERASE_BLOCK_CONFIRM 0xd0
 #define QEMU_PFLASH_CLEAR_STATUS        0x50
 #define QEMU_PFLASH_UNLOCK_BLOCK        0x60
 #define QEMU_PFLASH_STATUS_REGISTER     0x70
@@ -52,7 +53,7 @@ QemuPflashReadByte(
   IN UINTN Offset
 );
 
-EFI_STATUS
+VOID
 EFIAPI
 QemuPflashWriteByte(
   IN UINTN Offset,
@@ -62,6 +63,18 @@ QemuPflashWriteByte(
 UINT8 *
 EFIAPI
 QemuPflashGetBaseAddress(
+  VOID
+);
+
+UINT32
+EFIAPI
+QemuPflashGetSize(
+  VOID
+);
+
+UINT16
+EFIAPI
+QemuPflashGetBlockSize(
   VOID
 );
 
