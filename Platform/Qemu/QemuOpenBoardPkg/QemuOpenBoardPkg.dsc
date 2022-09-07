@@ -38,7 +38,7 @@
   OvmfPkg/OvmfPkg.dec
 
 [PcdsFixedAtBuild]
-  gMinPlatformPkgTokenSpaceGuid.PcdBootStage | 2
+  gMinPlatformPkgTokenSpaceGuid.PcdBootStage | 3
 
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel        | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel   | 0x802A00C7
@@ -128,6 +128,7 @@
 !include MinPlatformPkg/Include/Dsc/CoreDxeLib.dsc
 !include QemuOpenBoardPkg/Include/Dsc/Stage1.dsc.inc
 !include QemuOpenBoardPkg/Include/Dsc/Stage2.dsc.inc
+!include QemuOpenBoardPkg/Include/Dsc/Stage3.dsc.inc
 
 [LibraryClasses.Common]
   QemuOpenFwCfgLib        | QemuOpenBoardPkg/Library/QemuOpenFwCfgLib/QemuOpenFwCfgLib.inf
