@@ -89,17 +89,17 @@ QemuFwCfgReadBytes (
 /**
   Finds a file in fw_cfg by its name
 
-  @param[in] String Pointer to an ASCII string to match in the database
+  @param[in]  String Pointer to an ASCII string to match in the database
   @param[out] FWConfigFile Buffer for the config file
 
-  @return EFI_STATUS - Entry was found, FWConfigFile is populated
-  @return EFI_ERROR - Entry was not found
+  @return EFI_STATUS Entry was found, FWConfigFile is populated
+  @return EFI_ERROR Entry was not found
  */
 EFI_STATUS
 EFIAPI
 QemuFwCfgFindFile (
-  IN CHAR8              *String,
-  OUT QEMU_FW_CFG_FILE  *FWConfigFile
+  IN  CHAR8              *String,
+  OUT QEMU_FW_CFG_FILE   *FWConfigFile
   );
 
 #endif // QEMU_OPEN_BOARD_PKG_QEMU_FW_CFG_LIB_H_
