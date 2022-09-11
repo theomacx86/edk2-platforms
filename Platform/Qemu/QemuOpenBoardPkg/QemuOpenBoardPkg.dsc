@@ -39,7 +39,7 @@
 
 
 [PcdsFixedAtBuild]
-  gMinPlatformPkgTokenSpaceGuid.PcdBootStage                            | 1
+  gMinPlatformPkgTokenSpaceGuid.PcdBootStage                            | 2
 
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel                      | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel                 | 0x802A00C7
