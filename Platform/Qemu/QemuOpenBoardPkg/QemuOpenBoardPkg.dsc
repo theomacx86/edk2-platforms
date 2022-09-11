@@ -18,6 +18,9 @@
   BUILD_TARGETS               = DEBUG | RELEASE | NOOPT
   SKUID_IDENTIFIER            = ALL
   SMM_REQUIRED                = FALSE
+  !ifndef $(BOOT_STAGE)
+    BOOT_STAGE                = 4
+  !endif
 
 !ifndef $(PEI_ARCH)
   !error "PEI_ARCH must be specified to build this feature!"
@@ -39,7 +42,7 @@
 
 
 [PcdsFixedAtBuild]
-  gMinPlatformPkgTokenSpaceGuid.PcdBootStage                            | 3
+  gMinPlatformPkgTokenSpaceGuid.PcdBootStage                            | $(BOOT_STAGE)
 
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel                      | 0x802A00C7
   gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel                 | 0x802A00C7
